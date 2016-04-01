@@ -1,5 +1,9 @@
 var elixir = require('laravel-elixir');
 
+var less = require('gulp-less');
+var path = require('path');
+
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -13,4 +17,13 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+});
+
+
+gulp.task('less', function () {
+  return gulp.src('./resources/assets/less/*.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./public/css'));
 });
