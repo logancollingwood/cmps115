@@ -1,10 +1,6 @@
 <!--
 
-Smashlounge is built for the community, by the community.
-
-All tools used on this site are for non-commercial purposes.
-Questions?
-  smashlounge@gmail.DOCTYPEana
+CMPS 115 eSports
 
 -->
 
@@ -14,7 +10,7 @@ Questions?
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>smashlounge</title>
+	<title>eSports</title>
 
 	<!-- contains minified Twitter Bootstrap -->
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
@@ -36,9 +32,6 @@ Questions?
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-
-	@yield('twittercard')
-
 </head>
 <body>
 	@if (Auth::check()) 
@@ -53,7 +46,6 @@ Questions?
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									@if (Auth::user()->hasRole('moderator'))<li><a href="{{ url('/moderate') }}">Moderate</a></li>@endif
 									<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 								</ul>
 							</li>
@@ -68,7 +60,7 @@ Questions?
 		<div class="row">
 			<div class="col-sm-2 col-md-2" id="sidebar">
 				<div id="sidebarBrand" style="display: none;">
-					<h1> <a href="{{ url('/') }}"> SL </a> </h1>
+					<h1> <a href="{{ url('/') }}"> esp </a> </h1>
 				</div>
 				<ul>
 					<li class="{{ Request::path() == '/' ? 'active' : ''}}"><a href="{{ url('/') }}">Home</a></li>
@@ -126,9 +118,17 @@ Questions?
 	</div>
 	
 	<!-- Scripts -->
-	<script src="{{ asset('/js/lib/jquery-1.11.3.min.js') }}"></script>
+	<!-- Latest compiled and minified jQuery -->
+	<script   src="https://code.jquery.com/jquery-2.2.2.min.js" 
+		integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   
+		crossorigin="anonymous">
+	</script>
 	
-	<script src="{{ asset('/js/lib/bootstrap.min.js') }}"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
+		crossorigin="anonymous">
+	</script>
 	
 	<!-- application minified js -->
 	<script src="{{ asset('/js/compiled/app.js') }}"></script>
@@ -137,14 +137,10 @@ Questions?
 	
 
 	@yield('includes')
+	
+	<!-- Google Analytics -->
 	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-51481444-1', 'auto');
-	  ga('send', 'pageview');
+	  
 
 	</script>
 </body>
