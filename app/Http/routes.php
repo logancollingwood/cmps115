@@ -23,3 +23,6 @@ Route::resource('home', 'HomeController');
 Route::get('api/player/{region}/{id}', 'PlayerController@byId');
 Route::get('api/player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
 
+Route::get('api/free', 'StaticController@freeChamps');
+
+Route::get('api/champion/{id}', 'StaticController@championById');

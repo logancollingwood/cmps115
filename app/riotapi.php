@@ -77,6 +77,12 @@ class riotapi extends Model
 		return $this->request($call);
 	}
 
+	public function getChampionStaticById($id) {
+		$call = 'champion';
+		$call = self::API_URL_STATIC_1_2 . $call . '/' . $id;
+		return $this->request($call);
+	}
+
 	// Returns all free champions.
 	public function getFreeChampions()
 	{
