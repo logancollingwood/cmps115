@@ -16,3 +16,10 @@ Route::get('/', 'HomeController@index');
 // Declare a method in app/Http/Controllers/HomeController.php and
 // home/function_name should route to the function in HomeController
 Route::resource('home', 'HomeController');
+
+
+
+// Player Endpoints
+Route::get('api/player/{region}/{id}', 'PlayerController@byId');
+Route::get('api/player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
+
