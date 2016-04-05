@@ -14,15 +14,17 @@ Route::get('/', 'HomeController@index');
 
 
 // Declare a method in app/Http/Controllers/HomeController.php and
-// home/function_name should route to the function in HomeController
+// the url home/function_name should route to the function in HomeController
 Route::resource('home', 'HomeController');
 
 
 
-// Player Endpoints
+// Player Endpoints -- RATE LIMITED
 Route::get('api/player/{region}/{id}', 'PlayerController@byId');
 Route::get('api/player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
 
-Route::get('api/free', 'StaticController@freeChamps');
 
+
+// Static Endpoints -- NOT RATE LIMITED
+Route::get('api/free', 'StaticController@freeChamps');
 Route::get('api/champion/{id}', 'StaticController@championById');

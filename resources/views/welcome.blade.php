@@ -51,10 +51,13 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">The Home of eSports</div>
-            </div>
-        </div>
+        <div id="welcome"></div>
     </body>
+
+    
+    <script src="https://fb.me/react-0.14.8.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.8.min.js"></script>
+
+    <!-- Built React -->
+    <script src="{{ asset('/js/build/build.min.js') }}"></script>
 </html>

@@ -21,11 +21,17 @@ class PlayerController extends Controller
     public function byId($region, $name) {
 		$this->connection->setRegion($region);
 		$data = $this->connection->getSummonerByName($name);
+		
+		// On error, connection calls return an empty object
+		// current hacky solution to avoid laravel thrown exceptions
 		if (!empty($data)) {
+
+			// grab ID, and use it to query into the stats endpoint
 			$summId = $data[$name]['id'];
 			$stats = $this->getStats($region, $summId);
 			$response['response'] = 200;
 			$response['payload'] = $stats;
+
 		} else {
 			$response['response'] = 404;
 		}
