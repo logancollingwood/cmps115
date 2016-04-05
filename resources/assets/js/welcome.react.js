@@ -2,16 +2,12 @@ var Welcome = React.createClass({
     render: function() {
         var message = 'LoLstats';
         return React.DOM.div({
-                className: "container"
-            },
-            React.DOM.div({
                     className: "content"
                 },
                 React.DOM.div({
                     className: "title"
                 }, message)
-            )
-        );
+            );
     }
 });
 

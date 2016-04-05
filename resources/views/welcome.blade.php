@@ -21,7 +21,7 @@
                 background-position: cover;
             }
 
-            .container {
+            #welcome {
                 text-align: center;
                 display: table-cell;
                 vertical-align: middle;
