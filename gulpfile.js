@@ -4,10 +4,8 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 var path = require('path');
-var minify = require('gulp-minify');
 var concat = require('gulp-concat');
 var react = require('gulp-react');
-var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 
 var path = {
