@@ -16,9 +16,10 @@ class PlayerController extends Controller
 
 	public function __construct() {
 		$this->connection = new riotapi('na');
+		$this->apiResponder = new ApiResponder();
 	}
 
-    public function byId($region, $name) {
+    public function byName($region, $name) {
 		$this->connection->setRegion($region);
 		$data = $this->connection->getSummonerByName($name);
 		
@@ -29,13 +30,14 @@ class PlayerController extends Controller
 			// grab ID, and use it to query into the stats endpoint
 			$summId = $data[$name]['id'];
 			$stats = $this->getStats($region, $summId);
-			$response['response'] = 200;
-			$response['payload'] = $stats;
 
+			$this->apiResponder->setCode(200);
+			$this->apiResponder->setData($stats);
 		} else {
-			$response['response'] = 404;
+			$this->apiResponder->setCode(404);
 		}
-		return $response;
+
+		return $this->apiResponder->send();
     }
 
     public function getStats($region, $id, $ranked = false) {

@@ -1,5 +1,6 @@
 <?php
 
+$apiBase = 'api/';
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -20,9 +21,12 @@ Route::resource('home', 'HomeController');
 
 
 // Player Endpoints -- RATE LIMITED
-Route::get('api/player/{region}/{id}', 'PlayerController@byId');
-Route::get('api/player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
+Route::get($apiBase . 'player/{region}/{id}', 'PlayerController@byName');
+Route::get($apiBase . 'player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
 
+
+// Match Endpoints -- RATE LIMITED
+Route::get($apiBase . 'match/{matchid}', 'MatchController@byId');
 
 
 // Static Endpoints -- NOT RATE LIMITED
