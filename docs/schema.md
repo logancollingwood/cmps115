@@ -1,12 +1,14 @@
 # Schema Design
-### endofgame
 ---
+Base table for holding game object
+### endofgame
 - id (int, Primary)
 - riotmatchid (int (big?))
 - winner (int) // not sure how to do this given the api
 - matchTime (Timestamp)
 - createdAt (timestamp) 
-- updatedAt (timestamp) // will allow us to note that a match has been pulled from API
+- updatedAt (timestamp) 
+	- will allow us to note that a match has been pulled from API at this time
 ---
 Stores specific summoner information in a match
 ### summonermatch
