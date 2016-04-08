@@ -1,2 +1,2 @@
 # An eSports thing...
-Course assignments can be found in code/
+Course assignments can be found in docs/
