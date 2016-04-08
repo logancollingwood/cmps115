@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\riotapi;
 use App\ApiResponder;
+use App\Player;
+
 
 class PlayerController extends Controller
 {
@@ -20,9 +22,20 @@ class PlayerController extends Controller
 	}
 
     public function byName($region, $name) {
-		$this->connection->setRegion($region);
-		$data = $this->connection->getSummonerByName($name);
+    	$matchThese = ['summonerName' => $name, 'region' => $region];
+
+    	$player =  Player::where($matchThese);
+    	if ($player == null) {
+    		// no data, need to do lookup
+			$this->connection->setRegion($region);
+			$data = $this->connection->getSummonerByName($name);
+		} else {
+
+		}
 		
+		
+
+
 		// On error, connection calls return an empty object
 		// current hacky solution to avoid laravel thrown exceptions
 		if (!empty($data)) {
