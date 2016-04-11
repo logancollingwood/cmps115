@@ -30,7 +30,10 @@ class PlayerMatch extends Migration
         */
         Schema::create('playerMatch', function(Blueprint $table)
         {
+
             $table->integer('id', true);
+            $table->string('region');
+            
             $table->integer('kills');
             $table->integer('deaths');
             $table->integer('assists');

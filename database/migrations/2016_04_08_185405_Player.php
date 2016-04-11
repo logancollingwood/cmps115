@@ -30,7 +30,9 @@ class Player extends Migration
             $table->integer('summonerId');
             $table->string('summonerName');
             $table->string('region');
-            $table->integer('kills');
+
+            $table->integer('totalChampionKills');
+            $table->integer('wins');
             $table->integer('deaths');
             $table->integer('assists');
             $table->integer('minionKills');
@@ -38,6 +40,7 @@ class Player extends Migration
             $table->integer('turretsDestroyed');
             $table->integer('currentLeague');
             $table->integer('lastLeague');
+
             $table->timestamps();
         });
     }
