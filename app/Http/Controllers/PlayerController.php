@@ -74,7 +74,7 @@ class PlayerController extends Controller
 			// We have this player's record in our database. If it hasn't been updated in
 			// PLAYER_FULL_REFRESH_TIMER, we'll 
 			if (time() - time($player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
-				$player->updatePlayerFull($player, $name);
+				$player->updatePlayerFull($this->connection);
 			}
 		}
 		return $player;
