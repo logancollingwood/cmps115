@@ -31,6 +31,10 @@ class PlayerController extends Controller
 			na, eu, oce, etc] 
 		Param $name String
 
+		Notes:
+			api responder is a custom helper class I made in App/HTTP/ApiResponder.php
+
+
 	*/
     public function byName($region, $name) {
     	$this->apiResponder->setCode(404);
