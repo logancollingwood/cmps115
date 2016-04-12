@@ -41,6 +41,7 @@ class GameTypeStats extends Migration
             $table->integer('totalTurretsKilled');
             $table->integer('totalNeutralMinionsKilled');
             $table->integer('totalAssists');
+            
             $table->timestamps();
         });
     }
