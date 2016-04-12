@@ -28,6 +28,8 @@ class Player extends Model
     	
     	// doing this forces the call to $this->gameTypeStats()
     	// which adds the foreign key relationship to the player object
+    	// populating the gameTypeStats field with data
+    	// from the gameTypeStats mysql db table on the player object.
     	// even though this variable is unsed. This allows us 
     	$stats = $this->gameTypeStats;
 

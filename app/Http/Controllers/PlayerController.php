@@ -87,7 +87,7 @@ class PlayerController extends Controller
 		$data = $this->connection->getSummonerByName($name);
 		
 		// create model and initialize with values
-		$player = new Player($this->connection);
+		$player = new Player;
 		$player->region = $region;
 		$player->summonerName = $name;
 		$player->summonerId = $data[$name]['id'];
