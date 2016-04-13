@@ -174,15 +174,12 @@ class riotapi extends Model
 	
 	//returns a summoner's id
 	public function getSummonerId($name) {
-			$name = strtolower($name);
-			$summoner = $this->getSummonerByName($name);
-			if (!self::DECODE_ENABLED) {
-				return $summoner[$name]['id'];
-			}
-			else {
-				$summoner = json_decode($summoner, true);
-				return $summoner[$name]['id'];
-			}
+		$name = strtolower($name);
+		$summoner = $this->getSummonerByName($name);
+
+		
+		return $summoner[$name]['id'];
+			
 	}		
 
 	//Returns summoner info given summoner id.

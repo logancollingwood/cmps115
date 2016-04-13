@@ -1,6 +1,5 @@
 <?php
 
-$apiBase = 'api/';
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -19,16 +18,21 @@ Route::get('/', 'HomeController@index');
 Route::resource('home', 'HomeController');
 
 
+// All Endpoints here are prefixed by api/
+Route::group(['prefix' => 'api/'], function () {
 
-// Player Endpoints -- RATE LIMITED
-Route::get($apiBase . 'player/{region}/{id}', 'PlayerController@byName');
-Route::get($apiBase . 'player/{region}/{id}/{matchid}', 'PlayerController@byIdMatch');
-
-
-// Match Endpoints -- RATE LIMITED
-Route::get($apiBase . 'match/{matchid}', 'MatchController@byId');
+    // Player Endpoints -- RATE LIMITED
+	Route::get('player/{region}/{name}', 'PlayerController@byName');
+	Route::get('player/{region}/{name}/{matchid}', 'PlayerController@byIdMatch');
 
 
-// Static Endpoints -- NOT RATE LIMITED
-Route::get('api/free', 'StaticController@freeChamps');
-Route::get('api/champion/{id}', 'StaticController@championById');
+	// Match Endpoints -- RATE LIMITED
+	Route::get('match/{matchid}', 'MatchController@byId');
+	Route::get('match/{region}/{name}', 'PlayerController@matchHistory');
+
+	// Static Endpoints -- NOT RATE LIMITED
+	Route::get('free', 'StaticController@freeChamps');
+	Route::get('champion/{id}', 'StaticController@championById');
+
+
+});

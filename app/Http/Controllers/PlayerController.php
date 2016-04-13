@@ -19,6 +19,7 @@ class PlayerController extends Controller
     private $regions =  ['BR', 'EUNE', 'EUW', 'JP', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR'];
 
     const PLAYER_FULL_REFRESH_TIMER = 6;
+    const PLAYER_MATCHES_REFRESH_TIMER = 6;
 
 	public function __construct() {
 		$this->apiResponder = new ApiResponder();
@@ -52,8 +53,6 @@ class PlayerController extends Controller
 		if (!empty($player)) {
 			$this->apiResponder->setCode(200);
 			$this->apiResponder->setData($player->encapsulate());
-		} else {
-			$this->apiResponder->setCode(404);
 		}
 
 		return $this->apiResponder->send();
@@ -80,6 +79,8 @@ class PlayerController extends Controller
 		return $player;
     }
 
+    // very expensive. Need to look up player data,
+    // as well as full match data
     private function createPlayer($name, $region) {
     	
     	// no data, need to do lookup
@@ -97,13 +98,14 @@ class PlayerController extends Controller
 
 		// Update database records for General Match Type Statistics
 		$overallStatistics = $player->updateMatchTypeStats($this->connection);
-		
+		$player->updateMatches($this->connection);
+
 		$player->wins = $overallStatistics['totalWins'];
 		$player->totalChampionKills = $overallStatistics['totalChampionKills'];
 		$player->assists = $overallStatistics['totalAssists'];
 		$player->neutralMinionKills = $overallStatistics['totalNeutralMinionsKilled'];
 		$player->turretsDestroyed = $overallStatistics['totalTurretsKilled'];
-		
+
 		//Save these attributes
 		$player->save();
 		return $player;
@@ -112,6 +114,29 @@ class PlayerController extends Controller
 
     public function byIdMatch($region, $id) {
 
+    }
+
+    public function matchHistory($region, $name) {
+    	$this->apiResponder->setCode(404);
+
+    	/* Non recognized region */
+    	if (!in_array(strtoupper($region), $this->regions)) {
+    		$this->apiResponder->setError("Unknown Region");
+    		return $this->apiResponder->send();
+    	}
+    	
+    	$player = $this->updateOrCreateInitialPlayer($name, $region); 
+		if (!empty($player)) {
+    		if (time() - time($player->updated_matches_at) > self::PLAYER_MATCHES_REFRESH_TIMER) {
+				$player->updateMatches($this->connection);
+			}
+			$this->apiResponder->setCode(200);
+			$this->apiResponder->setData($player->PlayerMatches);
+		}		
+    	
+    	
+
+		return $this->apiResponder->send();
     }
 
 }

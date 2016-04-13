@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\GameTypeStats;
+use App\PlayerMatch;
 
 class Player extends Model
 {
@@ -23,7 +24,8 @@ class Player extends Model
     
     private $specificMatchStats = [];
 
-
+    // Returns the full model encapsulated
+    // for delivery over API
     public function encapsulate() {
     	
     	// doing this forces the call to $this->gameTypeStats()
@@ -31,7 +33,8 @@ class Player extends Model
     	// populating the gameTypeStats field with data
     	// from the gameTypeStats mysql db table on the player object.
     	// even though this variable is unsed. This allows us 
-    	$stats = $this->gameTypeStats;
+    	$stats = $this->GameTypeStats;
+    	$recentMatches = $this->PlayerMatches;
 
     	$json = [];
     	// copy player data over into this json field
@@ -54,7 +57,7 @@ class Player extends Model
 		// Update database records for General Match Type Statistics
 		// and specific match type stats
 		$overallStatistics = $this->updateMatchTypeStats($connection);
-		
+
 		// This includes total wins and other stats for ALL game types
 		$player->wins = $overallStatistics['totalWins'];
 		$player->totalChampionKills = $overallStatistics['totalChampionKills'];
@@ -90,6 +93,9 @@ class Player extends Model
 			if (!$gameTypeStats) {
 				$gameTypeStats = new GameTypeStats;
 			}
+			// it makes sense to overwrite our database here
+			//  since these structures are modified often
+			//  ie (number of wins in Unranked5x5)
 			$gameTypeStats->summonerId = $this->summonerId;
 			$gameTypeStats->region = $this->region;
 			$gameTypeStats->gameTypeId = $gameTypeId;
@@ -143,10 +149,54 @@ class Player extends Model
     	return $r;
     }
 
-    public function gameTypeStats() {
+    public function GameTypeStats() {
 
         return $this->hasMany('App\GameTypeStats', 'summonerId', 'summonerId');
 
+    }
+
+    // this is pretty damn expensive
+    public function updateMatches($connection) {
+
+    	$matchHistory = $connection->getMatchHistory($this->summonerId);
+
+    	foreach ($matchHistory["matches"] as $match) {
+    		$playerMatch = PlayerMatch::where('summonerId', $this->summonerId)
+    									->where('platformId', $match['platformId'])
+    									->where('matchId', $match['matchId'])
+    									->first();
+    		
+    		// if we haven't stored this match before, lets
+    		// grab it and throw it in our sql database
+    		// otherwise no need to do that.
+
+    		if (!$playerMatch) {
+    			$playerMatch = new PlayerMatch;
+	    		// identifiers
+	    		$playerMatch->summonerId = $this->summonerId;
+	    		$playerMatch->platformId = $match['platformId'];
+	    		$playerMatch->matchId = $match['matchId'];
+
+	    		$playerMatch->champion = $match['champion'];
+	    		$playerMatch->queue = $match['queue'];
+	    		$playerMatch->season = $match['season'];
+	    		$playerMatch->lane = $match['lane'];
+	    		$playerMatch->role = $match['role'];
+	    		$playerMatch->serverTime = $match['timestamp'];
+	    		$playerMatch->save();
+	    	}
+    	}
+    	
+    	// now we set the updated_matches_at timestamp to the current time and save
+    	$this->updated_matches_at = time();
+		$player->save();
+    }
+
+
+
+
+    public function PlayerMatches() {
+    	return $this->hasMany('App\PlayerMatch', 'summonerId', 'summonerId');
     }
     
 }

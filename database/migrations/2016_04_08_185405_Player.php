@@ -41,6 +41,7 @@ class Player extends Migration
             $table->integer('currentLeague');
             $table->integer('lastLeague');
 
+            $table->timestamp('updated_matches_at');
             $table->timestamps();
         });
     }

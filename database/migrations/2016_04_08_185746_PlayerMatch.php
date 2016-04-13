@@ -28,25 +28,41 @@ class PlayerMatch extends Migration
             largestMultiKill (int)
 
         */
-        Schema::create('playerMatch', function(Blueprint $table)
+        // Riot GIVES
+
+        /*
+            {  
+                "region":"NA",
+                "platformId":"NA1",
+                "matchId":2078969667,
+                "champion":236,
+                "queue":"RANKED_SOLO_5x5",
+                "season":"SEASON2016",
+                "timestamp":1453748452012,
+                "lane":"BOTTOM",
+                "role":"DUO_CARRY"
+            },
+        */
+        Schema::create('playermatch', function(Blueprint $table)
         {
-
             $table->integer('id', true);
-            $table->string('region');
-            
-            $table->integer('kills');
-            $table->integer('deaths');
-            $table->integer('assists');
-            $table->integer('minionKills');
-            $table->integer('neutralMinionKills');
-            $table->integer('turretsDestroyed');
-            $table->integer('currentLeague');
-            $table->integer('lastLeague');
 
-            $table->integer('winner');
-            $table->timestamp('matchLength');
+            // Identifiers
+            $table->integer('summonerId');
+            $table->string('platformId');
+            $table->integer('matchId');
+
+            $table->integer('champion');
+
+            $table->string('queue');
+            $table->string('season');
+            $table->string('lane');
+            $table->string('role');
+
+            $table->integer('serverTime');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -57,6 +73,6 @@ class PlayerMatch extends Migration
     public function down()
     {
         //
-        Schema::drop('playerMatch');
+        Schema::drop('playermatch');
     }
 }
