@@ -34,13 +34,14 @@ class Player extends Model
     	// from the gameTypeStats mysql db table on the player object.
     	// even though this variable is unsed. This allows us 
     	$stats = $this->GameTypeStats;
-    	$recentMatches = $this->PlayerMatches;
-
+    	$recentMatches = $this->mostRecentGames(5);
+    	
     	$json = [];
     	// copy player data over into this json field
     	// this includes agregate match stats since they're
     	// part of the player model
     	$json['playerData'] = $this;
+    	$json['recentMatches'] = $recentMatches;
 
     	return $json;
     }
@@ -186,14 +187,19 @@ class Player extends Model
 	    		$playerMatch->save();
 	    	}
     	}
-    	
+
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
 		$player->save();
     }
 
 
-
+    public function mostRecentGames($number) {
+    	return PlayerMatch::where('summonerId', $this->summonerId)
+    							->orderBy('serverTime', 'desc')
+    							->take($number)
+    							->get();
+    }
 
     public function PlayerMatches() {
     	return $this->hasMany('App\PlayerMatch', 'summonerId', 'summonerId');
