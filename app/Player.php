@@ -190,7 +190,7 @@ class Player extends Model
 
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
-		$player->save();
+		$this->save();
     }
 
 
