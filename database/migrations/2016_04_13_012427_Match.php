@@ -20,8 +20,11 @@ class Match extends Migration
         Schema::create('match', function(Blueprint $table)
         {
             $table->integer('id', true);
-          
-
+            $table->integer('matchId');
+            $table->string('platformId');
+            $table->string('queue');
+            $table->string('season');
+            $table->string('serverTime');
             $table->timestamps();
         });
     }

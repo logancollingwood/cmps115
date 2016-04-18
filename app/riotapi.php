@@ -256,7 +256,7 @@ class riotapi extends Model
 			// block for the appropriate amount of time
 			elseif($queue->count() >= $call_limit){
 				if($timeSinceOldest < $interval){ //order of ops matters
-					echo("sleeping for".($interval - $timeSinceOldest + 1)." seconds\n");
+					//echo("sleeping for".($interval - $timeSinceOldest + 1)." seconds\n");
 					sleep($interval - $timeSinceOldest);
 				}
 			}

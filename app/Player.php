@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\GameTypeStats;
 use App\PlayerMatch;
+use App\Match;
 
 class Player extends Model
 {
@@ -18,6 +19,7 @@ class Player extends Model
      *
      * @var string
      */
+
     protected $table = 'player';
 
     private $regions =  ['BR', 'EUNE', 'EUW', 'JP', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR'];
@@ -164,44 +166,11 @@ class Player extends Model
     	$count = 0;
 
     	foreach ($matchHistory["matches"] as $match) {
-    		if ($count > 5) break;
-    		$playerMatch = PlayerMatch::where('summonerId', $this->summonerId)
-    									->where('platformId', $match['platformId'])
-    									->where('matchId', $match['matchId'])
-    									->first();
+    		if ($count > 15) break;
     		
-    		// if we haven't stored this match before, lets
-    		// grab it and throw it in our sql database
-    		// otherwise no need to do that.
 
-    		if (!$playerMatch) {
-    			$playerMatch = new PlayerMatch;
-	    		// identifiers
-	    		$playerMatch->summonerId = $this->summonerId;
-	    		$playerMatch->platformId = $match['platformId'];
-	    		$playerMatch->matchId = $match['matchId'];
-	    		// subquery riot match api with matchid
-
-	    		$matchData = $this->matchLookup($connection, $playerMatch->matchId);
-	    		
-
-	    		$playerMatch->won = ($matchData['won'] == 'true' ? 1 : 0);
-	    		$playerMatch->kills = $matchData['kills'];
-	    		$playerMatch->deaths = $matchData['deaths'];
-	    		$playerMatch->assists = $matchData['assists'];
-	    		$playerMatch->wards_placed = $matchData['wards_placed'];
-	    		$playerMatch->wards_killed = $matchData['wards_killed'];
-	    		$playerMatch->first_blood = ($matchData['first_blood'] == 'true' ? 1 : 0);
-
-
-	    		$playerMatch->champion = $match['champion'];
-	    		$playerMatch->queue = $match['queue'];
-	    		$playerMatch->season = $match['season'];
-	    		$playerMatch->lane = $match['lane'];
-	    		$playerMatch->role = $match['role'];
-	    		$playerMatch->serverTime = $match['timestamp'];
-	    		$playerMatch->save();
-	    	}
+    		$this->matchLookupOrCreate($connection, $match);
+    		
 	    	$count++;
     	}
 
@@ -210,35 +179,67 @@ class Player extends Model
 		$this->save();
     }
 
+    public function matchLookupOrCreate($connection, $match) {
+	    // if we haven't stored this match before, lets
+		// grab it and throw it in our sql database
+		// otherwise no need to do that.
+    	$matchModel = Match::where('platformId', $match['platformId'])
+							->where('matchId', $match['matchId'])
+							->first();
+		if (!$matchModel) {
+			$matchModel = new Match;
+			$matchData = $connection->getMatch($match['matchId']);
+			
+			$participantIdentities = $matchData['participantIdentities'];
+			
+			foreach ($participantIdentities as $participant) {
+				$partId = $participant['participantId'];
+				$summonerId = $participant['player']['summonerId'];
+				$pm = PlayerMatch::where('summonerId', $summonerId)
+    									->where('platformId', $match['platformId'])
+    									->where('matchId', $match['matchId'])
+    									->first();
+    			if(!$pm) {
+    				$playerMatch = new PlayerMatch;
+		    		// identifiers
+		    		$playerMatch->summonerId = $summonerId;
+		    		$playerMatch->platformId = $match['platformId'];
+		    		$playerMatch->matchId = $match['matchId'];
+		    		// subquery riot match api with matchid
 
-    public function matchLookup($connection, $matchId) {
-    	$match = $connection->getMatch($matchId);
-    	$participants = $match['participants'];
-    	$object = [];
-    	//dd($match);
-    	foreach ($match['participantIdentities'] as $pid) {
-    		if ($pid['player']['summonerId'] == $this->summonerId) {
-    			$myParticipantId = $pid['participantId'];
-    		}
-    	}
+		    		foreach ($matchData['participants'] as $participant) {
+			    		if ($participant['participantId'] == $partId) {
+			    			$stats = $participant['stats'];
+			    			
+			    			$playerMatch->won = $stats['winner'];
+			    			$playerMatch->kills = $stats['kills'];
+			    			$playerMatch->deaths = $stats['deaths'];
+			    			$playerMatch->assists = $stats['assists'];
+			    			$playerMatch->wards_placed = $stats['wardsPlaced'];
+			    			$playerMatch->wards_killed = $stats['wardsKilled'];
+			    			$playerMatch->first_blood = $stats['firstBloodKill'] || $stats['firstBloodAssist'];
+				    		$playerMatch->lane = $participant['timeline']['lane'];
+			    			$playerMatch->role = $participant['timeline']['role'];
+			    			$playerMatch->champion = $participant['championId'];
+			    		}
+			    	}
 
-    	foreach ($match['participants'] as $participant) {
-    		if ($participant['participantId'] == $myParticipantId) {
-    			$stats = $participant['stats'];
-    			
-    			$object['won'] = $stats['winner'];
-    			$object['kills'] = $stats['kills'];
-    			$object['deaths'] = $stats['deaths'];
-    			$object['assists'] = $stats['assists'];
-    			$object['wards_placed'] = $stats['wardsPlaced'];
-    			$object['wards_killed'] = $stats['wardsKilled'];
-    			$object['first_blood'] = $stats['firstBloodKill'] || $stats['firstBloodAssist'];
-
-    		}
-    	}
-
-    	return $object;
+		    		
+		    		$playerMatch->queue = $matchData['queueType'];
+		    		$playerMatch->season = $matchData['season'];
+		    		$playerMatch->serverTime = $matchData['matchCreation'];
+		    		$playerMatch->save();
+		    		
+    			}
+			}
+			$matchModel->matchId = $match['matchId'];
+			$matchModel->queue = $matchData['queueType'];
+			$matchModel->season = $matchData['season'];
+			$matchModel->serverTime = $matchData['matchCreation'];
+			$matchModel->save();
+		}
     }
+    
 
 
     // Retrieves the last $number matches from 
