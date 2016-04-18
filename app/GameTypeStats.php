@@ -20,7 +20,8 @@ class GameTypeStats extends Model
             "RankedTeam5x5" => 7,
             "RankedTeam3x3" => 8,
             "Unranked" => 9,
-            "Unranked3x3" => 10
+            "Unranked3x3" => 10,
+            "RankedPremade3x3" => 11
     	];
 
     	return $types[$str];
@@ -38,7 +39,8 @@ class GameTypeStats extends Model
             "RankedTeam5x5" => 7,
             "RankedTeam3x3" => 8,
             "Unranked" => 9,
-            "Unranked3x3" => 10
+            "Unranked3x3" => 10,
+            "RankedPremade3x3" => 11
     	];
     	return array_search($id, $types);
     }
