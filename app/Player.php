@@ -159,9 +159,12 @@ class Player extends Model
     // this is pretty damn expensive
     public function updateMatches($connection) {
 
+
     	$matchHistory = $connection->getMatchHistory($this->summonerId);
+    	$count = 0;
 
     	foreach ($matchHistory["matches"] as $match) {
+    		if ($count > 5) break;
     		$playerMatch = PlayerMatch::where('summonerId', $this->summonerId)
     									->where('platformId', $match['platformId'])
     									->where('matchId', $match['matchId'])
@@ -177,6 +180,19 @@ class Player extends Model
 	    		$playerMatch->summonerId = $this->summonerId;
 	    		$playerMatch->platformId = $match['platformId'];
 	    		$playerMatch->matchId = $match['matchId'];
+	    		// subquery riot match api with matchid
+
+	    		$matchData = $this->matchLookup($connection, $playerMatch->matchId);
+	    		
+
+	    		$playerMatch->won = ($matchData['won'] == 'true' ? 1 : 0);
+	    		$playerMatch->kills = $matchData['kills'];
+	    		$playerMatch->deaths = $matchData['deaths'];
+	    		$playerMatch->assists = $matchData['assists'];
+	    		$playerMatch->wards_placed = $matchData['wards_placed'];
+	    		$playerMatch->wards_killed = $matchData['wards_killed'];
+	    		$playerMatch->first_blood = ($matchData['first_blood'] == 'true' ? 1 : 0);
+
 
 	    		$playerMatch->champion = $match['champion'];
 	    		$playerMatch->queue = $match['queue'];
@@ -186,12 +202,44 @@ class Player extends Model
 	    		$playerMatch->serverTime = $match['timestamp'];
 	    		$playerMatch->save();
 	    	}
+	    	$count++;
     	}
 
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
 		$this->save();
     }
+
+
+    public function matchLookup($connection, $matchId) {
+    	$match = $connection->getMatch($matchId);
+    	$participants = $match['participants'];
+    	$object = [];
+    	//dd($match);
+    	foreach ($match['participantIdentities'] as $pid) {
+    		if ($pid['player']['summonerId'] == $this->summonerId) {
+    			$myParticipantId = $pid['participantId'];
+    		}
+    	}
+
+    	foreach ($match['participants'] as $participant) {
+    		if ($participant['participantId'] == $myParticipantId) {
+    			$stats = $participant['stats'];
+    			
+    			$object['won'] = $stats['winner'];
+    			$object['kills'] = $stats['kills'];
+    			$object['deaths'] = $stats['deaths'];
+    			$object['assists'] = $stats['assists'];
+    			$object['wards_placed'] = $stats['wardsPlaced'];
+    			$object['wards_killed'] = $stats['wardsKilled'];
+    			$object['first_blood'] = $stats['firstBloodKill'] || $stats['firstBloodAssist'];
+
+    		}
+    	}
+
+    	return $object;
+    }
+
 
     // Retrieves the last $number matches from 
     // PlayerMatch for a specific player object

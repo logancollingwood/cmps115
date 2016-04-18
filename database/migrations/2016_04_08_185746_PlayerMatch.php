@@ -59,6 +59,15 @@ class PlayerMatch extends Migration
             $table->string('lane');
             $table->string('role');
 
+            
+            $table->integer('won');
+            $table->integer('kills');
+            $table->integer('deaths');
+            $table->integer('assists');
+            $table->integer('wards_placed');
+            $table->integer('wards_killed');
+            $table->integer('first_blood');
+
             $table->integer('serverTime');
             $table->timestamps();
         });

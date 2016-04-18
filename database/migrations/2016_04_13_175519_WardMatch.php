@@ -36,5 +36,6 @@ class WardMatch extends Migration
     public function down()
     {
         //
+        Schema::drop('wardmatch');
     }
 }
