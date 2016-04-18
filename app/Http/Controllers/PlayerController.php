@@ -139,4 +139,11 @@ class PlayerController extends Controller
 		return $this->apiResponder->send();
     }
 
+    
+    public function summonerInfo($id) {
+    	$json['summary'] = $this->connection->getSummoner($id);
+    	$json['masteries'] = $this->connection->getSummoner($id, 'masteries');
+    	$json['runes'] = $this->connection->getSummoner($id, 'runes');
+    	return $json;
+    }
 }

@@ -22,7 +22,7 @@ class MatchController extends Controller
 
     public function byId($matchId) {
     	// Second Param is for timeline?
-    	$data = $this->connection->getMatch($matchId, false);
+    	$data = $this->connection->getMatch($matchId, true);
     	if (!empty($data)) {
 
 			$this->apiResponder->setCode(200);
