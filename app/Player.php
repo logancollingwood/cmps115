@@ -193,7 +193,8 @@ class Player extends Model
 		$this->save();
     }
 
-
+    // Retrieves the last $number matches from 
+    // PlayerMatch for a specific player object
     public function mostRecentGames($number) {
     	return PlayerMatch::where('summonerId', $this->summonerId)
     							->orderBy('serverTime', 'desc')
