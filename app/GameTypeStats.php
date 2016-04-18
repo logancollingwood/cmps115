@@ -22,7 +22,7 @@ class GameTypeStats extends Model
             "Unranked" => 9,
             "Unranked3x3" => 10,
             "RankedPremade3x3" => 11,
-            "RankedPremade5x5", => 12
+            "RankedPremade5x5" => 12
     	];
 
     	return $types[$str];
