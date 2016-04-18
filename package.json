@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "angular": "^1.5.3",
     "browserify": "^13.0.0",
     "gulp": "^*",
     "gulp-concat": "^2.6.0",
