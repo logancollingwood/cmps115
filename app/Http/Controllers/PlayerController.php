@@ -97,6 +97,7 @@ class PlayerController extends Controller
 		$summId = $data[$name]['id'];
 
 		// Update database records for General Match Type Statistics
+		
 		$overallStatistics = $player->updateMatchTypeStats($this->connection);
 		$player->updateMatches($this->connection);
 
@@ -139,7 +140,10 @@ class PlayerController extends Controller
 		return $this->apiResponder->send();
     }
 
-    
+    public function showPlayer($region, $name) {
+    	return view('player');
+    }
+
     public function summonerInfo($id) {
     	$json['summary'] = $this->connection->getSummoner($id);
     	$json['masteries'] = $this->connection->getSummoner($id, 'masteries');
