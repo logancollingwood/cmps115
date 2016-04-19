@@ -24,6 +24,9 @@ Route::group(['prefix' => 'api/'], function () {
 
     // Player Endpoints -- RATE LIMITED
 	Route::get('player/{region}/{name}', 'PlayerController@byName');
+	// Player Endpoints -- RATE LIMITED
+	Route::get('player/{region}/{name}/job', 'PlayerController@byNameJob');
+
 	Route::get('player/{region}/{name}/{matchid}', 'PlayerController@byIdMatch');
 
 	Route::get('summoner/{id}', 'PlayerController@summonerInfo');

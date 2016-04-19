@@ -9,6 +9,7 @@ use App\riotapi;
 use App\ApiResponder;
 use App\Player;
 use App\GameTypeStats;
+use App\Jobs\UpdateOrCreatePlayer;
 
 
 class PlayerController extends Controller
@@ -48,14 +49,25 @@ class PlayerController extends Controller
     	}
     	
     	$player = $this->updateOrCreateInitialPlayer($name, $region);
-
-		// 
+    
+		
 		if (!empty($player)) {
 			$this->apiResponder->setCode(200);
 			$this->apiResponder->setData($player->encapsulate());
 		}
 
 		return $this->apiResponder->send();
+    }
+
+    public function byNameJob($region, $name) {
+        /* Non recognized region */
+        if (!in_array(strtoupper($region), $this->regions)) {
+            $this->apiResponder->setError("Unknown Region");
+            return $this->apiResponder->send();
+        }
+
+        $job = (new UpdateOrCreatePlayer($name, $region));
+        $this->dispatch($job);
     }
     
     /* Returns a player object */

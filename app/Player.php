@@ -166,7 +166,7 @@ class Player extends Model
     	$count = 0;
 
     	foreach ($matchHistory["matches"] as $match) {
-    		if ($count > 15) break;
+    		if ($count > 5) break;
     		
 
     		$this->matchLookupOrCreate($connection, $match);
