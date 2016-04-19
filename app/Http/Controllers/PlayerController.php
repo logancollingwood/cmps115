@@ -9,7 +9,7 @@ use App\riotapi;
 use App\ApiResponder;
 use App\Player;
 use App\GameTypeStats;
-use App\Jobs\UpdateOrCreatePlayer;
+use App\Jobs\UpdateOrCreatePlayerJob;
 
 
 class PlayerController extends Controller
@@ -66,7 +66,7 @@ class PlayerController extends Controller
             return $this->apiResponder->send();
         }
 
-        $job = (new UpdateOrCreatePlayer($name, $region));
+        $job = (new UpdateOrCreatePlayerJob($name, $region));
         $this->dispatch($job);
 
         $this->apiResponder->setCode(200);
