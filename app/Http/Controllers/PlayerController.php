@@ -54,7 +54,9 @@ class PlayerController extends Controller
 		if (!empty($player)) {
 			$this->apiResponder->setCode(200);
 			$this->apiResponder->setData($player->encapsulate());
-		}
+		} else {
+            $this->apiResponder->setError("Unable to find Player with name $name in $region");
+        }
 
 		return $this->apiResponder->send();
     }
@@ -71,7 +73,7 @@ class PlayerController extends Controller
 
         $this->apiResponder->setCode(200);
         $this->apiResponder->setData(
-            ["listen_on" => "Listen for broadcast on player::$name"]
+            ["listen_on" => "Listen for broadcast on event://player::$name"]
         );
         return $this->apiResponder->send();
     }
@@ -105,6 +107,8 @@ class PlayerController extends Controller
 		$this->connection->setRegion($region);
 		$data = $this->connection->getSummonerByName($name);
 		
+        if (!$data) return;
+
 		// create model and initialize with values
 		$player = new Player;
 		$player->region = $region;

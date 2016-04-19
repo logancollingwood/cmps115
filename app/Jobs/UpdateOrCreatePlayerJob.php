@@ -13,7 +13,7 @@ use App\PlayerMatch;
 use App\Match;
 use App\Player;
 
-class UpdateOrCreatePlayer extends Job implements ShouldQueue
+class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
 {
     use InteractsWithQueue;
     const PLAYER_FULL_REFRESH_TIMER = 6;
@@ -61,7 +61,7 @@ class UpdateOrCreatePlayer extends Job implements ShouldQueue
         if (!$this->player) {
             // No player exists in our DB with this information, need to manually create it
             // by doing an API request
-            $this->createPlayer($this->playerName, $this->playerRegion);
+            $status = $this->createPlayer($this->playerName, $this->playerRegion);
         } else {
             // We have this player's record in our database. If it hasn't been updated in
             // PLAYER_FULL_REFRESH_TIMER, we'll 
@@ -70,6 +70,7 @@ class UpdateOrCreatePlayer extends Job implements ShouldQueue
             //}
         }
         // fire socket event
+        
     }
 
 
@@ -80,7 +81,7 @@ class UpdateOrCreatePlayer extends Job implements ShouldQueue
         // no data, need to do lookup
         $this->apiConnection->setRegion($region);
         $data = $this->apiConnection->getSummonerByName($name);
-        
+        if (!$data) return False;
         // create model and initialize with values
 
         $this->player = new Player;
@@ -94,7 +95,7 @@ class UpdateOrCreatePlayer extends Job implements ShouldQueue
         
         $overallStatistics = $this->updateMatchTypeStats();
         $this->updateMatches();
-
+        return True;
     }
     
     // this is pretty damn expensive
