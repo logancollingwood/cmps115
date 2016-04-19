@@ -68,6 +68,12 @@ class PlayerController extends Controller
 
         $job = (new UpdateOrCreatePlayer($name, $region));
         $this->dispatch($job);
+
+        $this->apiResponder->setCode(200);
+        $this->apiResponder->setData(
+            ["listen_on" => "Listen for broadcast on player::$name"]
+        );
+        return $this->apiResponder->send();
     }
     
     /* Returns a player object */
