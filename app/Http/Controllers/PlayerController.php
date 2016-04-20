@@ -100,6 +100,7 @@ class PlayerController extends Controller
                 $runes->page = $page['id'];
                 $runes->slot = $rune['runeSlotId'];
                 $runes->runeId = $rune['runeId'];
+                $runes->pageName = $page['name'];
                 $runes->save();
             }
        

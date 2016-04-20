@@ -20,6 +20,7 @@ class Rune extends Migration
             $table->integer('page');
             $table->integer('slot');
             $table->integer('runeId');
+            $table->string('pageName');
 
 
             $table->timestamp('updated_runes_at');
