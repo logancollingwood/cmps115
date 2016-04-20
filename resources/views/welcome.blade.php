@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
         <script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
+        <script src="{{ asset('/js/factories/DataFactory.js') }}"></script>
         <script src="{{ asset('/js/controllers/HomeCtrl.js') }}"></script>
         <script src="{{ asset('/js/controllers/PlayerCtrl.js') }}"></script>
         <script src="{{ asset('/js/routes.js') }}"></script>
@@ -24,6 +25,24 @@
             }
             .jumbotron p {
                 font-weight: 400;
+            }
+            .sumName {
+                margin: 2em 0;
+                letter-spacing: 1em;
+                text-transform: uppercase;
+                font-size: 1em;
+                padding-left: 1em;
+            }
+            .error {
+                text-align: center;
+            }
+            .error-title {
+                font-size: 72px;
+                font-weight: 600;
+                letter-spacing: .2em;
+            }
+            .error-subtitle {
+                font-size: 20px;
             }
         </style>
     </head>
@@ -38,13 +57,13 @@
 
                 <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
                 <ul class="nav navbar-nav">
-                    <li><a href="/player/david">Player Profile</a></li>
+                    <li><a id="playerProfile" href="/about">About</a></li>
                 </ul>
 
                 <div class="input-group">
                 <input id="username" type="text" class="form-control" placeholder="Search by Username...">
                 <span class="input-group-btn">
-                <button class="btn btn-default" type="button" onclick="search()">Go!</button>
+                <a id="search" href="#"><button class="btn btn-default" type="button">Go!</button></a>
                 </span>
                 </div><!-- /input-group -->
             </nav>
@@ -54,15 +73,6 @@
 
         </div>
     </body>
-
-    <script>
-        function search() {
-            var username = $('#username').val();
-            console.log(username);
-            window.location = "/player/" + username;
-        }
-    </script>
-
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
     <script src="https://fb.me/react-0.14.8.min.js"></script>
     <script src="https://fb.me/react-dom-0.14.8.min.js"></script>

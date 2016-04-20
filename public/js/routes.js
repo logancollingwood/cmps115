@@ -12,7 +12,13 @@
         // player profile page that will use the PlayerProfileController
         .when('/player/:name', {
             templateUrl: 'views/player.html',
-            controller: 'PlayerController'
+            controller: 'PlayerController',
+            reloadOnSearch: false
+        })
+
+        .otherwise({
+            templateUrl: 'views/404.html',
+            controller: 'HomeController'
         });
 
     $locationProvider.html5Mode(true);
