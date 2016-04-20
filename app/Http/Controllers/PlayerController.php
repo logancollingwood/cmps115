@@ -133,11 +133,14 @@ class PlayerController extends Controller
     		// No player exists in our DB with this information, need to manually create it
     		// by doing an API request
     		$player = $this->createPlayer($name, $region);
+            $runes = $this->runesById($player->summonerId);
 		} else {
 			// We have this player's record in our database. If it hasn't been updated in
 			// PLAYER_FULL_REFRESH_TIMER, we'll 
 			if (time() - time($player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
 				$player->updatePlayerFull($this->connection);
+                $runes = $this->runesById($player->summonerId);
+
 			}
 		}
 		return $player;

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\GameTypeStats;
 use App\PlayerMatch;
 use App\Match;
+use App\Rune;
 
 class Player extends Model
 {
@@ -37,6 +38,7 @@ class Player extends Model
     	// even though this variable is unsed. This allows us 
     	$stats = $this->GameTypeStats;
     	$recentMatches = $this->mostRecentGames(5);
+    	$runes = Rune::where('summonerId', $this->summonerId)->get();
     	
     	$json = [];
     	// copy player data over into this json field
@@ -44,6 +46,7 @@ class Player extends Model
     	// part of the player model
     	$json['playerData'] = $this;
     	$json['recentMatches'] = $recentMatches;
+    	$json['runes'] = $runes;
 
     	return $json;
     }
