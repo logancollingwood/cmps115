@@ -31,6 +31,12 @@ Route::group(['prefix' => 'api/'], function () {
 
 	Route::get('summoner/{id}', 'PlayerController@summonerInfo');
 
+	// Get list of challenger players
+	Route::get('challenger', 'PlayerController@challenger');
+
+	// Get list of runes by player ID
+	Route::get('runes/{id}', 'PlayerController@runesById');
+
 	// Match Endpoints -- RATE LIMITED
 	Route::get('match/{matchid}', 'MatchController@byId');
 	Route::get('match/{region}/{name}', 'PlayerController@matchHistory');

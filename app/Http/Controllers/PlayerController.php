@@ -9,6 +9,7 @@ use App\riotapi;
 use App\ApiResponder;
 use App\Player;
 use App\GameTypeStats;
+use App\Rune;
 use App\Jobs\UpdateOrCreatePlayerJob;
 
 
@@ -61,6 +62,11 @@ class PlayerController extends Controller
 		return $this->apiResponder->send();
     }
 
+    public function challenger(){
+        $challengerList = $this->connection->getChallenger();
+        return $challengerList;
+    }
+
     public function byNameJob($region, $name) {
         /* Non recognized region */
         if (!in_array(strtoupper($region), $this->regions)) {
@@ -77,6 +83,43 @@ class PlayerController extends Controller
         );
         return $this->apiResponder->send();
     }
+
+    public function runesById($id){
+        $data = $this->connection->getSummoner($id, 'runes');
+
+        foreach ($data[$id]['pages'] as $page) {
+            foreach($page['slots'] as $rune){
+                $runes = Rune::where('summonerId', $id)
+                                ->where('page', $page)
+                                ->where('slot', $rune['runeSlotId'])
+                                ->first();
+                if(!$runes){
+                    $runes = new Rune;
+                }
+                $runes->summonerId = $id;
+                $runes->page = $page['id'];
+                $runes->slot = $rune['runeSlotId'];
+                $runes->runeId = $rune['runeId'];
+                $runes->save();
+            }
+       
+        }
+        return $data;
+    }
+
+    /*
+            foreach($page['slots'] as $rune){
+                $runes = Rune::where('summonerId', $id)
+                                ->where('page', $page)
+                                ->where('slot', $rune['slots'])
+                                ->first();
+                if(!$runes){
+                    $runes = new Rune;
+                }
+                $runes->summonerId = $id;
+                $runes->save();
+            } 
+    */
     
     /* Returns a player object */
     private function updateOrCreateInitialPlayer($name, $region) {
