@@ -78,7 +78,7 @@ class PlayerController extends Controller
 
         $this->apiResponder->setCode(200);
         $this->apiResponder->setData(
-            ["listen_on" => "Listen for broadcast on event://player::$name"]
+            ["listen_on" => "Listen for broadcast on event:player::$name"]
         );
         return $this->apiResponder->send();
     }
@@ -106,20 +106,6 @@ class PlayerController extends Controller
         }
         return $data;
     }
-
-    /*
-            foreach($page['slots'] as $rune){
-                $runes = Rune::where('summonerId', $id)
-                                ->where('page', $page)
-                                ->where('slot', $rune['slots'])
-                                ->first();
-                if(!$runes){
-                    $runes = new Rune;
-                }
-                $runes->summonerId = $id;
-                $runes->save();
-            } 
-    */
     
     /* Returns a player object */
     private function updateOrCreateInitialPlayer($name, $region) {
@@ -132,6 +118,10 @@ class PlayerController extends Controller
     		// No player exists in our DB with this information, need to manually create it
     		// by doing an API request
     		$player = $this->createPlayer($name, $region);
+
+            //In the event that createPlayer API lookup fails, we return null
+            if ($player == null) return;
+
             $runes = $this->runesById($player->summonerId);
 		} else {
 			// We have this player's record in our database. If it hasn't been updated in

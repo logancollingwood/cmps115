@@ -12,6 +12,7 @@ use App\GameTypeStats;
 use App\PlayerMatch;
 use App\Match;
 use App\Player;
+use App\Rune;
 
 class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
 {
@@ -62,12 +63,15 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
             // No player exists in our DB with this information, need to manually create it
             // by doing an API request
             $status = $this->createPlayer($this->playerName, $this->playerRegion);
+            if ($status == false) return;
+
+            $runes = $this->runesById($this->summonerId);
         } else {
             // We have this player's record in our database. If it hasn't been updated in
             // PLAYER_FULL_REFRESH_TIMER, we'll 
-            //if (time() - time($this->player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
+            if (time() - time($this->player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
                 $this->updatePlayerFull();
-            //}
+            }
         }
         // fire socket event
         
@@ -172,6 +176,7 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
                     
                 }
             }
+            $matchModel->platformId = $match['platformId'];
             $matchModel->matchId = $match['matchId'];
             $matchModel->queue = $matchData['queueType'];
             $matchModel->season = $matchData['season'];
@@ -187,6 +192,9 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
 
         $this->player->summonerId = $data[$this->playerName]['id'];
         $this->summonerId = $data[$this->playerName]['id'];
+
+        // Do a rune refresh here as well
+        $runes = $this->runesById($player->summonerId);
 
         // Update database records for General Match Type Statistics
         // and specific match type stats
@@ -271,5 +279,29 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
             $r = $this->apiConnection->getStats($this->summonerId);
         }
         return $r;
+    }
+
+    private function runesById($id){
+        $data = $this->apiConnection->getSummoner($id, 'runes');
+
+        foreach ($data[$id]['pages'] as $page) {
+            foreach($page['slots'] as $rune){
+                $runes = Rune::where('summonerId', $id)
+                                ->where('page', $page)
+                                ->where('slot', $rune['runeSlotId'])
+                                ->first();
+                if(!$runes){
+                    $runes = new Rune;
+                }
+                $runes->summonerId = $id;
+                $runes->page = $page['id'];
+                $runes->slot = $rune['runeSlotId'];
+                $runes->runeId = $rune['runeId'];
+                $runes->pageName = $page['name'];
+                $runes->save();
+            }
+       
+        }
+        return $data;
     }
 }
