@@ -74,11 +74,15 @@ class Player extends Model
     public function updateMatchTypeStats($connection) {
 		$stats = $this->getStats($connection);
 		
+		if (!$stats) return;
+
 		$totalTurretsKilled = 0;
 		$totalChampionKills = 0;
 		$totalAssists = 0;
 		$totalNeutralMinionsKilled = 0;
 		$totalWins = 0;
+		
+		if (!isset($stats['playerStatSummaries'])) return;
 
 		foreach ($stats['playerStatSummaries'] as $statSummary) {
 			$gameTypeKey = $statSummary['playerStatSummaryType'];
