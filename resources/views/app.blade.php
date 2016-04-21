@@ -58,34 +58,8 @@ CMPS 115 eSports
 	
 	<div class="container" id="content">
 		<div class="row">
-			<div class="col-sm-2 col-md-2" id="sidebar">
-				<div id="sidebarBrand" style="display: none;">
-					<h1> <a href="{{ url('/') }}"> esp </a> </h1>
-				</div>
-				<ul>
-					<li class="{{ Request::path() == '/' ? 'active' : ''}}"><a href="{{ url('/') }}">Home</a></li>
-					<li class="{{ strpos(Request::path(), 'techs') === 0 ? 'active' : ''}}">
-						<a href="{{url('/techs/')}}" data-target="#techs">Techniques</a>
-					</li>
-					<li class="{{ strpos(Request::path(), 'chars') === 0 ? 'active' : ''}}"><a href="{{ url('/chars') }}">Characters</a></li>
-					<!-- <li class="{{ strpos(Request::path(), 'guides') === 0 ? 'active' : ''}}"><a href="{{ url('/guides') }}">Guides</a></li> -->
-					<li class="{{ strpos(Request::path(), 'vods') === 0 ? 'active' : ''}}"><a href="{{ url('/vods') }}">Videos</a></li>
-
-					<li class="hidden-xs {{ strpos(Request::path(), 'groups') === 0 ? 'active' : ''}}"><a href="{{ url('/groups') }}">Groups</a></li>
-
-					<li class="two-column">
-						<a class="hidden-xs border-right {{ strpos(Request::path(), 'submit') === 0 ? 'active' : ''}}"href="{{ url('/submit') }}">Submit</a>
-						<a class="hidden-xs {{ strpos(Request::path(), 'api') === 0 ? 'active' : ''}}" href="{{ url('/api/doc') }}">API</a>
-					</li>
-					
-
-					<li class="hidden-sm hidden-md hidden-lg">
-						<a><i class="fa fa-list fa-1x"></i></a>
-        			</li>
-
-				</ul>
-			</div>
-			<div class="col-sm-10 col-md-10 m-scene" id="main">
+			
+			<div class="col-sm-12 col-md-12 m-scene" id="main">
 				@yield('content')
 				<footer>
 						<div class="row">

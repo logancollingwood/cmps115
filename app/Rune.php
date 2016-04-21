@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Match extends Model
+class Rune extends Model
 {
     //
-    protected $table = 'match';
 }

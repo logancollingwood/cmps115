@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Match extends Migration
+class Rune extends Migration
 {
     /**
      * Run the migrations.
@@ -12,21 +12,21 @@ class Match extends Migration
      */
     public function up()
     {
-        // Riot GIVES
-
-        /*
-            Will hold generic match data
-        */
-        Schema::create('match', function(Blueprint $table)
+        //
+        Schema::create('runes', function(Blueprint $table)
         {
             $table->integer('id', true);
-            $table->integer('matchId');
-            $table->string('platformId');
-            $table->string('queue');
-            $table->string('season');
-            $table->string('serverTime');
+            $table->integer('summonerId');
+            $table->integer('page');
+            $table->integer('slot');
+            $table->integer('runeId');
+            $table->string('pageName');
+
+
+            $table->timestamp('updated_runes_at');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -37,7 +37,5 @@ class Match extends Migration
     public function down()
     {
         //
-        Schema::drop('match');
-    
     }
 }

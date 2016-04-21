@@ -17,15 +17,25 @@ Route::get('/', 'HomeController@index');
 // the url home/function_name should route to the function in HomeController
 Route::resource('home', 'HomeController');
 
+Route::get('/player/{region}/{summonerName}', 'PlayerController@showPlayer');
 
 // All Endpoints here are prefixed by api/
 Route::group(['prefix' => 'api/'], function () {
 
     // Player Endpoints -- RATE LIMITED
 	Route::get('player/{region}/{name}', 'PlayerController@byName');
+	// Player Endpoints -- RATE LIMITED
+	Route::get('player/{region}/{name}/job', 'PlayerController@byNameJob');
+
 	Route::get('player/{region}/{name}/{matchid}', 'PlayerController@byIdMatch');
 
 	Route::get('summoner/{id}', 'PlayerController@summonerInfo');
+
+	// Get list of challenger players
+	Route::get('challenger', 'PlayerController@challenger');
+
+	// Get list of runes by player ID
+	Route::get('runes/{id}', 'PlayerController@runesById');
 
 	// Match Endpoints -- RATE LIMITED
 	Route::get('match/{matchid}', 'MatchController@byId');

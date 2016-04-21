@@ -22,7 +22,8 @@ class GameTypeStats extends Model
             "Unranked" => 9,
             "Unranked3x3" => 10,
             "RankedPremade3x3" => 11,
-            "RankedPremade5x5" => 12
+            "RankedPremade5x5" => 12,
+            "Ascension" => 13
     	];
 
     	return $types[$str];
@@ -30,8 +31,8 @@ class GameTypeStats extends Model
 
     public static function getMatchKey($id) {
     	$types = [
-    		"AramUnranked5x5" => 0,
-    		"CAP5x5" => 1,
+            "AramUnranked5x5" => 0,
+            "CAP5x5" => 1,
             "CoopVsAI" => 2,
             "CoopVsAI3x3" => 3,
             "CoopVsAI5x5" => 4,
@@ -42,8 +43,9 @@ class GameTypeStats extends Model
             "Unranked" => 9,
             "Unranked3x3" => 10,
             "RankedPremade3x3" => 11,
-            "RankedPremade5x5" => 12
-    	];
+            "RankedPremade5x5" => 12,
+            "Ascension" => 13
+        ];
     	return array_search($id, $types);
     }
 
