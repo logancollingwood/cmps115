@@ -37,5 +37,6 @@ class Rune extends Migration
     public function down()
     {
         //
+        Schema::drop('runes');
     }
 }
