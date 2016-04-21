@@ -58,7 +58,6 @@ class PlayerController extends Controller
 		} else {
             $this->apiResponder->setError("Unable to find Player with name $name in $region");
         }
-
 		return $this->apiResponder->send();
     }
 

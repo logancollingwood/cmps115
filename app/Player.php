@@ -47,7 +47,7 @@ class Player extends Model
     	$json['playerData'] = $this;
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
-
+    	
     	return $json;
     }
     
