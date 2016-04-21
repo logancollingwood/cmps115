@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="/">
+	<base href="/">
         <title>LoLStats</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
         <script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
-        <script src="{{ asset('/js/factories/DataFactory.js') }}"></script>
-        <script src="{{ asset('/js/controllers/HomeCtrl.js') }}"></script>
-        <script src="{{ asset('/js/controllers/PlayerCtrl.js') }}"></script>
+        <script src="{{ asset('/js/factories/dataFactory.js') }}"></script>
+        <script src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
+        <script src="{{ asset('/js/controllers/playerCtrl.js') }}"></script>
         <script src="{{ asset('/js/routes.js') }}"></script>
         <script src="{{ asset('/js/app.js') }}"></script>
 
