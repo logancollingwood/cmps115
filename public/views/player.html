@@ -59,7 +59,7 @@
 				<th>CurrentLeague</th>
 				<th>LastLeague</th>
 			</tr>
-			<tr ng-value="player.payload.playerData">
+			<tr ng-value="">
 				<th scope="row">{{ $index + 1 }}</th>
 				<td>{{player.payload.playerData.region}}</td> 
 				<td>{{player.payload.playerData.wins }}</td>
@@ -74,6 +74,23 @@
 			</tr>
 			
 		</table>
+		<div class="panel-heading">Runes</div>
+		<table class="table">
+			<tr> 
+				<th>#</th> 
+				<th>Page #</th> 
+				<th>Slot</th> 
+				<th>runeId</th> 
+				<th>pageName</th>
+			</tr>
+			<tr ng-repeat="m in player.payload.runes">
+				<th scope="row">{{ $index + 1 }}</th>
+				<td>{{ m.page }}</td> 
+				<td>{{ m.slot }}</td> 
+				<td>{{ m.runeId }}</td>
+				<td>{{ m.pageName }}</td> 
+			</tr>
+
 		</div>
 	</div>
 </div>
