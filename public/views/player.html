@@ -42,6 +42,39 @@
 				<td>{{ m.first_blood}}</td>
 				<td>{{ m.matchId}}</td>
 			</tr>
+
+		</table>
+	</div>
+	<!--Overall player stats-->
+	<div class="panel-heading">Overall Player Stats</div>
+		<table class="table">
+			<tr> 
+				<th>#</th> 
+				<th>Region</th> 
+				<th>Wins</th> 
+				<th>ChampsKilled</th> 
+				<th>Kills</th>
+				<th>Deaths</th>
+				<th>Assists</th>
+				<th>Neutral Minions Killed</th>
+				<th>Turrets Destroyed</th>
+				<th>CurrentLeague</th>
+				<th>LastLeague</th>
+			</tr>
+			<tr ng-repeat="m in player.payload.recentMatches">
+				<th scope="row">{{ $index + 1 }}</th>
+				<td>{{ m.region }}</td> 
+				<td>{{ m.wins }}</td>
+				<td>{{ m.totalChampionKills }}</td>  
+				<td>{{ m.deaths }}</td>
+				<td>{{ m.assists}}</td>
+				<td>{{ m.minionKills}}</td>
+				<td>{{ m.neutralMinionKills}}</td>
+				<td>{{ m.turretsDestroyed}}</td>
+				<td>{{ m.currentLeague}}</td>
+				<td>{{ m.lastLeague}}</td>
+			</tr>
+			
 		</table>
 	</div>
 </div>
