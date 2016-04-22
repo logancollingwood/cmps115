@@ -44,7 +44,6 @@
 			</tr>
 
 		</table>
-	</div>
 	<!--Overall player stats-->
 	<div class="panel-heading">Overall Player Stats</div>
 		<table class="table">
@@ -53,7 +52,6 @@
 				<th>Region</th> 
 				<th>Wins</th> 
 				<th>ChampsKilled</th> 
-				<th>Kills</th>
 				<th>Deaths</th>
 				<th>Assists</th>
 				<th>Neutral Minions Killed</th>
@@ -61,20 +59,21 @@
 				<th>CurrentLeague</th>
 				<th>LastLeague</th>
 			</tr>
-			<tr ng-repeat="m in player.payload.recentMatches">
+			<tr ng-value="player.payload.playerData">
 				<th scope="row">{{ $index + 1 }}</th>
-				<td>{{ m.region }}</td> 
-				<td>{{ m.wins }}</td>
-				<td>{{ m.totalChampionKills }}</td>  
-				<td>{{ m.deaths }}</td>
-				<td>{{ m.assists}}</td>
-				<td>{{ m.minionKills}}</td>
-				<td>{{ m.neutralMinionKills}}</td>
-				<td>{{ m.turretsDestroyed}}</td>
-				<td>{{ m.currentLeague}}</td>
-				<td>{{ m.lastLeague}}</td>
+				<td>{{player.payload.playerData.region}}</td> 
+				<td>{{player.payload.playerData.wins }}</td>
+				<td>{{player.payload.playerData.totalChampionKills }}</td>  
+				<td>{{player.payload.playerData.deaths }}</td>
+				<td>{{player.payload.playerData.assists}}</td>
+				<td>{{player.payload.playerData.minionKills}}</td>
+				<td>{{player.payload.playerData.neutralMinionKills}}</td>
+				<td>{{player.payload.playerData.turretsDestroyed}}</td>
+				<td>{{player.payload.playerData.currentLeague}}</td>
+				<td>{{player.payload.playerData.lastLeague}}</td>
 			</tr>
 			
 		</table>
+		</div>
 	</div>
 </div>
