@@ -19,12 +19,28 @@
 				<th>Champion</th> 
 				<th>Lane</th> 
 				<th>Role</th> 
+				<th>WonGame</th>
+				<th>Kills</th>
+				<th>Deaths</th>
+				<th>Assists</th>
+				<th>Wards Placed</th>
+				<th>Wards Killed</th>
+				<th>First Blood</th>
+				<th>MatchID</th>
 			</tr>
 			<tr ng-repeat="m in player.payload.recentMatches">
 				<th scope="row">{{ $index + 1 }}</th>
 				<td>{{ m.champion }}</td> 
 				<td>{{ m.lane }}</td> 
 				<td>{{ m.role }}</td>
+				<td>{{ m.won }}</td> 
+				<td>{{ m.kills }}</td>
+				<td>{{ m.deaths }}</td>
+				<td>{{ m.assists}}</td>
+				<td>{{ m.wards_placed}}</td>
+				<td>{{ m.wards_killed}}</td>
+				<td>{{ m.first_blood}}</td>
+				<td>{{ m.matchId}}</td>
 			</tr>
 		</table>
 	</div>
