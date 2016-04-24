@@ -41,6 +41,10 @@ Route::group(['prefix' => 'api/'], function () {
 	Route::get('match/{matchid}', 'MatchController@byId');
 	Route::get('match/{region}/{name}', 'PlayerController@matchHistory');
 
+	// Lookup champion ID, all static updates so -- NOT RATE LIMITED.
+	// that said this code is going to need to be made less ugly, 
+	Route::get('champion/{championId}', 'ChampionController@lookup');
+
 	// Static Endpoints -- NOT RATE LIMITED
 	Route::get('free', 'StaticController@freeChamps');
 	Route::get('champion/{id}', 'StaticController@championById');

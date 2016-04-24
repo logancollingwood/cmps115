@@ -83,6 +83,13 @@ class riotapi extends Model
 		return $this->request($call);
 	}
 
+	public function getChampionStaticWithImage($id){
+		$call = 'champion/' . $id . '?champData=image';
+		$call = self::API_URL_STATIC_1_2 . $call;
+		return $this->request($call, true);
+
+	}
+
 	// Returns all free champions.
 	public function getFreeChampions()
 	{
@@ -104,6 +111,7 @@ class riotapi extends Model
 		$call = self::API_URL_STATIC_1_2 . $call . "/" . $id;
 		
 		return $this->request($call, (strpos($call,'?') !== false), true);
+		//return $call;
 	}
 
 	//Returns match details. TimeLine can be requested.
@@ -274,7 +282,6 @@ class riotapi extends Model
 	private function request($call, $otherQueries=false, $static = false) {
 				//format the full URL
 		$url = $this->format_url($call, $otherQueries);
-
 		//caching
 		if($this->cache !== null && $this->cache->has($url)){
 			$result = $this->cache->get($url);
