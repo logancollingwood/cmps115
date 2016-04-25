@@ -25,4 +25,8 @@ class StaticController extends Controller
 	public function championById($id) {
 		return $this->connection->getChampionStaticById($id);
 	}
+
+	public function championList(){
+		return $this->connection->getChampion();
+	}
 }

@@ -48,6 +48,10 @@ Route::group(['prefix' => 'api/'], function () {
 	// Static Endpoints -- NOT RATE LIMITED
 	Route::get('free', 'StaticController@freeChamps');
 	Route::get('champion/{id}', 'StaticController@championById');
+	Route::get('championList', 'StaticController@championList');
+
+	//Temporary endpoint, eventually this should exclusively be a job.
+	Route::get('updateChampionList', 'ChampionController@updateList');
 
 
 });
