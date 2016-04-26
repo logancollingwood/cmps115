@@ -54,11 +54,11 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">Home</a>
                 </div>
+                
                 <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/community">Community<span class="sr-only"></span></a></li>
-
+                        <li><a href="/community">Community</a></li>
                 <!-- DROPDOWN FOR GRAPHS -->
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Champion Graphs <span class="caret"></span></a>
@@ -71,7 +71,6 @@
                             <li><a href="/champbans">Champion Bans</a></li>
                         </ul>
                 </li>
-                <li><a id="playerProfile" href="/about">About</a></li>
                 <!-- Streams and popular streams -->
                 <li class ="dropdown">
                     <a href="/streams" class="dropdown-toggle" data-toggle="dropdown" role="button">Streams<span class="caret"></span></a>
@@ -86,8 +85,10 @@
                         <li><a href="https://www.twitch.tv/riotgames">Riot Games</a></li>
                        </ul>
                 </li>
-                </ul>
-                </div>     
+                <li><a id="playerProfile" href="/about">About</a></li>
+                    </ul>
+                </div>
+
                 <form>
                 <div class="input-group">
                     <input id="username" type="text" class="form-control" placeholder="Search by Username...">  
