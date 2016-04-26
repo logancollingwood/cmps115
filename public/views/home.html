@@ -1,8 +1,117 @@
 <!-- public/views/home.html -->
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="jumbotron text-center">
-    <h1>LOL Stat</h1>
-    <p>{{ tagline }}</p>
-    <p>This doesn't show up on localhost:8888</p>
-</div>
-	<div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LoLStats</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">LoLStats
+                    <small>{{tagline}}</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <a href="/player/na">
+                <img class="img-responsive" src="img/cover.png" alt="Cover"></a>
+            </div>
+
+            <div class="col-md-4">
+                <h3>LoLStats</h3>
+                <p>Why be a Wood V scrub when you can use LoLStats to maximize your League of Legends abilities? </p>
+                <p>LoLStats allows you to be able search for player in live games, find your stats, see what other players build along with runes and masteries, read news, and even quickly view streams on this site! Completely <b>FREE</b>.</p>
+                <h3>LoLStat Features</h3>
+                <ul>
+                    <li>Champion graphs: bans, wins, loses</li>
+                    <li>Stats Analyzation</li>
+                    <li>Ward Heatmap</li>
+                    <li>Runes and masteries</li>
+                    <li>Streams</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related News and Sites -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Related News and Sites</h3>
+            </div>
+            <!--This is where we can add more news related stuff-->
+            <div class="col-sm-3 col-xs-6">
+                <a href="https://www.leagueoflegends.com/news">
+                    <img class="img-responsive portfolio-item" src="https://i.ytimg.com/vi/YxbhirCMdy8/maxresdefault.jpg" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="https://www.reddit.com/r/leagueoflegends">
+                    <img class="img-responsive portfolio-item" src="http://iteachem.net/wp-content/uploads/2015/01/Reddit.jpeg" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://www.surrenderat20.net">
+                    <img class="img-responsive portfolio-item" src="http://i.imgur.com/sKhmRnd.jpg" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://lolesports.com">
+                    <img class="img-responsive portfolio-item" src="http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/styles/full_width_scale/public/lcs%20logo_1.jpg?itok=MCFXmje1" alt="">
+                </a>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+<div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
