@@ -60,6 +60,7 @@ class Player extends Model
 		$data = $connection->getSummonerByName($this->summonerName);
 
 
+
 		// Update database records for General Match Type Statistics
 		// and specific match type stats
 		$overallStatistics = $this->updateMatchTypeStats($connection);

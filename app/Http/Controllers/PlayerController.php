@@ -40,6 +40,7 @@ class PlayerController extends Controller
 
 
 	*/
+
     public function byName($region, $name) {
     	$this->apiResponder->setCode(404);
 
@@ -150,6 +151,7 @@ class PlayerController extends Controller
 		$player->region = $region;
 		$player->summonerName = $name;
 		$player->summonerId = $data[$name]['id'];
+        $player->profileIconId = $data[$name]['profileIconId'];
 
 		// grab ID, and use it to query into the stats endpoint
 		$summId = $data[$name]['id'];

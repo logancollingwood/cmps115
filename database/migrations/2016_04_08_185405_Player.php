@@ -30,6 +30,7 @@ class Player extends Migration
             $table->integer('summonerId');
             $table->string('summonerName');
             $table->string('region');
+            $table->integer('profileIconId');
 
             $table->integer('totalChampionKills');
             $table->integer('wins');
