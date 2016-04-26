@@ -1,10 +1,10 @@
 <!-- public/views/nerd.html -->
 <div class="jumbotron text-center">
 	<!-- Meta -->
-    <h1>Player Profile</h1>
+    <h1>Player Profile</h1>    
+   <img class="" src= {{profileicon}} >
     <p>{{ tagline }}</p>
 	<div class="sumName">{{ player.payload.playerData.summonerName }}</div>
-
     <!-- Loading Spinner -->
     <i class="fa fa-spinner fa-spin" style="font-size:36px;"></i>
 
@@ -29,7 +29,10 @@
 			</tr>
 			<tr ng-repeat="m in player.payload.recentMatches">
 				<th scope="row">{{ $index + 1 }}</th>
-				<td>{{ m.champion }}</td> 
+				<td><script src="../controllers/playerCtrl.js">
+				   getChampion({{ m.champion }});
+				</script>
+            <img class="" src={{champion.image}}></td> 
 				<td>{{ m.lane }}</td> 
 				<td>{{ m.role }}</td>
 				<td>{{ m.won }}</td> 

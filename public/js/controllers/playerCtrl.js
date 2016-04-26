@@ -2,8 +2,6 @@
 angular.module('PlayerCtrl', []).controller('PlayerController', function($scope, DataFactory, $http, $routeParams, $location) {
 
     $scope.tagline = 'Most Recent Stats';
-
-    // hide tables until json is retrieved
     $('.panel-default').addClass('hide');
 
     // loading spinner
@@ -18,6 +16,22 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     		.then(function (response) {
     			console.log('successful http get request')
 				$scope.player = response.data;
+				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/".concat(response.data.payload.playerData.profileIconId).concat(".png");
+				$('.fa-spinner').hide().removeClass('fa-spin');
+				$('.panel-default').removeClass('hide');
+    		}, function (error) {
+    			console.log('failed http get request');
+				$('.fa-spinner').hide().removeClass('fa-spin');	
+    		});
+    } 
+    
+    getChampion(266);     
+
+    function getChampion(ID) {
+    	DataFactory.getChampion(ID)
+    		.then(function (response) {
+    			console.log('successful http get request')
+				$scope.champion = response.data;
 				$('.fa-spinner').hide().removeClass('fa-spin');
 				$('.panel-default').removeClass('hide');
     		}, function (error) {
