@@ -1,0 +1,82 @@
+<!-- public/views/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LoLStats</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <!-- D3 SOURCE CODE: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart -->
+    <h1>Player Stats</h1>
+    <p>{{tagline}}</p>
+    <body>
+    <div id="chart"></div>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+      (function(d3) {
+        'use strict';
+
+        var dataset = [
+          { label: 'Abulia', count: 10 }, 
+          { label: 'Betelgeuse', count: 20 },
+          { label: 'Cantaloupe', count: 30 },
+          { label: 'Dijkstra', count: 40 }
+        ];
+
+        var width = 360;
+        var height = 360;
+        var radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.category20b();
+
+        var svg = d3.select('#chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + (width / 2) + 
+            ',' + (height / 2) + ')');
+
+        var arc = d3.svg.arc()
+          .outerRadius(radius);
+
+        var pie = d3.layout.pie()
+          .value(function(d) { return d.count; })
+          .sort(null);
+
+        var path = svg.selectAll('path')
+          .data(pie(dataset))
+          .enter()
+          .append('path')
+          .attr('d', arc)
+          .attr('fill', function(d, i) { 
+            return color(d.data.label);
+          });
+
+      })(window.d3);
+    </script>
+  </body>
+
+</html>
+
+<div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
