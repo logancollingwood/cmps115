@@ -16,6 +16,12 @@
             reloadOnSearch: false
         })
 
+        // About page
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'HomeController',
+        })
+        
         .otherwise({
             templateUrl: 'views/404.html',
             controller: 'HomeController'
