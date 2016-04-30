@@ -1,15 +1,25 @@
 <!-- public/views/nerd.html -->
 <div class="jumbotron text-center">
-	<!-- Meta -->
-    <h1>Player Profile</h1>    
-   <img class="" src= {{profileicon}} >
-    <p>{{ tagline }}</p>
-	<div class="sumName">{{ player.payload.playerData.summonerName }}</div>
-    <!-- Loading Spinner -->
-    <i class="fa fa-spinner fa-spin" style="font-size:36px;"></i>
-
-
-    <!-- Recent Stats Table -->
+	<div class="row">
+		<div class="col-md-2" id="content-sidebar">
+			<div class="playerInfo">
+				<p class="name">
+					<label> {{ player.payload.playerData.region }} </label>
+					{{ player.payload.playerData.summonerName }}
+				</p>
+				<div class="summonerPic">
+					<img class="" src= {{profileicon}} >
+				</div>
+			</div>
+			<br>
+			<p> Career Breakdown: </p>
+			<div class="heading"> <label> wins </label> {{player.payload.playerData.wins }} </div>
+			<div class="heading"> <label> champion kills </label> {{player.payload.playerData.totalChampionKills }} </div>
+			<div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
+			<div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
+		</div>
+		<div class="col-md-10">
+			<!-- Recent Stats Table -->
 	<div class="panel panel-default hide">
 		<div class="panel-heading">Recent Matches</div>
 		<table class="table">
@@ -25,11 +35,12 @@
 				<th>Wards Placed</th>
 				<th>Wards Killed</th>
 				<th>First Blood</th>
-				<th>MatchID</th>
+				
 			</tr>
 			<tr ng-repeat="m in player.payload.recentMatches">
-				<th scope="row">{{ $index + 1 }}</th>
-				<td><script src="../controllers/playerCtrl.js">
+				<th scope="row"><a href="/match/{{ m.matchId}}">link: {{ $index + 1 }}</a></th>
+				<td>
+				<script src="../controllers/playerCtrl.js">
 				   getChampion({{ m.champion }});
 				</script>
             <img class="" src={{champion.image}}></td> 
@@ -42,40 +53,12 @@
 				<td>{{ m.wards_placed}}</td>
 				<td>{{ m.wards_killed}}</td>
 				<td>{{ m.first_blood}}</td>
-				<td>{{ m.matchId}}</td>
+				
 			</tr>
 
 		</table>
-	<!--Overall player stats-->
-	<div class="panel-heading">Overall Player Stats</div>
-		<table class="table">
-			<tr> 
-				<th>#</th> 
-				<th>Region</th> 
-				<th>Wins</th> 
-				<th>ChampsKilled</th> 
-				<th>Deaths</th>
-				<th>Assists</th>
-				<th>Neutral Minions Killed</th>
-				<th>Turrets Destroyed</th>
-				<th>CurrentLeague</th>
-				<th>LastLeague</th>
-			</tr>
-			<tr ng-value="">
-				<th scope="row">{{ $index + 1 }}</th>
-				<td>{{player.payload.playerData.region}}</td> 
-				<td>{{player.payload.playerData.wins }}</td>
-				<td>{{player.payload.playerData.totalChampionKills }}</td>  
-				<td>{{player.payload.playerData.deaths }}</td>
-				<td>{{player.payload.playerData.assists}}</td>
-				<td>{{player.payload.playerData.minionKills}}</td>
-				<td>{{player.payload.playerData.neutralMinionKills}}</td>
-				<td>{{player.payload.playerData.turretsDestroyed}}</td>
-				<td>{{player.payload.playerData.currentLeague}}</td>
-				<td>{{player.payload.playerData.lastLeague}}</td>
-			</tr>
-			
-		</table>
+	</div>
+	<div class="panel panel-default hide">
 		<div class="panel-heading">Runes</div>
 		<table class="table">
 			<tr> 
@@ -94,5 +77,15 @@
 			</tr>
 			</table>
 		</div>
+		</div>
+	</div>
+	</div>
+	
+    <!-- Loading Spinner -->
+    <i class="fa fa-spinner fa-spin" style="font-size:36px;"></i>
+</div>
+
+<div class="row">
+    
 	</div>
 	<div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>

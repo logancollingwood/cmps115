@@ -20,9 +20,9 @@
       <script src="{{ asset('/js/app.js') }}"></script>
    </head>
    <body ng-app="myApp" ng-controller="HomeController">
-      <nav class="navbar navbar-default navbar-static-top">
+      <nav class="navbar navbar-default navbar-fixed-top">
                <div class="navbar-header">
-                  <a class="navbar-brand" href="/">Home</a>
+                  <a class="navbar-brand" href="/">LoLStats</a>
                </div>
                <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
                <div class="collapse navbar-collapse" id="navbar-collapse">

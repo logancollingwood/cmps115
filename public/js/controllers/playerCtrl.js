@@ -55,4 +55,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
             $scope.$apply();
         }
     });
+
+
+
 });

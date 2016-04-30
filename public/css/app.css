@@ -5,3 +5,30 @@
 #username {
   background-color: #eee;
 }
+
+@media (min-width: 768px) {
+  .container {
+    margin-top: 100px;
+  }
+
+  #content-sidebar {
+    text-align: left;
+  }
+}
+
+label {
+  font-family: 'Lato';
+  color: #333;
+  padding-right: 5px;
+  border-right: 1px solid #000;
+}
+
+div.playerInfo .name{
+
+  font-size: 24px;
+  
+}
+
+br {
+  border-bottom: 2px solid #111;
+}
