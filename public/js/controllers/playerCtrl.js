@@ -1,6 +1,6 @@
 // public/js/controllers/NerdCtrl.js
 angular.module('PlayerCtrl', []).controller('PlayerController', function($scope, DataFactory, $http, $routeParams, $location) {
-
+    
     $scope.tagline = 'Most Recent Stats';
     $('.panel-default').addClass('hide');
 
@@ -25,7 +25,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     		});
     } 
     
-    getChampion(266);     
+    getChampion(1);     
 
     function getChampion(ID) {
     	DataFactory.getChampion(ID)
