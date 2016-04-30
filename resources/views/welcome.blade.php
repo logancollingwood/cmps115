@@ -20,84 +20,85 @@
       <script src="{{ asset('/js/app.js') }}"></script>
    </head>
    <body ng-app="myApp" ng-controller="HomeController">
-      <div class="container">
-         <!-- HEADER -->
-         <nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-               <a class="navbar-brand" href="/">Home</a>
-            </div>
-            <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-               <ul class="nav navbar-nav">
-                  <li><a href="/community">Community</a></li>
-                  <!-- DROPDOWN FOR GRAPHS -->
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Champion Graphs <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <li><a href="/yourstats">Your Stats Graphed</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/champhigh-wins">Highest Win Rate</a></li>
-                        <li><a href="/champlow-wins">Lowest Win Rate</a></li>
-                        <li><a href="/items">Popular Items and Builds</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/metachamps">Meta Champions</a></li>
-                        <li><a href="/champbans">Champion Bans</a></li>
-                     </ul>
-                  </li>
-                  <!-- Streams and popular streams -->
-                  <li class ="dropdown">
-                     <a href="/streams" class="dropdown-toggle" data-toggle="dropdown" role="button">Streams<span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <!-- To Do, we can either link to Twitch for now or /streams-->
-                        <li><a href="/streams">Popular Streams</a></li>
-                        <li role="separator" class="text">  <a><u>Quick Links</u></a></li>
-                        <li><a href="https://www.twitch.tv/imaqtpie">Imaqtpie</a></li>
-                        <li><a href="https://www.twitch.tv/c9sneaky">C9Sneaky</a></li>
-                        <li><a href="https://www.twitch.tv/tsm_doublelift">Doublelift</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="https://www.twitch.tv/riotgames">Riot Games</a></li>
-                     </ul>
-                  </li>
-                  <li><a id="playerProfile" href="/about">About</a></li>
-               </ul>
-               <div class="col-sm-5 col-md-5 pull-right">
-                  <div id="searchInput" class="input-group">
-                        <input id="username" type="text" class="form-control" aria-label="Search by Username..." placeholder="Search by Username..."> 
-                        <div class="input-group-btn">
-                           <select id="region" class="dropdown-menu dropdown-menu-right">
-                              <option value"NA">North America </option>
-                              <option value"EUNE">Europe Nordic & East</option>
-                              <option value"EUW">Europe West </option>
-                              <option value"JP">Japan</option>
-                              <option value"BR">Brazil</option>
-                              <option value"KR">Korea</option>
-                              <option value"LAN">Latin America North</option>
-                              <option value"LAS">Latin America South</option>
-                              <option value"OCE">Oceanic</option>
-                              <option value"RU">Russia</option>
-                              <option value"TR">Turkey</option>
-                           </select>
-                           <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="#">NA</a></li>
-                              <li><a href="#">EU</a></li>
-                              <li><a href="#">EUW</a></li>
-                              <li><a href="#">Japan</a></li>
-                              <li><a href="#">Brazil</a></li>
-                              <li><a href="#">Korea</a></li>
-                              <li><a href="#">LAN</a></li>
-                              <li><a href="#">LAS</a></li>
-                              <li><a href="#">OCE</a></li>
-                              <li><a href="#">RUS</a></li>
-                              <li><a href="#">TUR</a></li>
-                           </ul>
-                           <button id="search" type="button" class="btn btn-default">SEARCH</button> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button> 
+      <nav class="navbar navbar-default navbar-static-top">
+               <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Home</a>
+               </div>
+               <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+               <div class="collapse navbar-collapse" id="navbar-collapse">
+                  <ul class="nav navbar-nav">
+                     <li><a href="/community">Community</a></li>
+                     <!-- DROPDOWN FOR GRAPHS -->
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Champion Graphs <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="/yourstats">Your Stats Graphed</a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a href="/champhigh-wins">Highest Win Rate</a></li>
+                           <li><a href="/champlow-wins">Lowest Win Rate</a></li>
+                           <li><a href="/items">Popular Items and Builds</a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a href="/metachamps">Meta Champions</a></li>
+                           <li><a href="/champbans">Champion Bans</a></li>
+                        </ul>
+                     </li>
+                     <!-- Streams and popular streams -->
+                     <li class ="dropdown">
+                        <a href="/streams" class="dropdown-toggle" data-toggle="dropdown" role="button">Streams<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <!-- To Do, we can either link to Twitch for now or /streams-->
+                           <li><a href="/streams">Popular Streams</a></li>
+                           <li role="separator" class="text">  <a><u>Quick Links</u></a></li>
+                           <li><a href="https://www.twitch.tv/imaqtpie">Imaqtpie</a></li>
+                           <li><a href="https://www.twitch.tv/c9sneaky">C9Sneaky</a></li>
+                           <li><a href="https://www.twitch.tv/tsm_doublelift">Doublelift</a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a href="https://www.twitch.tv/riotgames">Riot Games</a></li>
+                        </ul>
+                     </li>
+                     <li><a id="playerProfile" href="/about">About</a></li>
+                  </ul>
+                  <div class="col-sm-5 col-md-5 pull-right">
+                     <div id="searchInput" class="input-group">
+                           <input id="username" type="text" class="form-control" aria-label="Search by Username..." placeholder="Search by Username..."> 
+                           <div class="input-group-btn">
+                              <select id="region" class="dropdown-menu dropdown-menu-right">
+                                 <option value"NA">North America </option>
+                                 <option value"EUNE">Europe Nordic & East</option>
+                                 <option value"EUW">Europe West </option>
+                                 <option value"JP">Japan</option>
+                                 <option value"BR">Brazil</option>
+                                 <option value"KR">Korea</option>
+                                 <option value"LAN">Latin America North</option>
+                                 <option value"LAS">Latin America South</option>
+                                 <option value"OCE">Oceanic</option>
+                                 <option value"RU">Russia</option>
+                                 <option value"TR">Turkey</option>
+                              </select>
+                              <ul class="dropdown-menu dropdown-menu-right">
+                                 <li><a href="#">NA</a></li>
+                                 <li><a href="#">EU</a></li>
+                                 <li><a href="#">EUW</a></li>
+                                 <li><a href="#">Japan</a></li>
+                                 <li><a href="#">Brazil</a></li>
+                                 <li><a href="#">Korea</a></li>
+                                 <li><a href="#">LAN</a></li>
+                                 <li><a href="#">LAS</a></li>
+                                 <li><a href="#">OCE</a></li>
+                                 <li><a href="#">RUS</a></li>
+                                 <li><a href="#">TUR</a></li>
+                              </ul>
+                              <button id="search" type="button" class="btn btn-default">SEARCH</button> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button> 
+                           </div>
                         </div>
                      </div>
-                  </div>
-            </div>
-            
+               </div>
+               
 
-         </nav>
+            </nav>
+      <div class="container">
+         <!-- HEADER -->
+         
          <!-- ANGULAR DYNAMIC CONTENT -->
          <div ng-view></div>
       </div>
