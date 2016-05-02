@@ -11,7 +11,9 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+
       <script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
       <script src="{{ asset('/js/factories/dataFactory.js') }}"></script>
       <script src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
@@ -104,10 +106,8 @@
       </div>
    </body>
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-   <script src="https://fb.me/react-0.14.8.min.js"></script>
-   <script src="https://fb.me/react-dom-0.14.8.min.js"></script>
+   
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-   <!-- Built React -->
-   <script src="{{ asset('/js/build/build.min.js') }}"></script>
+   
 </html>

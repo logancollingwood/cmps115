@@ -8,8 +8,8 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
         return $http.get(urlBase + name);
 	}
 	
-	DataFactory.getChampion = function (name) {
-        return $http.get(urlBaseChampion + name);
+	DataFactory.getChampion = function (id) {
+        return $http.get(urlBaseChampion + id);
 	}
 
 	return DataFactory;

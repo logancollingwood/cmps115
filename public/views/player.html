@@ -39,10 +39,7 @@
                     <tr ng-repeat="m in player.payload.recentMatches">
                         <th scope="row"><a href="/match/{{ m.matchId}}">link: {{ $index + 1 }}</a></th>
                         <td>
-                            <script src="../controllers/playerCtrl.js">
-                                getChampion({{ m.champion }});
-                            </script>
-                            <img class="" src={{champion.image}}>
+                            <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
                         </td>
                         <td>{{ m.lane }}</td>
                         <td>{{ m.role }}</td>
