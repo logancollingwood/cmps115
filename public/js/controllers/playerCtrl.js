@@ -15,7 +15,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     	DataFactory.getPlayer($routeParams.name)
     		.then(function (response) {
     			console.log('successful http get request')
-				$scope.player = response.data;
+				$scope.player = filterData(response.data);
 				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/".concat(response.data.payload.playerData.profileIconId).concat(".png");
 				
                 // hacky delay since angular takes a while to bind {{ m.champion }}'s
@@ -82,6 +82,25 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                     console.log(error);
                 });
         });
+    }
+
+    // This takes our response data and applies some logic to clean output, ie
+    // Instead of DUO_CARRY we just say ADC
+    function filterData(object) {
+        var filtered = object;
+       
+        var recentMatches = filtered.payload.recentMatches;
+        for (var i = 0; i < recentMatches.length; i++) {
+            switch (recentMatches[i]["lane"]) {
+                case "BOTTOM": recentMatches[i]["lane"] = "BOT";
+            }
+
+            switch (recentMatches[i]["role"]) {
+                case "DUO_SUPPORT": recentMatches[i]["role"] = "Support";
+                case "DUO_CARRY": recentMatches[i]["role"] = "ADC";
+            }
+        }
+        return filtered;
     }
 
 });

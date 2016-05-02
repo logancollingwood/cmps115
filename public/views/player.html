@@ -43,13 +43,13 @@
                         </td>
                         <td>{{ m.lane }}</td>
                         <td>{{ m.role }}</td>
-                        <td>{{ m.won }}</td>
+                        <td>{{ m.won ? 'Victory' : 'Defeat'}}</td>
                         <td>{{ m.kills }}</td>
                         <td>{{ m.deaths }}</td>
                         <td>{{ m.assists}}</td>
                         <td>{{ m.wards_placed}}</td>
                         <td>{{ m.wards_killed}}</td>
-                        <td>{{ m.first_blood}}</td>
+                        <td>{{ m.first_blood ? 'Yes' : 'No'}}</td>
                     </tr>
                 </table>
             </div>
