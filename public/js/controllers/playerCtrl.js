@@ -15,6 +15,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     	DataFactory.getPlayer($routeParams.name)
     		.then(function (response) {
     			console.log('successful http get request')
+                console.log(response.data);
 				$scope.player = filterData(response.data);
 				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/".concat(response.data.payload.playerData.profileIconId).concat(".png");
 				
@@ -54,10 +55,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
             var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/";
 
             var championId = $(this).data("champion");
-            console.log(championId);
-            console.log("pulling in champion " + championId);
             var refThis = $(this);
-
             DataFactory.getChampion(championId)
                 .then(function(response) {
 
@@ -74,19 +72,35 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     // This takes our response data and applies some logic to clean output, ie
     // Instead of DUO_CARRY we just say ADC
     function filterData(object) {
+        console.log(object);
         var filtered = object;
-       
+        var timestamp = filtered.payload.playerData.updated_at;
+        timestamp = new Date(timestamp).toLocaleString();
+
         var recentMatches = filtered.payload.recentMatches;
         for (var i = 0; i < recentMatches.length; i++) {
+            
             switch (recentMatches[i]["lane"]) {
-                case "BOTTOM": recentMatches[i]["lane"] = "BOT";
+                case "BOTTOM": 
+                    recentMatches[i]["lane"] = "Bot";
+                case "TOP": 
+                    recentMatches[i]["lane"] = "Top";
+                //case "JUNGLE": 
+                    //recentMatches[i]["lane"] = "Jungle";
             }
 
             switch (recentMatches[i]["role"]) {
-                case "DUO_SUPPORT": recentMatches[i]["role"] = "Support";
-                case "DUO_CARRY": recentMatches[i]["role"] = "ADC";
+                case "DUO_SUPPORT": 
+                    recentMatches[i]["role"] = "Support";
+                case "DUO_CARRY": 
+                    recentMatches[i]["role"] = "ADC";
+                case "SOLO": 
+                    recentMatches[i]["role"] = "Solo";
+                //case "NONE": 
+                    //recentMatches[i]["role"] = "n/a";
             }
         }
+        console.log(filtered);
         return filtered;
     }
 
