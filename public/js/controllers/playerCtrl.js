@@ -29,20 +29,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     		});
     } 
     
-    getChampion(1);     
 
-    function getChampion(ID) {
-    	DataFactory.getChampion(ID)
-    		.then(function (response) {
-    			console.log('successful http get request')
-				$scope.champion = response.data;
-				$('.fa-spinner').hide().removeClass('fa-spin');
-				$('.panel-default').removeClass('hide');
-    		}, function (error) {
-    			console.log('failed http get request');
-				$('.fa-spinner').hide().removeClass('fa-spin');	
-    		});
-    }
     
     $('#username').unbind('keyup').bind('keyup', function(e) {
 
