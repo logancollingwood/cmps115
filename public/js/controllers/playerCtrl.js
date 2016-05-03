@@ -17,7 +17,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     			console.log('successful http get request')
                 console.log(response.data);
 				$scope.player = filterData(response.data);
-				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/".concat(response.data.payload.playerData.profileIconId).concat(".png");
+				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/" + response.data.payload.playerData.id + ".png";
 				
                 // hacky delay since angular takes a while to bind {{ m.champion }}'s
                 setTimeout($scope.init, 500);
