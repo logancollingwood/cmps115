@@ -18,7 +18,7 @@
             <div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
             <div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
             <div class="heading"> <label> turret kills </label> {{player.payload.playerData.turretsDestroyed }} </div>
-            <div class="heading"> <label> Last Updated </label> {{player.payload.playerData.updated_at }} </div>
+            <div class="heading"> <label> Last Updated </label> {{ player.payload.playerData.updated_at }} </div>
             
             <div class="heading"> <label> force update? </label> 
             	<a href="/api/player/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerName}}/force" target="_blank">
