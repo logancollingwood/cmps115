@@ -1,14 +1,14 @@
 <!-- public/views/nerd.html -->
 <div class="jumbotron text-center">
     <div class="row">
-        <div class="col-md-2" id="content-sidebar">
+        <div class="col-md-4" id="content-sidebar">
             <div class="playerInfo">
                 <p class="name">
                     <label> {{ player.payload.playerData.region }} </label>
                     {{ player.payload.playerData.summonerName }}
                 </p>
                 <div class="summonerPic">
-                    <img class="" src= {{profileicon}} >
+                    <img src= {{profileicon}} >
                 </div>
             </div>
             <br>
@@ -25,68 +25,92 @@
             		<i class="fa fa-refresh" aria-hidden="true"></i>
         		</a>
     		</div>
-        
-        </div>
-        <div class="col-md-10">
+        </div> <!-- .col-md-2 --> 
+        <div class="col-md-8">
         	<!-- Loading Spinner -->
 			<i class="fa fa-spinner fa-spin" style="font-size:36px;"></i>
-            <!-- Recent Stats Table -->
-            <div class="panel panel-default hide">
-                <div class="panel-heading">Recent Matches</div>
+            <div class="table-wrapper">
                 <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>Champion</th>
-                        <th>Lane</th>
-                        <th>Role</th>
-                        <th>WonGame</th>
-                        <th>Kills</th>
-                        <th>Deaths</th>
-                        <th>Assists</th>
-                        <th>Wards Placed</th>
-                        <th>Wards Killed</th>
-                        <th>First Blood</th>
-                    </tr>
-                    <tr ng-repeat="m in player.payload.recentMatches">
-                        <th scope="row"><a href="/match/{{ m.matchId}}">link: {{ $index + 1 }}</a></th>
-                        <td>
-                            <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
-                        </td>
-                        <td>{{ m.lane }}</td>
-                        <td>{{ m.role }}</td>
-                        <td>{{ m.won ? 'Victory' : 'Defeat'}}</td>
-                        <td>{{ m.kills }}</td>
-                        <td>{{ m.deaths }}</td>
-                        <td>{{ m.assists}}</td>
-                        <td>{{ m.wards_placed}}</td>
-                        <td>{{ m.wards_killed}}</td>
-                        <td>{{ m.first_blood ? 'Yes' : 'No'}}</td>
-                    </tr>
+                    <tbody>
+                        <!-- Match Num -->
+                        <tr>
+                            <th class="tr__th--recent-matches">Recent<br>Matches</th>
+                            <td ng-repeat="m in player.payload.recentMatches">
+                                <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
+                                <div class="tr__td--match-num"><a href="/match/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
+                            </td>
+                        </tr>
+                        <!-- Kills -->
+                        <tr>
+                          <th>Kills</th>
+                          <td ng-repeat="m in player.payload.recentMatches">0</td>                        
+                        </tr>
+                        <!-- Deaths -->  
+                        <tr>
+                          <th>Deaths</th>
+                          <td ng-repeat="m in player.payload.recentMatches">0</td>
+                        </tr>  
+                        <!-- Assits -->
+                        <tr>
+                          <th>Assists</th>
+                          <td ng-repeat="m in player.payload.recentMatches">0</td>
+                        </tr>   
+                        <!-- Lane --> 
+                        <tr>
+                          <th>Lane</th>
+                          <td ng-repeat="m in player.payload.recentMatches">{{ m.lane }}</td>
+                        </tr>  
+                        <!-- Role -->
+                        <tr>
+                          <th>Role</th>
+                          <td ng-repeat="m in player.payload.recentMatches">{{ m.role }}</td>
+                        </tr>
+                        <!-- Result -->    
+                        <tr>
+                          <th>Result</th>
+                          <td ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
+                        </tr>  
+                        <!-- Wards Placed -->    
+                        <tr>
+                          <th>Wards Placed</th>
+                          <td ng-repeat="m in player.payload.recentMatches">0</td>
+                        </tr> 
+                        <!-- Wards Killed -->    
+                        <tr>
+                          <th>Wards Killed</th>
+                          <td ng-repeat="m in player.payload.recentMatches">0</td>
+                        </tr> 
+                        <!-- First Blood -->    
+                        <tr>
+                          <th>First Blood</th>
+                          <td ng-repeat="m in player.payload.recentMatches">{{ m.first_blood ? 'Yes' : 'No'}}</td>
+                        </tr> 
+                    </tbody> 
                 </table>
-            </div>
-            <div class="panel panel-default hide">
-                <div class="panel-heading">Runes</div>
+            </div> <!-- .table-wrapper -->
+
+            <!-- <div class="table-wrapper">
                 <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>Page #</th>
-                        <th>Slot</th>
-                        <th>runeId</th>
-                        <th>pageName</th>
-                    </tr>
-                    <tr ng-repeat="m in player.payload.runes">
-                        <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ m.page }}</td>
-                        <td>{{ m.slot }}</td>
-                        <td>{{ m.runeId }}</td>
-                        <td>{{ m.pageName }}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>Page #</th>
+                            <th>Slot</th>
+                            <th>Rune ID</th>
+                            <th>Page Name</th>
+                        </tr>
+                        <tr ng-repeat="m in player.payload.runes">
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ m.page }}</td>
+                            <td>{{ m.slot }}</td>
+                            <td>{{ m.runeId }}</td>
+                            <td>{{ m.pageName }}</td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="row">
-</div>
+            </div> -->
+        </div> <!-- .col-md-10 --> 
+    </div> <!-- .row -->
+</div> <!-- .jumbotron -->
+
 <div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
