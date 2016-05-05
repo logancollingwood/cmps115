@@ -10,7 +10,7 @@
         })
 
         // player profile page that will use the PlayerProfileController
-        .when('/player/:name', {
+        .when('/player/:region/:name/', {
             templateUrl: 'views/player.html',
             controller: 'PlayerController',
             reloadOnSearch: false

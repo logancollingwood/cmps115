@@ -1,11 +1,12 @@
 angular.module('DataFactory', []).factory('DataFactory', ['$http', function($http) {
 
-    var urlBase = '/api/player/na/';
+    var urlBase = '/api/player/';
     var urlBaseChampion = '/api/champion/';
     var DataFactory = {};
 
-   DataFactory.getPlayer = function (name) {
-        return $http.get(urlBase + name);
+   DataFactory.getPlayer = function (region, name) {
+        // /api/player/region/name
+        return $http.get(urlBase + region + '/' + name);
 	}
 	
 	DataFactory.getChampion = function (id) {

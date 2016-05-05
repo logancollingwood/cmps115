@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index');
 // the url home/function_name should route to the function in HomeController
 Route::resource('home', 'HomeController');
 
-Route::get('/player/{region}/{summonerName}', 'PlayerController@showPlayer');
+//Route::get('/player/{region}/{summonerName}', 'PlayerController@showPlayer');
 
 // All Endpoints here are prefixed by api/
 Route::group(['prefix' => 'api/'], function () {

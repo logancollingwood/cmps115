@@ -8,15 +8,23 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     $('.fa-spinner').show().addClass('fa-spin');
 
     // if $scope.player exists and $routeParams.name matches $scope.player.name don't make http call
-
+    $("#loadingIndicator").show();
+    $("#errorIndicator").hide();
     getPlayer();
 
     function getPlayer() {
-    	DataFactory.getPlayer($routeParams.name)
+    	DataFactory.getPlayer($routeParams.region, $routeParams.name)
     		.then(function (response) {
-    			console.log('successful http get request')
-
+    			console.log('successful http get request');
                 console.log(response.data);
+                if (response.data.status != 200) {
+                    // API error'd not-found, etc
+                    console.log('Player lookup failed for region: ' + $routeParams.region + ", name:" + $routeParams.name);
+                    $('#loadingIndicator').hide(); 
+                    $("#errorIndicator").show();
+                    return;
+                }
+                
                 
 				$scope.player = DataFactory.filterPlayer(response.data);
 				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/" + response.data.payload.playerData.id + ".png";
@@ -24,7 +32,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                 // hacky delay since angular takes a while to bind {{ m.champion }}'s
                 setTimeout($scope.init, 500);
                 
-                $('.fa-spinner').hide().removeClass('fa-spin');
+                $("#loadingIndicator").hide();
 				$('.panel-default').removeClass('hide');
     		}, function (error) {
     			console.log('failed http get request');
