@@ -11,7 +11,7 @@
     margin-top: 100px;
   }
 
-  #content-sidebar {
+  .content-sidebar {
     text-align: left;
   }
 }
@@ -54,20 +54,18 @@ td, th {
 
 th:first-child {
     position: absolute;
-    left: 18px;
+    left: 30px;
     width: 125px;
     border: 0;
-    letter-spacing: 0px;
+    font-size: 10px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     border-top: 0 !important;
     padding: 7px 0 !important;
     color: #444;
+    font-weight: 700;
 }
 
-/*td:first-child {
-  padding:0 !important;
-  width: 0 !important;
-}*/
 .table-wrapper { 
     overflow-x:auto;
     overflow-y:visible;
@@ -80,12 +78,20 @@ th:first-child {
   }
 
   th:first-child {
-    letter-spacing: 3px;
     font-size: 10px;
   }
 
   table {
     margin-bottom: 0 !important;
+  }
+
+  .recent-matches-table {
+    padding: 30px !important;
+  }
+
+  th:first-child {
+    left: 45px;
+    letter-spacing: 2px !important;
   }
 }
 
@@ -101,14 +107,10 @@ tr:first-child td {
   background: transparent;
 }
 
-/*.container .jumbotron, .container-fluid .jumbotron {
-  padding-right: 60px;
-  padding-left: 60px;
-}
-*/
 .table {
   width: 100%;
   font-family: 'open sans';
+  margin-bottom: 0 !important;
 }
 
 .tr__td--match-num {
@@ -122,8 +124,8 @@ tr:first-child td {
 
 .tr__td--match-num a {
   color: #444;
-  font-size: 8px;
-  letter-spacing: 3px;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
 .summonerPic img {
@@ -132,15 +134,15 @@ tr:first-child td {
 }
 
 tbody tr .tr__th--recent-matches {
-  font-size: 16px;
-  line-height: 18px !important;
-  font-weight: 600;
-  border-bottom: 3px solid #444 !important;
+  font-size: 14px;
+  line-height: 16px !important;
+  font-weight: 400;
+  /*border-bottom: 3px solid #444 !important;*/
   padding-bottom: 4px !important;
   padding-top: 0px !important;
   width: 76px !important;
   color: #444 !important;
-  letter-spacing: 0px !important;
+  letter-spacing: 1.5px !important;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, 
@@ -148,10 +150,6 @@ tbody tr .tr__th--recent-matches {
 .table>thead>tr>td, .table>thead>tr>th {
   padding: 5px;
 }
-
-/*tr:first-child td {
-  padding-top: 0px !important;
-}*/
 
 tr:first-child td:nth-child(even) {
   padding: 0 0 8px !important;
@@ -161,8 +159,112 @@ tr:first-child td:nth-child(odd) {
   padding: 0 15px 8px !important;
 }
 
+.gutter-30.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
 
-.col-md-8 {
-  background-color: #f5f5f5;
+.gutter-30 > [class^="col-"], .gutter-30 > [class^=" col-"] {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.recent-matches-table {
+    background-color: #f5f5f5;
   padding: 15px;
+}
+
+.content-sidebar {
+  background-color: #f5f5f5;
+  padding: 0 0 15px 0;
+}
+
+.summonerPic {
+  background: url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg);
+  margin-bottom: 15px;
+  height: 150px;
+  background-size: cover;
+  background-position: 50% 25%;
+}
+
+body {
+  font-family: 'Open sans';
+  background: #eee;
+}
+
+.name__region {
+  color: #aaa;
+  line-height: 18px;
+}
+.name__summoner-name {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.name {
+  line-height: 18px;
+  padding: 0px 15px;
+}
+
+.career-stats {
+  text-align: center;
+}
+
+.stat__label {
+  display: block;
+    color: #777;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.stat__num {
+  font-size: 18px;
+  display: block;
+  padding-right: 4px;
+  color: #484848;
+  font-weight: 700;
+}
+
+.career-stats {
+  padding: 15px
+}
+
+.stat {
+  margin-bottom: 8px;
+  height: 62px;
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.last-updated {
+    line-height: 1.5em;
+    color: #777;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+.last-updated__label, .last-updated__time {
+  display: block;
+}
+
+#footer {
+  padding: 30px 60px;
+  color:#aaa;
+  text-align: center;
+}
+
+.player-stats {
+  text-align: center;
 }
