@@ -15,6 +15,11 @@
             controller: 'PlayerController',
             reloadOnSearch: false
         })
+        
+        .when('/match/:matchid', {
+            templateUrl: 'views/match.html',
+            controller: 'MatchController'
+        })
 
         // About page
         .when('/about', {
