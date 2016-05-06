@@ -4,7 +4,10 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
     $scope.tagline = 'Up to date player and match stats';  
      
     $('#username').unbind('keyup').bind('keyup', function(e) {
-
+        var username = $('#username').val();
+        var region = $('#region-dropdown').attr('name');
+        $('#search').attr('href', '/player/' + region + '/' + username);
+        console.log('redirecting to...' + '/player/' + region + '/' + username)
         // on enter 
         var code = e.keyCode || e.which;
         if(code == 13) { 
@@ -15,8 +18,9 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
 
     function search() {
         var username = $('#username').val();
-        console.log(username);
-        $location.url('/player/' + username);
+        var region = $('#region-dropdown').attr('name');
+        console.log('redirecting to...' + '/player/' + region + '/' + username)
+        $location.url('/player/' + region + '/' + username);
         $scope.$apply();
     }
 

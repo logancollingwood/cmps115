@@ -46,14 +46,19 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 
         //console.log('keyup detected')
         var username = $('#username').val();
-        $('#search').attr('href', '/player/' + username);
+        var region = $('#region-dropdown').attr('name');
+        $('#search').attr('href', '/player/' + region + '/' + username);
+        console.log('redirecting to...' + '/player/' + region + '/' + username)
 
         // on enter 
         var code = e.keyCode || e.which;
         if(code == 13) { 
+            var username = $('#username').val();
+            var region = $('#region-dropdown').attr('name');
             e.preventDefault();
             $('#username').val('');
-            $location.url('/player/' + username);
+            console.log('redirecting to...' + '/player/' + region + '/' + username)
+            $location.url('/player/' + region + '/' + username);
             $scope.$apply();
         }
     });

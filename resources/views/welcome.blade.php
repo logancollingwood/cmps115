@@ -64,37 +64,24 @@
                      </li>
                      <li><a id="playerProfile" href="/about">About</a></li>
                   </ul>
-                  <div class="col-sm-5 col-md-5 pull-right">
+                  <div class="search-bar col-sm-5 col-md-5 pull-right">
                      <div id="searchInput" class="input-group">
                            <input id="username" type="text" class="form-control" aria-label="Search by Username..." placeholder="Search by Username..."> 
                            <div class="input-group-btn">
-                              <select id="region" class="dropdown-menu dropdown-menu-right">
-                                 <option value"NA">North America </option>
-                                 <option value"EUNE">Europe Nordic & East</option>
-                                 <option value"EUW">Europe West </option>
-                                 <option value"JP">Japan</option>
-                                 <option value"BR">Brazil</option>
-                                 <option value"KR">Korea</option>
-                                 <option value"LAN">Latin America North</option>
-                                 <option value"LAS">Latin America South</option>
-                                 <option value"OCE">Oceanic</option>
-                                 <option value"RU">Russia</option>
-                                 <option value"TR">Turkey</option>
-                              </select>
                               <ul class="dropdown-menu dropdown-menu-right">
-                                 <li><a href="#">NA</a></li>
-                                 <li><a href="#">EU</a></li>
-                                 <li><a href="#">EUW</a></li>
-                                 <li><a href="#">Japan</a></li>
-                                 <li><a href="#">Brazil</a></li>
-                                 <li><a href="#">Korea</a></li>
-                                 <li><a href="#">LAN</a></li>
-                                 <li><a href="#">LAS</a></li>
-                                 <li><a href="#">OCE</a></li>
-                                 <li><a href="#">RUS</a></li>
-                                 <li><a href="#">TUR</a></li>
+                                 <li><a id="NA" href="#">North America</a></li>
+                                 <li><a id="EUNE" href="#">Europe Nordic &amp; East</a></li>
+                                 <li><a id="EUW" href="#">Europe West</a></li>
+                                 <li><a id="JP" href="#">Japan</a></li>
+                                 <li><a id="BR" href="#">Brazil</a></li>
+                                 <li><a id="KR" href="#">Korea</a></li>
+                                 <li><a id="LAN" href="#">Latin America North</a></li>
+                                 <li><a id="LAS" href="#">Latin America South</a></li>
+                                 <li><a id="OCE" href="#">Oceanic</a></li>
+                                 <li><a id="RU" href="#">Russia</a></li>
+                                 <li><a id="TR" href="#">Turkey</a></li>
                               </ul>
-                              <button id="search" type="button" class="btn btn-default">SEARCH</button> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button> 
+                              <button id="region-dropdown" name="NA" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region&nbsp;&nbsp;<span class="caret"></span></button><button id="search" type="button" class="btn btn-default">SEARCH</button>
                            </div>
                         </div>
                      </div>
@@ -122,4 +109,11 @@
       });
    </script>  -->
    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   <script>
+      $('.dropdown-menu a').click(function() {
+         $('#region-dropdown').html(this.id + '&nbsp;&nbsp;<span class="caret"></span>');
+         $('#region-dropdown').attr('name', this.id)
+      })
+
+   </script>
 </html>

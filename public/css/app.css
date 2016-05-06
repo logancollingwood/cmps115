@@ -268,3 +268,7 @@ body {
 .player-stats {
   text-align: center;
 }
+
+#region-dropdown {
+  border-radius: 0;
+}
