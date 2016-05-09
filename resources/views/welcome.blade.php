@@ -24,7 +24,6 @@
       <script src="{{ asset('/js/controllers/chartCtrl.js') }}"></script>
       <script src="{{ asset('/js/directives/chart.js') }}"></script>
       <script src="{{ asset('/js/routes.js') }}"></script>
-      <script src="{{ asset('/js/app.js') }}"></script>
    </head>
    <body ng-app="myApp" ng-controller="HomeController">
       <nav class="navbar navbar-default navbar-fixed-top">
@@ -90,13 +89,14 @@
                
 
             </nav>
-         <div class="container">
+         <section class="container m-scene">
             <!-- HEADER -->
             
             <!-- ANGULAR DYNAMIC CONTENT -->
-            <div ng-view>
+            <div ng-view class="scene_element scene_element--fadein">
                
             </div>
+            <div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
          </div>
    </body>
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
@@ -104,6 +104,10 @@
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>  
+   <script src="{{ asset('/js/jquery.smoothState.min.js') }}"></script>
+
+   <script src="{{ asset('/js/app.js') }}"></script>
+
 <!--    <script>  
       var socket = io.connect("http://localhost");
       
