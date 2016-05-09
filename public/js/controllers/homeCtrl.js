@@ -3,8 +3,8 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
     
     $scope.tagline = 'Up to date player and match stats';  
      
-    $('#username').unbind('keyup').bind('keyup', function(e) {
-        var username = $('#username').val();
+    $('input.username').unbind('keyup').bind('keyup', function(e) {
+        var username = $('input.username').val();
         var region = $('#region-dropdown').attr('name');
         $('#search').attr('href', '/player/' + region + '/' + username);
         console.log('redirecting to...' + '/player/' + region + '/' + username)
@@ -27,4 +27,6 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
     $('#search').click(function() {
         search();
     });
+
+    
 });

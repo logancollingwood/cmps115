@@ -20,6 +20,7 @@
       <script src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/playerCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/matchCtrl.js') }}"></script>
+
       <script src="{{ asset('/js/controllers/chartCtrl.js') }}"></script>
       <script src="{{ asset('/js/directives/chart.js') }}"></script>
       <script src="{{ asset('/js/routes.js') }}"></script>
@@ -33,7 +34,6 @@
                <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
                <div class="collapse navbar-collapse" id="navbar-collapse">
                   <ul class="nav navbar-nav">
-                     <li><a href="/community">Community</a></li>
                      <!-- DROPDOWN FOR GRAPHS -->
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Champion Graphs <span class="caret"></span></a>
@@ -64,37 +64,38 @@
                      </li>
                      <li><a id="playerProfile" href="/about">About</a></li>
                   </ul>
-                  <div class="search-bar col-sm-5 col-md-5 pull-right">
+                  <div class="col-sm-5 col-md-5 pull-right">
                      <div id="searchInput" class="input-group">
-                           <input id="username" type="text" class="form-control" aria-label="Search by Username..." placeholder="Search by Username..."> 
-                           <div class="input-group-btn">
-                              <ul class="dropdown-menu dropdown-menu-right">
-                                 <li><a id="NA" href="#">North America</a></li>
-                                 <li><a id="EUNE" href="#">Europe Nordic &amp; East</a></li>
-                                 <li><a id="EUW" href="#">Europe West</a></li>
-                                 <li><a id="JP" href="#">Japan</a></li>
-                                 <li><a id="BR" href="#">Brazil</a></li>
-                                 <li><a id="KR" href="#">Korea</a></li>
-                                 <li><a id="LAN" href="#">Latin America North</a></li>
-                                 <li><a id="LAS" href="#">Latin America South</a></li>
-                                 <li><a id="OCE" href="#">Oceanic</a></li>
-                                 <li><a id="RU" href="#">Russia</a></li>
-                                 <li><a id="TR" href="#">Turkey</a></li>
-                              </ul>
-                              <button id="region-dropdown" name="NA" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region&nbsp;&nbsp;<span class="caret"></span></button><button id="search" type="button" class="btn btn-default">SEARCH</button>
-                           </div>
+                        <input type="text" class="form-control username" aria-label="Search by Username..." placeholder="Search by Username..."> 
+                        <div class="input-group-btn">
+                          <ul class="dropdown-menu dropdown-menu-right">
+                             <li><a id="NA" href="#">North America</a></li>
+                             <li><a id="EUNE" href="#">Europe Nordic &amp; East</a></li>
+                             <li><a id="EUW" href="#">Europe West</a></li>
+                             <li><a id="JP" href="#">Japan</a></li>
+                             <li><a id="BR" href="#">Brazil</a></li>
+                             <li><a id="KR" href="#">Korea</a></li>
+                             <li><a id="LAN" href="#">Latin America North</a></li>
+                             <li><a id="LAS" href="#">Latin America South</a></li>
+                             <li><a id="OCE" href="#">Oceanic</a></li>
+                             <li><a id="RU" href="#">Russia</a></li>
+                             <li><a id="TR" href="#">Turkey</a></li>
+                          </ul>
+                          <button id="region-dropdown" name="NA" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region&nbsp;&nbsp;<span class="caret"></span></button>
+                          <button id="homesearch" type="button" class="btn btn-default">SEARCH</button>
                         </div>
-                     </div>
+                    </div>
+                </div>
                </div>
                
 
             </nav>
-      <div class="container">
+         <div class="container">
          <!-- HEADER -->
          
          <!-- ANGULAR DYNAMIC CONTENT -->
          <div ng-view></div>
-      </div>
+         </div>
    </body>
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
    
@@ -109,11 +110,4 @@
       });
    </script>  -->
    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script>
-      $('.dropdown-menu a').click(function() {
-         $('#region-dropdown').html(this.id + '&nbsp;&nbsp;<span class="caret"></span>');
-         $('#region-dropdown').attr('name', this.id)
-      })
-
-   </script>
 </html>

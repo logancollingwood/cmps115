@@ -8,14 +8,16 @@
 
 @media (min-width: 768px) {
   .container {
-    margin-top: 100px;
+    margin-top: 50px;
   }
 
   .content-sidebar {
     text-align: left;
   }
 }
-
+.container {
+  margin-top: 50px;
+}
 label {
   font-family: 'Lato';
   color: #333;
@@ -271,4 +273,31 @@ body {
 
 #region-dropdown {
   border-radius: 0;
+}
+
+body {
+    background-image: url("/img/cover.png");
+    background-position: center;
+    background-size: cover;
+
+}
+
+section.container {
+  background-color: rgba(60, 60, 60, 0.7);
+  border-radius: 10px;
+  border: none;
+}
+
+p {
+  font-family: 'Lato';
+  font-size: 20px;
+}
+
+h1.page-header {
+  text-align: center;
+  font-family: 'Montserrat';
+  color: #fff;
+}
+.body > div > div > div.container.ng-scope > div:nth-child(1) > div > h1 > small {
+  color: #eee;
 }
