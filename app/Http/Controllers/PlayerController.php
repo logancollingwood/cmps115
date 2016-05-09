@@ -87,7 +87,9 @@ class PlayerController extends Controller
     public function runesById($id){
         $data = $this->connection->getSummoner($id, 'runes');
 
+
         foreach ($data[$id]['pages'] as $page) {
+            if (!isset($page['slots'])) continue;
             foreach($page['slots'] as $rune){
                 $runes = Rune::where('summonerId', $id)
                                 ->where('page', $page)

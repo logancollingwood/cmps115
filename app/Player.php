@@ -173,6 +173,7 @@ class Player extends Model
     	$matchHistory = $connection->getMatchHistory($this->summonerId);
     	$count = 0;
 
+    	if (!$matchHistory) return;
     	foreach ($matchHistory["matches"] as $match) {
     		if ($count > 5) break;
     		
