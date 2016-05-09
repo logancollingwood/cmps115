@@ -1,153 +1,153 @@
-<!-- public/views/nerd.html -->
-<div class="jumbotron text-center">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="content-sidebar">
-                <div class="playerInfo">
-                    <div class="summonerPic">
-                        <!-- <img src= {{profileicon}} > -->
-                    </div>
-                    <p class="name">
-                        <span class="name__region">{{ player.payload.playerData.region }}</span>
-                        <span class="name__summoner-name">{{ player.payload.playerData.summonerName }}</span>
-                    </p>
-                </div>
-                <div class="row no-gutters career-stats">
-                    <div class="col-md-6 col-sm-2 col-xs-4">
-                        <div class="stat">
-                            <div class="stat__num">{{player.payload.playerData.wins }}</div>
-                            <div class="stat__label">wins</div>
+<!-- Page Content -->
+<section class="container">
+    <!-- public/views/nerd.html -->
+        <div class="row playerinfo">
+            <div class="col-md-4">
+                <div class="content-sidebar">
+                    <div class="playerInfo">
+                        <div class="summonerPic">
+                            <!-- <img src= {{profileicon}} > -->
                         </div>
+                        <p class="name">
+                            <span class="name__region">{{ player.payload.playerData.region }}</span>
+                            <span class="name__summoner-name">{{ player.payload.playerData.summonerName }}</span>
+                        </p>
                     </div>
-                    <div class="col-md-6 col-sm-2 col-xs-4">
-                        <div class="stat">
-                            <div class="stat__num">{{player.payload.playerData.totalChampionKills }}</div>
-                            <div class="stat__label">champion<br>kills</div>
+                    <div class="row no-gutters career-stats">
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">{{player.payload.playerData.wins }}</div>
+                                <div class="stat__label">wins</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-2 col-xs-4">
-                        <div class="stat">
-                            <div class="stat__num">{{player.payload.playerData.assists }}</div>
-                            <div class="stat__label">assists</div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">{{player.payload.playerData.totalChampionKills }}</div>
+                                <div class="stat__label">champion<br>kills</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-2 col-xs-4">
-                        <div class="stat">
-                            <div class="stat__num">{{player.payload.playerData.neutralMinionKills }}</div>
-                            <div class="stat__label">minion<br>kills</div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">{{player.payload.playerData.assists }}</div>
+                                <div class="stat__label">assists</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-2 col-xs-4">
-                        <div class="stat">
-                            <div class="stat__num">{{player.payload.playerData.turretsDestroyed }}</div>
-                            <div class="stat__label">turret<br>kills</div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">{{player.payload.playerData.neutralMinionKills }}</div>
+                                <div class="stat__label">minion<br>kills</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 last-updated"><span class="last-updated__label">Last updated</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
-                </div> <!-- career stats -->
-<!--                 <br>
-                <p> Career Breakdown: </p>
-                <div class="heading"> <label> wins </label> {{player.payload.playerData.wins }} </div>
-                <div class="heading"> <label> champion kills </label> {{player.payload.playerData.totalChampionKills }} </div>
-                <div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
-                <div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
-                <div class="heading"> <label> turret kills </label> {{player.payload.playerData.turretsDestroyed }} </div>
-                <div class="heading"> <label> Last Updated </label> {{ player.payload.playerData.updated_at }} </div>
-                
-                <div class="heading"> <label> force update? </label> 
-                	<a href="/api/player/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerName}}/force" target="_blank">
-                		<i class="fa fa-refresh" aria-hidden="true"></i>
-            		</a>
-        		</div> -->
-            </div> <!-- .content-sidebar --> 
-        </div> <!-- .col-md-4 --> 
-        <div class="col-md-8">
-        	<!-- Loading Spinner -->
-            <div class="recent-matches-table">
-                <i id="loadingIndicator" class="fa fa-cog fa-spin" style="font-size:36px;"></i>
-                <i id="errorIndicator" class="fa fa-times" style="font-size:36px;"></i>
-                <div class="table-wrapper">
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">{{player.payload.playerData.turretsDestroyed }}</div>
+                                <div class="stat__label">turret<br>kills</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
+                    </div> <!-- career stats -->
+    <!--                 <br>
+                    <p> Career Breakdown: </p>
+                    <div class="heading"> <label> wins </label> {{player.payload.playerData.wins }} </div>
+                    <div class="heading"> <label> champion kills </label> {{player.payload.playerData.totalChampionKills }} </div>
+                    <div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
+                    <div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
+                    <div class="heading"> <label> turret kills </label> {{player.payload.playerData.turretsDestroyed }} </div>
+                    <div class="heading"> <label> Last Updated </label> {{ player.payload.playerData.updated_at }} </div>
+                    
+                    <div class="heading"> <label> force update? </label> 
+                    	<a href="/api/player/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerName}}/force" target="_blank">
+                    		<i class="fa fa-refresh" aria-hidden="true"></i>
+                		</a>
+            		</div> -->
+                </div> <!-- .content-sidebar --> 
+            </div> <!-- .col-md-4 --> 
+            <div class="col-md-8">
+            	<!-- Loading Spinner -->
+                <div class="recent-matches-table">
+                    <i id="loadingIndicator" class="fa fa-cog fa-spin" style="font-size:36px;"></i>
+                    <i id="errorIndicator" class="fa fa-times" style="font-size:36px;"></i>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <tbody>
+                                <!-- Match Num -->
+                                <tr>
+                                    <th class="tr__th--recent-matches">Recent<br>Matches</th>
+                                    <td ng-repeat="m in player.payload.recentMatches">
+                                        <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
+                                        <div class="tr__td--match-num"><a href="/match/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
+                                    </td>
+                                </tr>
+                                <!-- Kills -->
+                                <tr>
+                                  <th>Kills</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.kills }}</td>                        
+                                </tr>
+                                <!-- Deaths -->  
+                                <tr>
+                                  <th>Deaths</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.deaths }}</td>
+                                </tr>  
+                                <!-- Assits -->
+                                <tr>
+                                  <th>Assists</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.assists }}</td>
+                                </tr>   
+                                <!-- Lane --> 
+                                <tr>
+                                  <th>Lane</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.lane }}</td>
+                                </tr>  
+                                <!-- Role -->
+                                <tr>
+                                  <th>Role</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.role }}</td>
+                                </tr>
+                                <!-- Result -->    
+                                <tr>
+                                  <th>Result</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
+                                </tr>  
+                                <!-- Wards Placed -->    
+                                <tr>
+                                  <th>Wards Placed</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.wards_placed }}</td>
+                                </tr> 
+                                <!-- Wards Killed -->    
+                                <tr>
+                                  <th>Wards Killed</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wards_killed }}</td>
+                                </tr> 
+                                <!-- First Blood -->    
+                                <tr>
+                                  <th>First Blood</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.first_blood ? 'Yes' : 'No'}}</td>
+                                </tr> 
+                            </tbody> 
+                        </table>
+                    </div> <!-- .table-wrapper -->
+                </div> <!-- .recent-matches-table -->
+                <!-- <div class="table-wrapper">
                     <table class="table">
                         <tbody>
-                            <!-- Match Num -->
                             <tr>
-                                <th class="tr__th--recent-matches">Recent<br>Matches</th>
-                                <td ng-repeat="m in player.payload.recentMatches">
-                                    <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
-                                    <div class="tr__td--match-num"><a href="/match/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
-                                </td>
+                                <th>#</th>
+                                <th>Page #</th>
+                                <th>Slot</th>
+                                <th>Rune ID</th>
+                                <th>Page Name</th>
                             </tr>
-                            <!-- Kills -->
-                            <tr>
-                              <th>Kills</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.kills }}</td>                        
+                            <tr ng-repeat="m in player.payload.runes">
+                                <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ m.page }}</td>
+                                <td>{{ m.slot }}</td>
+                                <td>{{ m.runeId }}</td>
+                                <td>{{ m.pageName }}</td>
                             </tr>
-                            <!-- Deaths -->  
-                            <tr>
-                              <th>Deaths</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.deaths }}</td>
-                            </tr>  
-                            <!-- Assits -->
-                            <tr>
-                              <th>Assists</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.assists }}</td>
-                            </tr>   
-                            <!-- Lane --> 
-                            <tr>
-                              <th>Lane</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.lane }}</td>
-                            </tr>  
-                            <!-- Role -->
-                            <tr>
-                              <th>Role</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.role }}</td>
-                            </tr>
-                            <!-- Result -->    
-                            <tr>
-                              <th>Result</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
-                            </tr>  
-                            <!-- Wards Placed -->    
-                            <tr>
-                              <th>Wards Placed</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.wards_placed }}</td>
-                            </tr> 
-                            <!-- Wards Killed -->    
-                            <tr>
-                              <th>Wards Killed</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wards_killed }}</td>
-                            </tr> 
-                            <!-- First Blood -->    
-                            <tr>
-                              <th>First Blood</th>
-                              <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.first_blood ? 'Yes' : 'No'}}</td>
-                            </tr> 
-                        </tbody> 
+                        </tbody>
                     </table>
-                </div> <!-- .table-wrapper -->
-            </div> <!-- .recent-matches-table -->
-            <!-- <div class="table-wrapper">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>#</th>
-                            <th>Page #</th>
-                            <th>Slot</th>
-                            <th>Rune ID</th>
-                            <th>Page Name</th>
-                        </tr>
-                        <tr ng-repeat="m in player.payload.runes">
-                            <th scope="row">{{ $index + 1 }}</th>
-                            <td>{{ m.page }}</td>
-                            <td>{{ m.slot }}</td>
-                            <td>{{ m.runeId }}</td>
-                            <td>{{ m.pageName }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> -->
-        </div> <!-- .col-md-10 --> 
-    </div> <!-- .row -->
-</div> <!-- .jumbotron -->
-
-<div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+                </div> -->
+            </div> <!-- .col-md-10 --> 
+        </div> <!-- .row -->
+        <div id="footer">LoLStats isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+</section>

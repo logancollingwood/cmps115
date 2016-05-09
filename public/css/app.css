@@ -276,14 +276,14 @@ body {
 }
 
 body {
-    background-image: url("/img/cover.png");
+    background-image: url("/img/cover3.jpg");
     background-position: center;
     background-size: cover;
 
 }
 
 section.container {
-  background-color: rgba(60, 60, 60, 0.7);
+  background-color: rgba(60, 60, 60, 0.9);
   border-radius: 10px;
   border: none;
 }
@@ -298,6 +298,13 @@ h1.page-header {
   font-family: 'Montserrat';
   color: #fff;
 }
-.body > div > div > div.container.ng-scope > div:nth-child(1) > div > h1 > small {
-  color: #eee;
+
+@media (min-width: 768px) {
+  .playerinfo {
+    padding: 30px;
+  }
+}
+.playerinfo {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
