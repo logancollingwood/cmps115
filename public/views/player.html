@@ -6,6 +6,7 @@
                     <div class="playerInfo">
                         <div class="summonerPic">
                             <!-- <img src= {{profileicon}} > -->
+                            <span class="heading">Career Breakdown</span>
                         </div>
                         <p class="name">
                             <span class="name__region">{{ player.payload.playerData.region }}</span>
@@ -90,7 +91,7 @@
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
                                         <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/match/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
                                     </td>
                                 </tr>
                                 <!-- Kills -->

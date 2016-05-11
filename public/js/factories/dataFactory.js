@@ -121,10 +121,27 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
             }
         }
         filtered.payload.teamInfo = teams;
+
+        //currently broken
         filtered.payload.matchStartTime = timeConverter(object.serverTime);
+        
         console.log(filtered);
         return filtered;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function timeConverter(UNIX_timestamp){
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
