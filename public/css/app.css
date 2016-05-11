@@ -313,7 +313,7 @@ h1.page-header {
 span.heading {
     position: absolute;
     bottom: 0px;
-    padding-left: 15%;
+    text-align: center;
     font-size: 25px;
     color: #fff;
     text-shadow: 3px 2px 15px #000;
