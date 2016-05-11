@@ -51,6 +51,19 @@ class Player extends Model
 			  order by count(*) desc
 			  limit 1)
   */
+    	
+    	$json = [];
+    	// copy player data over into this json field
+    	// this includes agregate match stats since they're
+    	// part of the player model
+    	$json['playerData'] = $this;
+    	$json['recentMatches'] = $recentMatches;
+    	$json['runes'] = $runes;
+    	$json = $this->fillInStats($json);
+    	return $json;
+    }
+    
+    private function fillInStats($json) {
     	$favChamp = DB::select(
     				'SELECT *, COUNT(champion) as champ_count
 					FROM playermatch
@@ -73,20 +86,19 @@ class Player extends Model
     	$stats = $favChampKDA[0];
     	// kda = (K+A) / Max(1,D)
     	$favChampKDA = ( $stats->kills + $stats->assists ) / ( max(1, $stats->deaths) );
-    	$json = [];
-    	// copy player data over into this json field
-    	// this includes agregate match stats since they're
-    	// part of the player model
-    	$json['playerData'] = $this;
+
+
+    	$wardsPlaced = DB::select('
+    					SELECT *, sum(wards_placed) as wards_placed_total
+    					FROM playermatch
+    					WHERE summonerID = ?',
+    					[$this->summonerId]);
+    	$wardsPlaced = $wardsPlaced[0]->wards_placed_total;
+    	$json['playerData']['wardsPlaced'] = $wardsPlaced;
     	$json['playerData']['favChamp'] = $favChamp;
     	$json['playerData']['favChampKDA'] = $favChampKDA;
-    	$json['recentMatches'] = $recentMatches;
-    	$json['runes'] = $runes;
-    	
     	return $json;
     }
-    
-    
 
     public function updatePlayerFull($connection) {
     	
