@@ -46,16 +46,56 @@ class GameTypeStats extends Model
         "TEAM_BUILDER_DRAFT_UNRANKED_5x5" => 35,
         "TEAM_BUILDER_DRAFT_RANKED_5x5" => 36
     ];
-    
+
     public static function getType($str) {
+    	$types = [
+    		"AramUnranked5x5" => 0,
+    		"CAP5x5" => 1,
+            "CoopVsAI" => 2,
+            "CoopVsAI3x3" => 3,
+            "CoopVsAI5x5" => 4,
+            "OdinUnranked" => 5,
+            "RankedSolo5x5" => 6,
+            "RankedTeam5x5" => 7,
+            "RankedTeam3x3" => 8,
+            "Unranked" => 9,
+            "Unranked3x3" => 10,
+            "RankedPremade3x3" => 11,
+            "RankedPremade5x5" => 12,
+            "Ascension" => 13,
+            "URF" => 14,
+            "OneForAll5x5" => 15,
+            "KingPoro" => 16,
+            "Hexakill" => 17,
+            
+    	];
 
 
-    	return $this->types[$str];
+
+    	return $types[$str];
     }
 
     public static function getMatchKey($id) {
-    	
-    	return array_search($id, $this->types);
+    	$types = [
+            "AramUnranked5x5" => 0,
+            "CAP5x5" => 1,
+            "CoopVsAI" => 2,
+            "CoopVsAI3x3" => 3,
+            "CoopVsAI5x5" => 4,
+            "OdinUnranked" => 5,
+            "RankedSolo5x5" => 6,
+            "RankedTeam5x5" => 7,
+            "RankedTeam3x3" => 8,
+            "Unranked" => 9,
+            "Unranked3x3" => 10,
+            "RankedPremade3x3" => 11,
+            "RankedPremade5x5" => 12,
+            "Ascension" => 13,
+            "OneForAll5x5" => 15,
+            "KingPoro" => 16,
+            "Hexakill" =>17
+        ];
+    	return array_search($id, $types);
     }
 
     protected $table = 'gameTypeStats';
