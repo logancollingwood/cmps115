@@ -51,7 +51,8 @@ class PlayerMatch extends Migration
             $table->integer('summonerId');
             $table->string('platformId');
             $table->integer('matchId');
-
+            $table->integer('profileIcon');
+            
             $table->integer('champion');
 
             $table->string('queue');
@@ -59,8 +60,8 @@ class PlayerMatch extends Migration
             $table->string('lane');
             $table->string('role');
 
-            
-            $table->integer('won');
+            $table->integer('team'); // BINARY 0 meaning team 1 or 1 meaning team 2
+            $table->integer('won'); // binary 0 meaning loss 1 meaning win
             $table->integer('kills');
             $table->integer('deaths');
             $table->integer('assists');

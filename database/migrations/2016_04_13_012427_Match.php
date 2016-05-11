@@ -22,9 +22,11 @@ class Match extends Migration
             $table->integer('id', true);
             $table->integer('matchId');
             $table->string('platformId');
+            $table->integer('map');
             $table->string('queue');
             $table->string('season');
             $table->string('serverTime');
+            $table->integer('length');
             $table->timestamps();
         });
     }

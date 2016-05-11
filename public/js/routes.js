@@ -16,7 +16,7 @@
             reloadOnSearch: false
         })
         
-        .when('/match/:matchid', {
+        .when('/match/:region/:matchid', {
             templateUrl: 'views/match.html',
             controller: 'MatchController'
         })

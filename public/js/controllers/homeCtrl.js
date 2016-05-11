@@ -4,7 +4,6 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
     $scope.tagline = 'break down your gameplay';  
      
     $('input.username').unbind('keyup').bind('keyup', function(e) {
-        console.log($(this));
         var username = $(this).val();
         var region = $('#region-dropdown').attr('name');
         $('#search').attr('href', '/player/' + region + '/' + username);

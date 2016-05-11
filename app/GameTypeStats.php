@@ -26,6 +26,7 @@ class GameTypeStats extends Model
             "Ascension" => 13,
             "URF" => 14,
             "OneForAll5x5" => 15
+            
     	];
 
     	return $types[$str];

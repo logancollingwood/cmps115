@@ -38,7 +38,7 @@ Route::group(['prefix' => 'api/'], function () {
 	Route::get('runes/{id}', 'PlayerController@runesById');
 
 	// Match Endpoints -- RATE LIMITED
-	Route::get('match/{matchid}', 'MatchController@byId');
+	Route::get('match/{region}/{matchid}', 'MatchController@byId');
 	Route::get('match/{region}/{name}', 'PlayerController@matchHistory');
 
 	// Lookup champion ID, all static updates so -- NOT RATE LIMITED.
