@@ -25,7 +25,9 @@ class GameTypeStats extends Model
             "RankedPremade5x5" => 12,
             "Ascension" => 13,
             "URF" => 14,
-            "OneForAll5x5" => 15
+            "OneForAll5x5" => 15,
+            "KingPoro" => 16,
+            "Hexakill" => 17,
             
     	];
 
@@ -48,7 +50,10 @@ class GameTypeStats extends Model
             "RankedPremade3x3" => 11,
             "RankedPremade5x5" => 12,
             "Ascension" => 13,
-            "OneForAll5x5" => 15
+            "OneForAll5x5" => 15,
+            "KingPoro" => 16,
+            "Hexakill" =>17
+
         ];
     	return array_search($id, $types);
     }

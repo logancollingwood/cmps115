@@ -23,7 +23,11 @@ class MatchController extends Controller
 		$this->apiResponder = new ApiResponder();
 	}
 
-    
+	//Method for current game lookup. Takes REGION and summonerId
+    public function currentMatch($region, $playerId){
+    	return $this->connection->getCurrentGame($playerId, $region . '1');
+
+    }
 
     public function byId($region, $id) {
     	$this->apiResponder->setCode(404);

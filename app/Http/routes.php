@@ -40,6 +40,7 @@ Route::group(['prefix' => 'api/'], function () {
 	// Match Endpoints -- RATE LIMITED
 	Route::get('match/{region}/{matchid}', 'MatchController@byId');
 	Route::get('match/{region}/{name}', 'PlayerController@matchHistory');
+	Route::get('currentmatch/{region}/{playerId}', 'MatchController@currentMatch');
 
 	// Lookup champion ID, all static updates so -- NOT RATE LIMITED.
 	// that said this code is going to need to be made less ugly, 
@@ -50,7 +51,7 @@ Route::group(['prefix' => 'api/'], function () {
 	Route::get('champion/{id}', 'StaticController@championById');
 	Route::get('championList', 'StaticController@championList');
 
-	//Temporary endpoint, eventually this should exclusively be a job.
+	// Temporary endpoint, eventually this should exclusively be a job.
 	Route::get('updateChampionList', 'ChampionController@updateList');
 
 
