@@ -43,6 +43,22 @@
                                 <div class="stat__label">turret<br>kills</div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    <div class="championpic" data-champion="{{player.payload.playerData.favChamp}}" ng-cloak></div>
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    {{player.payload.playerData.favChampKDA}}
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ KDA</div>
+                            </div>
+                        </div>
                         <div class="col-md-12 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
                     </div> <!-- career stats -->
     <!--                 <br>

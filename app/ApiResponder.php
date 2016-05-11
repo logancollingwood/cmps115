@@ -19,9 +19,9 @@ class ApiResponder extends Model
     // API responder sets up our data object which will contain a response
 
     public function __construct() {
-    	header("Access-Control-Allow-Orgin: *");
-        header("Access-Control-Allow-Methods: *");
-        header("Content-Type: application/json");
+    	//header("Access-Control-Allow-Orgin: *");
+        //header("Access-Control-Allow-Methods: *");
+        //header("Content-Type: application/json");
     }
 
     public function send() {

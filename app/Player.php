@@ -7,6 +7,7 @@ use App\GameTypeStats;
 use App\PlayerMatch;
 use App\Match;
 use App\Rune;
+use DB;
 
 class Player extends Model
 {
@@ -39,12 +40,46 @@ class Player extends Model
     	$stats = $this->GameTypeStats;
     	$recentMatches = $this->mostRecentGames(5);
     	$runes = Rune::where('summonerId', $this->summonerId)->get();
+
+
+    	/*
+    		select age from persons
+			group by age
+			having count(*) = (
+			  select count(*) from persons
+			  group by age
+			  order by count(*) desc
+			  limit 1)
+  */
+    	$favChamp = DB::select(
+    				'SELECT *, COUNT(champion) as champ_count
+					FROM playermatch
+					where summonerId = ?
+					GROUP BY champion
+					ORDER BY champ_count DESC
+					LIMIT 1', 
+				[$this->summonerId]);
+    	$favChamp = $favChamp[0]->champion;
+    	$favChampKDA = DB::select(
+    			'SELECT SUM(kills) as kills, 
+    					SUM(deaths) as deaths,
+    					SUM(assists) as assists
+    			FROM playermatch
+    			where summonerId = ?
+    			and champion = ?',
+    			[$this->summonerId, $favChamp]
+    		);
     	
+    	$stats = $favChampKDA[0];
+    	// kda = (K+A) / Max(1,D)
+    	$favChampKDA = ( $stats->kills + $stats->assists ) / ( max(1, $stats->deaths) );
     	$json = [];
     	// copy player data over into this json field
     	// this includes agregate match stats since they're
     	// part of the player model
     	$json['playerData'] = $this;
+    	$json['playerData']['favChamp'] = $favChamp;
+    	$json['playerData']['favChampKDA'] = $favChampKDA;
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
     	
