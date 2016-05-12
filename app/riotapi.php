@@ -21,7 +21,7 @@ class riotapi extends Model
 	const API_URL_CURRENT_GAME_1_0 = 'https://{region}.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/';
 
 
-	const API_KEY = '8841c7fc-9996-45e5-826d-9400c02e4633';
+	const API_KEY = '2f37e90c-fbba-4951-b8f7-671c27918c96';
 
 	// Rate limit for 10 minutes
 	const LONG_LIMIT_INTERVAL = 600;
