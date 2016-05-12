@@ -115,5 +115,12 @@
          console.log("Connected!");
       });
    </script>  -->
-   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8">
+   </script>
+   <script>
+      $('.dropdown-menu a').click(function() {
+         $('#region-dropdown').html(this.id + '&nbsp;&nbsp;<span class="caret"></span>');
+         $('#region-dropdown').attr('name', this.id)
+      })
+   </script>
 </html>
