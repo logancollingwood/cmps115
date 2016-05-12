@@ -152,6 +152,7 @@ class PlayerController extends Controller
 		$player = new Player;
 		$player->region = $region;
 		$player->summonerName = $name;
+        $name = str_replace(' ', '', $name);
 		$player->summonerId = $data[$name]['id'];
         $player->profileIconId = $data[$name]['profileIconId'];
 

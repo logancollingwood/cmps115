@@ -35,7 +35,7 @@ class riotapi extends Model
 	const CACHE_LIFETIME_MINUTES = 60;
 	private $cache;
 
-	private $REGION;	
+	private $region;	
 	//variable to retrieve last response code
 	private $responseCode; 
 
@@ -59,8 +59,7 @@ class riotapi extends Model
 
 	public function __construct($region, CacheInterface $cache = null)
 	{
-		$this->REGION = $region;
-
+		$this->region = strtolower($region);
 		$this->shortLimitQueue = new SplQueue();
 		$this->longLimitQueue = new SplQueue();
 
@@ -291,7 +290,6 @@ class riotapi extends Model
 				$this->updateLimitQueue($this->longLimitQueue, self::LONG_LIMIT_INTERVAL, self::RATE_LIMIT_LONG);
 				$this->updateLimitQueue($this->shortLimitQueue, self::SHORT_LIMIT_INTERVAL, self::RATE_LIMIT_SHORT);
 			}
-
 			//call the API and return the result
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -307,7 +305,8 @@ class riotapi extends Model
 					$this->cache->put($url, $result, self::CACHE_LIFETIME_MINUTES * 60);
 				}
 			} else {
-				$result = "";
+				
+				return "";
 			}
 		}
 		if (self::DECODE_ENABLED) {
@@ -319,7 +318,7 @@ class riotapi extends Model
 	//creates a full URL you can query on the API
 	private function format_url($call, $otherQueries=false){
 		//because sometimes your url looks like .../something/foo?query=blahblah&api_key=dfsdfaefe
-		return str_replace('{region}', $this->REGION, $call) . ($otherQueries ? '&' : '?') . 'api_key=' . self::API_KEY;
+		return str_replace('{region}', $this->region, $call) . ($otherQueries ? '&' : '?') . 'api_key=' . self::API_KEY;
 	}
 
 	public function getLastResponseCode(){
@@ -333,6 +332,6 @@ class riotapi extends Model
 	}
 
 	public function setRegion($region) {
-		$this->REGION = $region;
+		$this->region = strtolower($region);
 	}
 }
