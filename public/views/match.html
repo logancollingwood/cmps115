@@ -74,55 +74,119 @@
                                 <!-- Match Num -->
                                 <tr>
                                     <th class="tr__th--recent-matches">Team 1</th>
-                                    <td ng-repeat="m in match.payload.teaminfo.one.players">
-                                        <div class="championpic" data-champion="{{ m.profileIcon }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/player/{{match.payload.region}}/{{ m.summonerName}}"> {{ m.summonerName}}</a></div>
+                                    <td ng-repeat="m in match.payload.player_match">
+                                        <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
                                     </td>
                                 </tr>
+                                <!-- SummonerId-->
+                                  <th>SummonerId</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.summonerId }}</td>               
+                                </tr>
                                 <!-- Kills -->
-                                <tr>
                                   <th>Kills</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.kills }}</td>                        
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.kills }}</td>               
                                 </tr>
                                 <!-- Deaths -->  
-                                <tr>
                                   <th>Deaths</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.deaths }}</td>
-                                </tr>  
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.deaths }}</td>               
+                                </tr>
                                 <!-- Assits -->
                                 <tr>
                                   <th>Assists</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.assists }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.assists }}</td>  
                                 </tr>   
                                 <!-- Lane --> 
                                 <tr>
                                   <th>Lane</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.lane }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.lane }}</td>  
                                 </tr>  
                                 <!-- Role -->
                                 <tr>
                                   <th>Role</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.role }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.role }}</td>  
                                 </tr>
                                 <!-- Result -->    
                                 <tr>
                                   <th>Result</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.won }}</td>  
                                 </tr>  
                                 <!-- Wards Placed -->    
                                 <tr>
                                   <th>Wards Placed</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.wards_placed }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.wards_placed}}</td>  
                                 </tr> 
                                 <!-- Wards Killed -->    
                                 <tr>
                                   <th>Wards Killed</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wards_killed }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.wards_killed }}</td>  
                                 </tr> 
                                 <!-- First Blood -->    
                                 <tr>
                                   <th>First Blood</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.first_blood ? 'Yes' : 'No'}}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.first_blood }}</td>  
+                                </tr> 
+                            </tbody> 
+                        </table>
+                        <!-- TEAM TWO CODE HERE -->
+                        <table class="table">
+                            <tbody>
+                                <!-- Match Num -->
+                                <tr>
+                                    <th class="tr__th--recent-matches">Team 2</th>
+                                    <td ng-repeat="m in match.payload.player_match">
+                                        <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
+                                    </td>
+                                    <td ng-repeat="m in match.payload.teams.two.players">
+                                        <div class="championpic" data-champion="{{ m.profileIcon }}" ng-cloak></div>
+                                        <div class="tr__td--match-num"><a href="/player/{{match.payload.region}}/{{ m.summonerName}}"> {{ m.summonerName}}</a></div>
+                                    </td>
+                                </tr>
+                                <!-- SummonerId-->
+                                  <th>SummonerId</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.summonerId }}</td>               
+                                </tr>
+                                <!-- Kills -->
+                                  <th>Kills</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.kills }}</td>               
+                                </tr>
+                                <!-- Deaths -->  
+                                  <th>Deaths</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.deaths }}</td>               
+                                </tr>
+                                <!-- Assits -->
+                                <tr>
+                                  <th>Assists</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.assists }}</td>  
+                                </tr>   
+                                <!-- Lane --> 
+                                <tr>
+                                  <th>Lane</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.lane }}</td>  
+                                </tr>  
+                                <!-- Role -->
+                                <tr>
+                                  <th>Role</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.role }}</td>  
+                                </tr>
+                                <!-- Result -->    
+                                <tr>
+                                  <th>Result</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.won }}</td>  
+                                </tr>  
+                                <!-- Wards Placed -->    
+                                <tr>
+                                  <th>Wards Placed</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.wards_placed}}</td>  
+                                </tr> 
+                                <!-- Wards Killed -->    
+                                <tr>
+                                  <th>Wards Killed</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.wards_killed }}</td>  
+                                </tr> 
+                                <!-- First Blood -->    
+                                <tr>
+                                  <th>First Blood</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in match.payload.player_match"> {{ m.first_blood }}</td>  
                                 </tr> 
                             </tbody> 
                         </table>
