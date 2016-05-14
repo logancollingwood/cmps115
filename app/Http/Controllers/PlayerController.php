@@ -10,6 +10,7 @@ use App\ApiResponder;
 use App\Player;
 use App\GameTypeStats;
 use App\Rune;
+use App\Mastery;
 use App\Jobs\UpdateOrCreatePlayerJob;
 
 
@@ -84,6 +85,29 @@ class PlayerController extends Controller
         return $this->apiResponder->send();
     }
 
+    public function masteriesById($id){
+        $data = $this->connection->getSummoner($id, 'masteries');
+        foreach ($data[$id]['pages'] as $page) {
+            foreach ($page['masteries'] as $mastery) {
+                $masteries = Mastery::where('summonerId', $id)
+                                        ->where('page', $page['id'])
+                                        ->where('masteryId', $mastery['id'])
+                                        ->first();
+                if(!$masteries){
+                    $masteries = new Mastery;
+                }
+                $masteries->summonerId = $id;
+                $masteries->page = $page['id'];
+                $masteries->rank = $mastery['rank'];
+                $masteries->masteryId = $mastery['id'];
+                $masteries->pageName = $page['name'];
+                $masteries->save();
+
+            }
+        }
+        return $data;
+    }
+
     public function runesById($id){
         $data = $this->connection->getSummoner($id, 'runes');
 
@@ -92,7 +116,7 @@ class PlayerController extends Controller
             if (!isset($page['slots'])) continue;
             foreach($page['slots'] as $rune){
                 $runes = Rune::where('summonerId', $id)
-                                ->where('page', $page)
+                                ->where('page', $page['id'])
                                 ->where('slot', $rune['runeSlotId'])
                                 ->first();
                 if(!$runes){

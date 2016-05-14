@@ -7,6 +7,7 @@ use App\GameTypeStats;
 use App\PlayerMatch;
 use App\Match;
 use App\Rune;
+use App\Mastery;
 use DB;
 
 class Player extends Model
@@ -40,6 +41,8 @@ class Player extends Model
     	$stats = $this->GameTypeStats;
     	$recentMatches = $this->mostRecentGames(5);
     	$runes = Rune::where('summonerId', $this->summonerId)->get();
+    	$masteries = Mastery::where('summonerId', $this->summonerId)->get();
+
 
 
     	/*
@@ -59,6 +62,7 @@ class Player extends Model
     	$json['playerData'] = $this;
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
+    	$json['masteries'] = $masteries;
     	$json = $this->fillInStats($json);
     	return $json;
     }
@@ -215,12 +219,15 @@ class Player extends Model
 
     // this is pretty damn expensive
     public function updateMatches($connection) {
+    	
+
 
 
     	$matchHistory = $connection->getMatchHistory($this->summonerId);
     	$count = 0;
 
     	if (!$matchHistory) return;
+
     	foreach ($matchHistory["matches"] as $match) {
     		if ($count > 5) break;
     		

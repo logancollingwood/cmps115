@@ -37,6 +37,9 @@ Route::group(['prefix' => 'api/'], function () {
 	// Get list of runes by player ID
 	Route::get('runes/{id}', 'PlayerController@runesById');
 
+	// Get list of masteries by player ID
+	Route::get('masteries/{id}', 'PlayerController@masteriesById');
+
 	// Match Endpoints -- RATE LIMITED
 	Route::get('match/{region}/{matchid}', 'MatchController@byId');
 	
