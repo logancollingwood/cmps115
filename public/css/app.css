@@ -18,6 +18,15 @@
 .container {
   margin-top: 50px;
 }
+
+#aboutpage {
+  color: #fff;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
 label {
   font-family: 'Lato';
   color: #333;
