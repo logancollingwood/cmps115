@@ -28,11 +28,40 @@
    </head>
    <body ng-app="myApp" ng-controller="HomeController">
       <nav class="navbar navbar-default navbar-fixed-top">
-               <div class="navbar-header">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                  </button>
                   <a class="navbar-brand" href="/">LoLStats</a>
-               </div>
+                </div>
                <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
                <div class="collapse navbar-collapse" id="navbar-collapse">
+                  
+                  <div class="col-sm-5 col-md-5 pull-right">
+                     <div id="searchInput" class="input-group">
+                        <input type="text" class="form-control username" aria-label="Search by Username..." placeholder="Search by Username..."> 
+                        <div class="input-group-btn">
+                          <ul class="dropdown-menu dropdown-menu-right">
+                             <li><a id="NA" href="#">North America</a></li>
+                             <li><a id="EUNE" href="#">Europe Nordic &amp; East</a></li>
+                             <li><a id="EUW" href="#">Europe West</a></li>
+                             <li><a id="JP" href="#">Japan</a></li>
+                             <li><a id="BR" href="#">Brazil</a></li>
+                             <li><a id="KR" href="#">Korea</a></li>
+                             <li><a id="LAN" href="#">Latin America North</a></li>
+                             <li><a id="LAS" href="#">Latin America South</a></li>
+                             <li><a id="OCE" href="#">Oceanic</a></li>
+                             <li><a id="RU" href="#">Russia</a></li>
+                             <li><a id="TR" href="#">Turkey</a></li>
+                          </ul>
+                          <button id="region-dropdown" name="NA" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region&nbsp;&nbsp;<span class="caret"></span></button>
+                          <button id="homesearch" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+                  
                   <ul class="nav navbar-nav">
                      <!-- DROPDOWN FOR GRAPHS -->
                      <li class="dropdown">
@@ -53,39 +82,18 @@
                         <a href="/streams" class="dropdown-toggle" data-toggle="dropdown" role="button">Streams<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                            <!-- To Do, we can either link to Twitch for now or /streams-->
-                           <li><a href="/streams">Popular Streams</a></li>
-                           <li role="separator" class="text">  <a><u>Quick Links</u></a></li>
+                           <li class="dropdown-header">Popular Streamers</a></li>
                            <li><a href="https://www.twitch.tv/imaqtpie">Imaqtpie</a></li>
                            <li><a href="https://www.twitch.tv/c9sneaky">C9Sneaky</a></li>
                            <li><a href="https://www.twitch.tv/tsm_doublelift">Doublelift</a></li>
                            <li role="separator" class="divider"></li>
+                           <li class="dropdown-header">Professionl Games</a></li>
                            <li><a href="https://www.twitch.tv/riotgames">Riot Games</a></li>
                         </ul>
                      </li>
                      <li><a id="playerProfile" href="/about">About</a></li>
                   </ul>
-                  <div class="col-sm-5 col-md-5 pull-right">
-                     <div id="searchInput" class="input-group">
-                        <input type="text" class="form-control username" aria-label="Search by Username..." placeholder="Search by Username..."> 
-                        <div class="input-group-btn">
-                          <ul class="dropdown-menu dropdown-menu-right">
-                             <li><a id="NA" href="#">North America</a></li>
-                             <li><a id="EUNE" href="#">Europe Nordic &amp; East</a></li>
-                             <li><a id="EUW" href="#">Europe West</a></li>
-                             <li><a id="JP" href="#">Japan</a></li>
-                             <li><a id="BR" href="#">Brazil</a></li>
-                             <li><a id="KR" href="#">Korea</a></li>
-                             <li><a id="LAN" href="#">Latin America North</a></li>
-                             <li><a id="LAS" href="#">Latin America South</a></li>
-                             <li><a id="OCE" href="#">Oceanic</a></li>
-                             <li><a id="RU" href="#">Russia</a></li>
-                             <li><a id="TR" href="#">Turkey</a></li>
-                          </ul>
-                          <button id="region-dropdown" name="NA" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region&nbsp;&nbsp;<span class="caret"></span></button>
-                          <button id="homesearch" type="button" class="btn btn-default">SEARCH</button>
-                        </div>
-                    </div>
-                </div>
+                  
                </div>
                
 
