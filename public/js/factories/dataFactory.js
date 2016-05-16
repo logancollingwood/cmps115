@@ -3,6 +3,7 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
     var urlBase = '/api/player/';
     var urlBaseChampion = '/api/champion/';
     var urlBaseMatch = '/api/match/';
+    var urlCurrentMatch = 'api/currentmatch/'
     var DataFactory = {};
 
    DataFactory.getPlayer = function (region, name) {
@@ -16,6 +17,10 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
 
     DataFactory.getMatch = function (region, id) {
         return $http.get(urlBaseMatch + region + '/' + id);
+    }
+    
+    DataFactory.getLiveMatch = function (region, id) {
+        return $http.get(urlCurrentMatch + region + '/' + id);
     }
 
     DataFactory.filterPlayer = function(object) {

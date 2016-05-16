@@ -11,6 +11,7 @@
                         <p class="name">
                             <span class="name__region">{{ player.payload.playerData.region }}</span>
                             <span class="name__summoner-name">{{ player.payload.playerData.summonerName }}</span>
+                            <a href="/livematch/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerId}}" class="btn btn-default" role="button">Live Game</a>
                         </p>
                     </div>
                     <div class="row no-gutters career-stats">

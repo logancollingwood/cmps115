@@ -20,6 +20,11 @@
             templateUrl: 'views/match.html',
             controller: 'MatchController'
         })
+        
+        .when('/livematch/:region/:playerid', {
+            templateUrl: 'views/livematch.html',
+            controller: 'LiveMatchController'
+        })
 
         // About page
         .when('/about', {
