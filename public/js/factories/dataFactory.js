@@ -97,8 +97,8 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
         }
 
         //Strips "SEASON" from "SEASON2016", leaving "2016"
-        filtered.payload.season = object.season.replace(/\D/g,'');
-
+        filtered.payload.season = object.season;
+        filtered.payload.region = object.platformId.replace(/[0-9]/g, '').toLowerCase();
         var teams = {   "one": { 
                             "players": [], 
                             "won": false

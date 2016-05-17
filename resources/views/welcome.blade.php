@@ -17,6 +17,7 @@
 
       <script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
       <script src="{{ asset('/js/factories/dataFactory.js') }}"></script>
+      <script src="{{ asset('/js/factories/socketFactory.js') }}"></script>
       <script src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/playerCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/matchCtrl.js') }}"></script>

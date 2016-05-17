@@ -13,6 +13,8 @@ use App\PlayerMatch;
 use App\Match;
 use App\Player;
 use App\Rune;
+use Event;
+use App\Events\PlayerWasRefreshed;
 
 class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
 {
@@ -73,8 +75,9 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
                 $this->updatePlayerFull();
             }
         }
+
         // fire socket event
-        
+        Event::fire(new PlayerWasRefreshed($this->player));
     }
 
 

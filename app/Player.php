@@ -63,7 +63,7 @@ class Player extends Model
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
     	$json['masteries'] = $masteries;
-    	//$json = $this->fillInStats($json);
+    	$json = $this->fillInStats($json);
     	return $json;
     }
     
@@ -220,22 +220,27 @@ class Player extends Model
     // this is pretty damn expensive
     public function updateMatches($connection) {
     	
-
+    	
 
 
     	$matchHistory = $connection->getMatchHistory($this->summonerId);
+    	//dd($matchHistory);
     	$count = 0;
 
     	if (!$matchHistory) return;
 
     	foreach ($matchHistory["matches"] as $match) {
-    		if ($count > 5) break;
+    		
+    		
+    		//dd($match);
+    		if ($count >= 5) break;
     		
 
     		$this->matchLookupOrCreate($connection, $match);
     		
 	    	$count++;
     	}
+    	exit();
 
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
@@ -244,6 +249,8 @@ class Player extends Model
 
     public function matchLookupOrCreate($connection, $match) {
     	
+    	//echo $match['matchId'] . "\r\n";
+	    
 	    // if we haven't stored this match before, lets
 		// grab it and throw it in our sql database
 		// otherwise no need to do that.
@@ -268,6 +275,9 @@ class Player extends Model
 		    		// identifiers
 		    		$playerMatch->summonerId = $summonerId;
 		    		$playerMatch->platformId = $match['platformId'];
+
+		    		
+
 		    		$playerMatch->matchId = $match['matchId'];
 		    		// subquery riot match api with matchid
 

@@ -52,7 +52,7 @@ class PlayerMatch extends Migration
             $table->string('platformId');
             $table->integer('matchId');
             $table->integer('profileIcon');
-            
+            $table->string('summonerName');
             $table->integer('champion');
 
             $table->string('queue');

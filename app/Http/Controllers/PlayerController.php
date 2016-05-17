@@ -173,7 +173,6 @@ class PlayerController extends Controller
     	// no data, need to do lookup
 		$this->connection->setRegion($region);
 		$data = $this->connection->getSummonerByName($name);
-		
         if (!$data) return;
 
 		// create model and initialize with values
@@ -181,6 +180,7 @@ class PlayerController extends Controller
 		$player->region = $region;
 		$player->summonerName = $name;
         $name = str_replace(' ', '', $name);
+        $name = strtolower($name);
 		$player->summonerId = $data[$name]['id'];
         $player->profileIconId = $data[$name]['profileIconId'];
 

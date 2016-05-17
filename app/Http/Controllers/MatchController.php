@@ -63,7 +63,7 @@ class MatchController extends Controller
     	if (!$match) {
 			$match = new Match;
 			$matchData = $this->connection->getMatch($matchId);
-			
+			dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
 			foreach ($participantIdentities as $participant) {
@@ -80,7 +80,7 @@ class MatchController extends Controller
 		    		$playerMatch->platformId = $region;
 		    		$playerMatch->matchId = $matchId;
 		    		$playerMatch->profileIcon = $participant['player']['profileIcon'];
-
+		    		$playerMatch->summonerName = $participant['player']['summonerName'];
 		    		// subquery riot match api with matchid
 
 		    		foreach ($matchData['participants'] as $participant) {

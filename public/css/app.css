@@ -334,3 +334,20 @@ span.heading {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+
+/* RECENT MATCHES TABLES */
+table.match.two {
+  margin-top: 30px;
+}
+
+table.match.success {
+  background-color: #dff0d8;
+}
+
+table.match.danger {
+  background-color: #f2dede;
+}
+table {
+  text-align: center;
+}
