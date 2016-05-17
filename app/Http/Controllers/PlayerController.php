@@ -150,12 +150,14 @@ class PlayerController extends Controller
             if ($player == null) return;
 
             $runes = $this->runesById($player->summonerId);
+            $masteries = $this->masteriesById($player->summonerId);
 		} else {
 			// We have this player's record in our database. If it hasn't been updated in
 			// PLAYER_FULL_REFRESH_TIMER, we'll 
 			if (time() - time($player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
 				$player->updatePlayerFull($this->connection);
                 $runes = $this->runesById($player->summonerId);
+                $masteries = $masteriesById($player->summonerId);
 
 			}
 		}

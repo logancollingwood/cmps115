@@ -63,7 +63,7 @@ class Player extends Model
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
     	$json['masteries'] = $masteries;
-    	$json = $this->fillInStats($json);
+    	//$json = $this->fillInStats($json);
     	return $json;
     }
     
