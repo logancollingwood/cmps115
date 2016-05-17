@@ -64,6 +64,7 @@ class Player extends Model
     	$json['runes'] = $runes;
     	$json['masteries'] = $masteries;
     	$json = $this->fillInStats($json);
+    	
     	return $json;
     }
     
@@ -240,7 +241,7 @@ class Player extends Model
     		
 	    	$count++;
     	}
-    	exit();
+    	
 
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
@@ -277,7 +278,7 @@ class Player extends Model
 		    		$playerMatch->platformId = $match['platformId'];
 
 		    		
-
+		    		//echo $matchData['matchId'] . "\r\n";
 		    		$playerMatch->matchId = $match['matchId'];
 		    		// subquery riot match api with matchid
 
