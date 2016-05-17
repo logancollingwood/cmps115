@@ -63,7 +63,7 @@ class MatchController extends Controller
     	if (!$match) {
 			$match = new Match;
 			$matchData = $this->connection->getMatch($matchId);
-			dd($matchData);
+			//dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
 			foreach ($participantIdentities as $participant) {

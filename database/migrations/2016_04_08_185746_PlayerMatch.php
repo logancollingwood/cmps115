@@ -50,7 +50,9 @@ class PlayerMatch extends Migration
             // Identifiers
             $table->integer('summonerId');
             $table->string('platformId');
-            $table->integer('matchId');
+            
+            $table->string('matchId');
+
             $table->integer('profileIcon');
             $table->string('summonerName');
             $table->integer('champion');

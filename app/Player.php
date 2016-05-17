@@ -261,7 +261,7 @@ class Player extends Model
 		if (!$matchModel) {
 			$matchModel = new Match;
 			$matchData = $connection->getMatch($match['matchId']);
-			
+			//dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
 			foreach ($participantIdentities as $participant) {
@@ -276,16 +276,23 @@ class Player extends Model
 		    		// identifiers
 		    		$playerMatch->summonerId = $summonerId;
 		    		$playerMatch->platformId = $match['platformId'];
-
+		    		$playerMatch->profileIcon = $participant['player']['profileIcon'];
+		    		$playerMatch->summonerName = $participant['player']['summonerName'];
 		    		
-		    		//echo $matchData['matchId'] . "\r\n";
-		    		$playerMatch->matchId = $match['matchId'];
+	
+		    		
 		    		// subquery riot match api with matchid
 
 		    		foreach ($matchData['participants'] as $participant) {
 			    		if ($participant['participantId'] == $partId) {
 			    			$stats = $participant['stats'];
 			    			
+			    			if ($participant['teamId'] == 100) {
+			    				$playerMatch->team = 0;
+			    			} else {
+			    				$playerMatch->team = 1;
+			    			}
+
 			    			$playerMatch->won = $stats['winner'];
 			    			$playerMatch->kills = $stats['kills'];
 			    			$playerMatch->deaths = $stats['deaths'];
@@ -296,6 +303,7 @@ class Player extends Model
 				    		$playerMatch->lane = $participant['timeline']['lane'];
 			    			$playerMatch->role = $participant['timeline']['role'];
 			    			$playerMatch->champion = $participant['championId'];
+			    			$playerMatch->matchId = $matchData['matchId'];
 			    		}
 			    	}
 
@@ -307,10 +315,13 @@ class Player extends Model
 		    		
     			}
 			}
-			$matchModel->matchId = $match['matchId'];
+			$matchModel->matchId = $matchData['matchId'];
 			$matchModel->queue = $matchData['queueType'];
 			$matchModel->season = $matchData['season'];
 			$matchModel->serverTime = $matchData['matchCreation'];
+			$matchModel->map = $matchData['mapId'];
+			$matchModel->platformId = $matchData['platformId'];
+			$matchModel->length = $matchData['matchDuration'];
 			$matchModel->save();
 		}
     }

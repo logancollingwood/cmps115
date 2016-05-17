@@ -26,13 +26,14 @@ class Match extends Model
 	    // if we haven't stored this match before, lets
 		// grab it and throw it in our sql database
 		// otherwise no need to do that.
+		//echo $matchId;
     	$matchModel = Match::where('platformId', $region)
 							->where('matchId', $matchId)
 							->first();
 		if (!$matchModel) {
 			$matchModel = new Match;
 			$matchData = $connection->getMatch($matchId);
-			dd($matchData);
+			
 			$participantIdentities = $matchData['participantIdentities'];
 			
 			foreach ($participantIdentities as $participant) {

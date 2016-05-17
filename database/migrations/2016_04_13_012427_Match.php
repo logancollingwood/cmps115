@@ -20,7 +20,7 @@ class Match extends Migration
         Schema::create('match', function(Blueprint $table)
         {
             $table->integer('id', true);
-            $table->integer('matchId');
+            $table->string('matchId');
             $table->string('platformId');
             $table->integer('map');
             $table->string('queue');
