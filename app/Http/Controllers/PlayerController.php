@@ -87,6 +87,8 @@ class PlayerController extends Controller
 
     public function masteriesById($id){
         $data = $this->connection->getSummoner($id, 'masteries');
+        if(!$data)
+        return;
         foreach ($data[$id]['pages'] as $page) {
             foreach ($page['masteries'] as $mastery) {
                 $masteries = Mastery::where('summonerId', $id)
