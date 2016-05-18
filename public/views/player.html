@@ -97,7 +97,7 @@
                                 <tr>
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="championpic" data-champion="{{ m.champion }}" ng-cloak></div>
+                                        <div class="championpic" data-champion="{{ m.championId }}" ng-cloak></div>
                                         <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
                                     </td>
                                 </tr>
@@ -115,16 +115,6 @@
                                 <tr>
                                   <th>Assists</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.assists }}</td>
-                                </tr>   
-                                <!-- Lane --> 
-                                <tr>
-                                  <th>Lane</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.lane }}</td>
-                                </tr>  
-                                <!-- Role -->
-                                <tr>
-                                  <th>Role</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.role }}</td>
                                 </tr>
                                 <!-- Result -->    
                                 <tr>
@@ -134,12 +124,12 @@
                                 <!-- Wards Placed -->    
                                 <tr>
                                   <th>Wards Placed</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.wards_placed }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.wardsPlaced }}</td>
                                 </tr> 
                                 <!-- Wards Killed -->    
                                 <tr>
                                   <th>Wards Killed</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wards_killed }}</td>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wardsKilled }}</td>
                                 </tr> 
                                 <!-- First Blood -->    
                                 <tr>
