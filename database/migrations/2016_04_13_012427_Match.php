@@ -27,6 +27,7 @@ class Match extends Migration
             $table->string('season');
             $table->string('serverTime');
             $table->integer('length');
+            $table->string('patch');
             $table->timestamps();
         });
     }

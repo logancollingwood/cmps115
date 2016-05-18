@@ -62,7 +62,7 @@ class MatchController extends Controller
     	
     	if (!$match) {
 			$match = new Match;
-			$matchData = $this->connection->getMatch($matchId);
+			$matchData = $this->connection->getMatch($matchId, true);
 			//dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
@@ -114,6 +114,19 @@ class MatchController extends Controller
 		    		
     			}
 			}
+
+			// parse wards 
+			/*
+			foreach ($matchData['timeline']['frames'] as $frame) {
+				if (isset($frame['events'])) {
+					foreach ($frame['events'] as $event) {
+						if ($event['eventType'] == "WARD_PLACED") {
+
+						}
+					}
+				}
+			}
+			*/
 			$match->length = $matchData['matchDuration'];
 			$match->platformId = $region;
 			$match->matchId = $matchId;
@@ -124,6 +137,7 @@ class MatchController extends Controller
 			$match->queue = $matchData['queueType'];
 			$match->season = $matchData['season'];
 			$match->serverTime = $matchData['matchCreation'];
+			$match->patch = $matchData['matchVersion'];
 			$match->save();
 		}
 		

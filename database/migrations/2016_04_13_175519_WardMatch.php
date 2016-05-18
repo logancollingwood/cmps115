@@ -17,7 +17,7 @@ class WardMatch extends Migration
         {
             $table->integer('id', true);
             
-            $table->integer('matchid');
+            $table->integer('matchId');
             $table->integer('summonerId');
             $table->integer('timestamp');
 

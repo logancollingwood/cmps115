@@ -9,6 +9,7 @@ use App\Match;
 use App\Rune;
 use App\Mastery;
 use DB;
+use App\PlayerGame;
 
 class Player extends Model
 {
@@ -63,7 +64,7 @@ class Player extends Model
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
     	$json['masteries'] = $masteries;
-    	$json = $this->fillInStats($json);
+    	//$json = $this->fillInStats($json);
     	
     	return $json;
     }
@@ -221,31 +222,63 @@ class Player extends Model
     // this is pretty damn expensive
     public function updateMatches($connection) {
     	
-    	
 
 
-    	$matchHistory = $connection->getMatchHistory($this->summonerId);
+    	$matchHistory = $connection->getGame($this->summonerId);
     	//dd($matchHistory);
-    	$count = 0;
 
     	if (!$matchHistory) return;
 
-    	foreach ($matchHistory["matches"] as $match) {
-    		
-    		
-    		//dd($match);
-    		if ($count >= 5) break;
-    		
+    	foreach ($matchHistory["games"] as $game) {
+    		    		
 
-    		$this->matchLookupOrCreate($connection, $match);
+    		$this->gameLookupOrCreate($connection, $game);
     		
-	    	$count++;
     	}
     	
 
     	// now we set the updated_matches_at timestamp to the current time and save
     	$this->updated_matches_at = time();
 		$this->save();
+    }
+
+    public function gameLookupOrCreate($connection, $game) {
+    	$pg = PlayerGame::where('summonerId', $this->summonerId)
+				->where('gameId', $game['gameId'])
+				->first();
+		if (!$pg) {
+			$stats = $game['stats'];
+			$pg = new PlayerGame;
+			$pg->summonerId = $this->summonerId;
+			$pg->gameId = $game['gameId'];
+			$pg->map = $game['mapId'];
+			$pg->gameMode = $game['gameMode'];
+			$pg->gameType = $game['gameType'];
+			$pg->subType = $game['subType'];
+			$pg->championId = $game['championId'];
+			$pg->spell1 = $game['spell1'];
+			$pg->spell2 = $game['spell2'];
+
+
+			$pg->summonerLevel = $game['level'];
+			$pg->championLevel = $stats['level'];
+			$pg->largestMultiKill = $stats['largestMultiKill'];
+			$pg->largestKillingSpree = $stats['largestKillingSpree'];
+			$pg->killingSprees = $stats['killingSprees'];
+			$pg->minionsKilled = $stats['minionsKilled'];
+			//$pg->largestCrit = $stats['largestCriticalStrike'];
+			$pg->won = $stats['win'];
+			$pg->goldEarned = $stats['goldEarned'];
+
+			$pg->wardsPlaced = $stats['wardPlaced'];
+			//$pg->wardsKilled = $stats['wardsKilled'];
+			$pg->kills = $stats['championsKilled'];
+			$pg->deaths = $stats['numDeaths'];
+			$pg->assists = $stats['assists'];
+
+			$pg->save();
+		}
+
     }
 
     public function matchLookupOrCreate($connection, $match) {
@@ -260,7 +293,7 @@ class Player extends Model
 							->first();
 		if (!$matchModel) {
 			$matchModel = new Match;
-			$matchData = $connection->getMatch($match['matchId']);
+			$matchData = $connection->getMatch($match['matchId'], true);
 			//dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
@@ -322,6 +355,7 @@ class Player extends Model
 			$matchModel->map = $matchData['mapId'];
 			$matchModel->platformId = $matchData['platformId'];
 			$matchModel->length = $matchData['matchDuration'];
+			$matchModel->patch = $matchData['matchVersion'];
 			$matchModel->save();
 		}
     }
@@ -331,7 +365,7 @@ class Player extends Model
     // Retrieves the last $number matches from 
     // PlayerMatch for a specific player object
     public function mostRecentGames($number) {
-    	return PlayerMatch::where('summonerId', $this->summonerId)
+    	return PlayerGame::where('summonerId', $this->summonerId)
     							->orderBy('serverTime', 'desc')
     							->take($number)
     							->get();

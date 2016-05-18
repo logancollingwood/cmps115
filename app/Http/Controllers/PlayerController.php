@@ -150,7 +150,6 @@ class PlayerController extends Controller
 
             //In the event that createPlayer API lookup fails, we return null
             if ($player == null) return;
-
             $runes = $this->runesById($player->summonerId);
             $masteries = $this->masteriesById($player->summonerId);
 		} else {

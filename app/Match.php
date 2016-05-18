@@ -32,7 +32,7 @@ class Match extends Model
 							->first();
 		if (!$matchModel) {
 			$matchModel = new Match;
-			$matchData = $connection->getMatch($matchId);
+			$matchData = $connection->getMatch($matchId, true);
 			
 			$participantIdentities = $matchData['participantIdentities'];
 			
