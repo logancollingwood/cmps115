@@ -225,7 +225,7 @@ class Player extends Model
 
 
     	$matchHistory = $connection->getGame($this->summonerId);
-    	//dd($matchHistory);
+    	// dd($matchHistory);
 
     	if (!$matchHistory) return;
 
@@ -263,14 +263,15 @@ class Player extends Model
 			$pg->summonerLevel = $game['level'];
 			$pg->championLevel = $stats['level'];
 			$pg->largestMultiKill = $stats['largestMultiKill'];
-			$pg->largestKillingSpree = $stats['largestKillingSpree'];
-			$pg->killingSprees = $stats['killingSprees'];
+			// $pg->largestKillingSpree = $stats['largestKillingSpree'];
+			$pg->largestKillingSpree = (isset($stats['largestKillingSpree'])) ? $stats['largestKillingSpree'] : 0;
+			$pg->killingSprees = (isset($stats['killingSprees'])) ? $stats['killingSprees'] : 0;
 			$pg->minionsKilled = $stats['minionsKilled'];
 			//$pg->largestCrit = $stats['largestCriticalStrike'];
 			$pg->won = $stats['win'];
 			$pg->goldEarned = $stats['goldEarned'];
 
-			$pg->wardsPlaced = $stats['wardPlaced'];
+			$pg->wardsPlaced = (isset($stats['wardPlaced'])) ? $stats['wardPlaced'] : 0;
 			//$pg->wardsKilled = $stats['wardsKilled'];
 			$pg->kills = $stats['championsKilled'];
 			$pg->deaths = $stats['numDeaths'];
