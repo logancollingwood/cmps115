@@ -111,11 +111,21 @@
                                   <th>Deaths</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.deaths }}</td>
                                 </tr>  
-                                <!-- Assits -->
+                                <!-- Assists -->
                                 <tr>
                                   <th>Assists</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.assists }}</td>
                                 </tr>
+                                <!-- CS -->
+                                <tr>
+                                  <th>CS</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.minionsKilled }}</td>
+                                </tr>
+                                <!-- Gold -->    
+                                <tr>
+                                  <th>Gold</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.goldEarned}}</td>
+                                </tr> 
                                 <!-- Result -->    
                                 <tr>
                                   <th>Result</th>
