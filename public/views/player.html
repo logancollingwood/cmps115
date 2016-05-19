@@ -4,7 +4,10 @@
             <div class="col-md-4">
                 <div class="content-sidebar">
                     <div class="playerInfo">
-                        <div class="summonerPic">
+                        <div class="summonerPic" style="
+                            background: url('{{player.payload.playerData.favChampData.splash}}');
+                            background-size: cover;
+                            background-position: 50% 20%;">
                             <!-- <img src= {{profileicon}} > -->
                             <span class="heading">Career Breakdown</span>
                         </div>
@@ -98,7 +101,7 @@
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
                                         <div class="championpic" data-champion="{{ m.championId }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.matchId}}">Match {{ $index + 1 }}</a></div>
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Match {{ $index + 1 }}</a></div>
                                     </td>
                                 </tr>
                                 <!-- Kills -->

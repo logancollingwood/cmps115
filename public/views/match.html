@@ -15,7 +15,7 @@
                     <div class="row no-gutters career-stats">
                         <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
-                                <div class="stat__num">{{ match.payload.length / 60 | number : 2 }}m</div>
+                                <div class="stat__num">{{ match.payload.length / 60 | number : 2 }} m</div>
                                 <div class="stat__label">length</div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                                 <tr>
                                     <th class="tr__th--recent-matches">
                                         Team 2 
-                                        <p ng-if="match.payload.teamInfo.two.won">Victor</p>
+                                        <p ng-if="match.payload.teamInfo.two.won">Victory</p>
                                         <p ng-if="!match.payload.teamInfo.two.won">Defeat</p>
                                     </th>
                                     <td ng-repeat="m in match.payload.teamInfo.two.players">

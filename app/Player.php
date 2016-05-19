@@ -10,6 +10,7 @@ use App\Rune;
 use App\Mastery;
 use DB;
 use App\PlayerGame;
+use App\Champions;
 
 class Player extends Model
 {
@@ -102,6 +103,8 @@ class Player extends Model
     	$wardsPlaced = $wardsPlaced[0]->wards_placed_total;
     	$json['playerData']['wardsPlaced'] = $wardsPlaced;
     	$json['playerData']['favChamp'] = $favChamp;
+    	$favChampionStruct = Champions::where('championId', $favChamp)->first();
+    	$json['playerData']['favChampData'] = $favChampionStruct;
     	$json['playerData']['favChampKDA'] = $favChampKDA;
     	return $json;
     }

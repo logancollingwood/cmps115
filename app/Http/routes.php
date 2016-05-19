@@ -56,7 +56,7 @@ Route::group(['prefix' => 'api/'], function () {
 
 	// Temporary endpoint, eventually this should exclusively be a job.
 	Route::get('updateChampionList', 'ChampionController@updateList');
-
+	
 
 });
 

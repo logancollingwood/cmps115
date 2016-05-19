@@ -21,7 +21,7 @@ class Champions extends Migration
             $table->string('name');
             $table->string('key');
             $table->string('image');
-
+            $table->string('splash');
             $table->timestamp('updated_matches_at');
             $table->timestamps();
         });

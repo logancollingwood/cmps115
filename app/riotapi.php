@@ -305,7 +305,6 @@ class riotapi extends Model
 					$this->cache->put($url, $result, self::CACHE_LIFETIME_MINUTES * 60);
 				}
 			} else {
-				//echo $this->responseCode;
 				return "";
 			}
 		}

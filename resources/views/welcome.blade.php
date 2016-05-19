@@ -17,7 +17,6 @@
 
       <script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
       <script src="{{ asset('/js/factories/dataFactory.js') }}"></script>
-      <script src="{{ asset('/js/factories/socketFactory.js') }}"></script>
       <script src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/playerCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/matchCtrl.js') }}"></script>
@@ -26,6 +25,11 @@
       <script src="{{ asset('/js/controllers/chartCtrl.js') }}"></script>
       <script src="{{ asset('/js/directives/chart.js') }}"></script>
       <script src="{{ asset('/js/routes.js') }}"></script>
+
+      <!-- socket io -->
+      <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+      <script src="{{ asset('/js/factories/socketFactory.js') }}"></script>
+
    </head>
    <body ng-app="myApp" ng-controller="HomeController">
       <nav class="navbar navbar-default navbar-fixed-top">

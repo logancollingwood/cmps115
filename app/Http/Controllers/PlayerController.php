@@ -113,7 +113,7 @@ class PlayerController extends Controller
     public function runesById($id){
         $data = $this->connection->getSummoner($id, 'runes');
 
-
+        if (!$data) return;
         foreach ($data[$id]['pages'] as $page) {
             if (!isset($page['slots'])) continue;
             foreach($page['slots'] as $rune){

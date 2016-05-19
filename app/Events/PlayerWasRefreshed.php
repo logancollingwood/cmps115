@@ -31,6 +31,6 @@ class PlayerWasRefreshed extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['player.'.$this->player->summonerName];
+        return ['player'];
     }
 }

@@ -1,1 +1,5 @@
-var socket = new WebSocket("ws://159.203.212.168:6001");
+var socket = io();
+
+socket.on('player', function(msg){
+	console.log(msg);
+});

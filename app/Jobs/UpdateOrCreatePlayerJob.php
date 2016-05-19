@@ -286,7 +286,7 @@ class UpdateOrCreatePlayerJob extends Job implements ShouldQueue
 
     private function runesById($id){
         $data = $this->apiConnection->getSummoner($id, 'runes');
-
+        return;
         foreach ($data[$id]['pages'] as $page) {
             foreach($page['slots'] as $rune){
                 $runes = Rune::where('summonerId', $id)

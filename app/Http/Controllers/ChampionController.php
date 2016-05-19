@@ -35,6 +35,7 @@ class ChampionController extends Controller
         //getting the info we need out of relm
         $champVer = $relm['n']['champion'];
         $championLookup = $this->connection->getChampionStaticWithImage($champion['id']);
+        
         // combine CDN, version, and champ lookup
         $champImage = $relm['cdn'] . '/' . $relm['n']['champion'] . '/img/champion/' . $championLookup['image']['full'];
 
@@ -62,13 +63,16 @@ class ChampionController extends Controller
     	//getting the info we need out of relm
     	$champVer = $relm['n']['champion'];
     	$championLookup = $this->connection->getChampionStaticWithImage($championId);
-    	// combine CDN, version, and champ lookup
+    	//dd($championLookup);
+        //dd($relm['cdn']);
+        // combine CDN, version, and champ lookup
     	$champImage = $relm['cdn'] . '/' . $relm['n']['champion'] . '/img/champion/' . $championLookup['image']['full'];
-
+        $champSplash = $relm['cdn'] . '/img/champion/splash/' . $championLookup['name'] . '_0.jpg';
     	$champion->championId = $championId;
     	$champion->title = $championLookup['title'];
     	$champion->name = $championLookup['name'];
     	$champion->key = $championLookup['key'];
+        $champion->splash = $champSplash;
     	$champion->image = $champImage;
     	$champion->save();
     	}
