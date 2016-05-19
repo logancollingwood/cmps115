@@ -64,28 +64,28 @@ class Player extends Model
     	$json['recentMatches'] = $recentMatches;
     	$json['runes'] = $runes;
     	$json['masteries'] = $masteries;
-    	//$json = $this->fillInStats($json);
+    	$json = $this->fillInStats($json);
     	
     	return $json;
     }
     
     private function fillInStats($json) {
     	$favChamp = DB::select(
-    				'SELECT *, COUNT(champion) as champ_count
-					FROM playermatch
+    				'SELECT *, COUNT(championId) as champ_count
+					FROM playergame
 					where summonerId = ?
-					GROUP BY champion
+					GROUP BY championId
 					ORDER BY champ_count DESC
 					LIMIT 1', 
 				[$this->summonerId]);
-    	$favChamp = $favChamp[0]->champion;
+    	$favChamp = $favChamp[0]->championId;
     	$favChampKDA = DB::select(
     			'SELECT SUM(kills) as kills, 
     					SUM(deaths) as deaths,
     					SUM(assists) as assists
-    			FROM playermatch
+    			FROM playergame
     			where summonerId = ?
-    			and champion = ?',
+    			and championId = ?',
     			[$this->summonerId, $favChamp]
     		);
     	
@@ -95,9 +95,9 @@ class Player extends Model
 
 
     	$wardsPlaced = DB::select('
-    					SELECT *, sum(wards_placed) as wards_placed_total
-    					FROM playermatch
-    					WHERE summonerID = ?',
+    					SELECT *, sum(wardsPlaced) as wards_placed_total
+    					FROM playergame
+    					WHERE summonerId = ?',
     					[$this->summonerId]);
     	$wardsPlaced = $wardsPlaced[0]->wards_placed_total;
     	$json['playerData']['wardsPlaced'] = $wardsPlaced;
@@ -248,6 +248,7 @@ class Player extends Model
 				->first();
 		if (!$pg) {
 			$stats = $game['stats'];
+
 			$pg = new PlayerGame;
 			$pg->summonerId = $this->summonerId;
 			$pg->gameId = $game['gameId'];
@@ -263,19 +264,19 @@ class Player extends Model
 			$pg->summonerLevel = $game['level'];
 			$pg->championLevel = $stats['level'];
 			$pg->largestMultiKill = $stats['largestMultiKill'];
-			// $pg->largestKillingSpree = $stats['largestKillingSpree'];
+			$pg->largestKillingSpree = (isset($stats['largestKillingSpree'])) ? $stats['largestKillingSpree'] : 0;
 			$pg->largestKillingSpree = (isset($stats['largestKillingSpree'])) ? $stats['largestKillingSpree'] : 0;
 			$pg->killingSprees = (isset($stats['killingSprees'])) ? $stats['killingSprees'] : 0;
-			$pg->minionsKilled = $stats['minionsKilled'];
-			//$pg->largestCrit = $stats['largestCriticalStrike'];
-			$pg->won = $stats['win'];
-			$pg->goldEarned = $stats['goldEarned'];
+			$pg->minionsKilled = (isset($stats['minionsKilled'])) ? $stats['minionsKilled'] : 0;
+			$pg->largestCrit = (isset($stats['largestCriticalStrike'])) ? $stats['largestCriticalStrike'] : 0;
+			$pg->won = (isset($stats['win'])) ? $stats['win'] : 0;
+			$pg->goldEarned = (isset($stats['goldEarned'])) ? $stats['goldEarned'] : 0;
 
 			$pg->wardsPlaced = (isset($stats['wardPlaced'])) ? $stats['wardPlaced'] : 0;
-			//$pg->wardsKilled = $stats['wardsKilled'];
-			$pg->kills = $stats['championsKilled'];
-			$pg->deaths = $stats['numDeaths'];
-			$pg->assists = $stats['assists'];
+			$pg->wardsKilled = (isset($stats['wardKilled'])) ? $stats['wardKilled'] : 0;
+			$pg->kills = (isset($stats['championsKilled'])) ? $stats['championsKilled'] : 0;
+			$pg->deaths = (isset($stats['numDeaths'])) ? $stats['numDeaths'] : 0;
+			$pg->assists = (isset($stats['assists'])) ? $stats['assists'] : 0;
 
 			$pg->save();
 		}
