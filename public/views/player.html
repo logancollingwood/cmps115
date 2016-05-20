@@ -105,7 +105,7 @@
                                         </tr>
                                     <th class= "Match-data">Match data</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Match {{ $index+1}}: {{m.subType }}</a> 
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}"><u> {{m.subType }}</u></a> 
                                         </div>
                                     </td>
                                 </tr>
