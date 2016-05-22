@@ -104,6 +104,11 @@
                                         <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Match {{ $index + 1 }}</a></div>
                                     </td>
                                 </tr>
+                                <!-- Result -->    
+                                <tr>
+                                  <th>Result</th>
+                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
+                                </tr>  
                                 <!-- Kills -->
                                 <tr>
                                   <th>Kills</th>
@@ -129,11 +134,6 @@
                                   <th>Gold</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.goldEarned}}</td>
                                 </tr> 
-                                <!-- Result -->    
-                                <tr>
-                                  <th>Result</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
-                                </tr>  
                                 <!-- Wards Placed -->    
                                 <tr>
                                   <th>Wards Placed</th>
