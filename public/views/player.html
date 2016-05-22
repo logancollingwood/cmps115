@@ -90,7 +90,7 @@
             </div> <!-- .col-md-4 --> 
             <div class="col-md-8">
             	<!-- Loading Spinner -->
-                <div class="recent-matches-table">
+                <div class="stat-table recent-matches-table">
                     <i id="loadingIndicator" class="fa fa-cog fa-spin" style="font-size:36px;"></i>
                     <i id="errorIndicator" class="fa fa-times" style="font-size:36px;"></i>
                     <div class="table-wrapper">
@@ -101,7 +101,12 @@
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
                                         <div class="championpic" data-champion="{{ m.championId }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Match {{ $index + 1 }}</a></div>
+                                        </td>
+                                        </tr>
+                                    <th class= "Match-data">Match data</th>
+                                    <td ng-repeat="m in player.payload.recentMatches">
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}"><u> {{m.subType }}</u></a> 
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- Result -->    
@@ -173,6 +178,79 @@
                         </tbody>
                     </table>
                 </div> -->
+                <div class="stat-table runes-table">
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <tbody>
+                                <!-- Match Num -->
+                                <tr>
+                                    <th class="tr__th--recent-matches">Runes</th>
+                                    <td ng-repeat="m in player.payload.runes">
+                                        <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak></div>
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Rune {{ $index + 1 }}</a></div>
+                                    </td>
+                                </tr>
+                                <!-- Page Name -->
+                                <tr>
+                                  <th>Page Name</th>
+                                  <td ng-repeat="m in player.payload.runes"> {{ m.pageName }}</td>                        
+                                </tr>
+                                <!-- Page Name -->
+                                <tr>
+                                  <th>Page</th>
+                                  <td ng-repeat="m in player.payload.runes"> {{ m.page }}</td>                        
+                                </tr>
+                                <!-- Slot -->
+                                <tr>
+                                  <th>Slot</th>
+                                  <td ng-repeat="m in player.payload.runes"> {{ m.slot }}</td>                        
+                                </tr>
+                                <!-- RuneId -->
+                                <tr>
+                                  <th>Rune Id</th>
+                                  <td ng-repeat="m in player.payload.runes"> {{ m.runeId }}</td>                        
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div> <!-- .table-wrapper -->
+                </div> <!-- .recent-matches-table -->
+
+                <div class="stat-table masteries-table">
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <tbody>
+                                <!-- Mastery Num -->
+                                <tr>
+                                    <th class="tr__th--recent-matches">Masteries</th>
+                                    <td ng-repeat="m in player.payload.masteries">
+                                        <div class="masterypic" data-mastery="{{ m.masteryId }}" ng-cloak></div>
+                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Mastery {{ $index + 1 }}</a></div>
+                                    </td>
+                                </tr>
+                                <!-- Page Name -->
+                                <tr>
+                                  <th>Page Name</th>
+                                  <td ng-repeat="m in player.payload.masteries"> {{ m.pageName }}</td>                        
+                                </tr>
+                                <!-- Page Name -->
+                                <tr>
+                                  <th>Page</th>
+                                  <td ng-repeat="m in player.payload.masteries"> {{ m.page }}</td>                        
+                                </tr>
+                                <!-- Slot -->
+                                <tr>
+                                  <th>Rank</th>
+                                  <td ng-repeat="m in player.payload.masteries"> {{ m.rank }}</td>                        
+                                </tr>
+                                <!-- RuneId -->
+                                <tr>
+                                  <th>Mastery Id</th>
+                                  <td ng-repeat="m in player.payload.masteries"> {{ m.masteryId }}</td>                        
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div> <!-- .table-wrapper -->
+                </div> <!-- .recent-matches-table -->
             </div> <!-- .col-md-10 --> 
         </div> <!-- .row -->
         

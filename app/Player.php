@@ -266,7 +266,7 @@ class Player extends Model
 
 			$pg->summonerLevel = $game['level'];
 			$pg->championLevel = $stats['level'];
-			$pg->largestMultiKill = $stats['largestMultiKill'];
+			$pg->largestMultiKill = (isset($stats['largestMultiKill'])) ? $stats['largestMultiKill'] : 0;
 			$pg->largestKillingSpree = (isset($stats['largestKillingSpree'])) ? $stats['largestKillingSpree'] : 0;
 			$pg->largestKillingSpree = (isset($stats['largestKillingSpree'])) ? $stats['largestKillingSpree'] : 0;
 			$pg->killingSprees = (isset($stats['killingSprees'])) ? $stats['killingSprees'] : 0;

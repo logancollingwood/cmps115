@@ -2,6 +2,8 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
 
     var urlBase = '/api/player/';
     var urlBaseChampion = '/api/champion/';
+    var urlBaseRune = '/api/rune/';
+    var urlBaseMastery = '/api/mastery/';
     var urlBaseMatch = '/api/match/';
     var urlCurrentMatch = 'api/currentmatch/'
     var DataFactory = {};
@@ -14,6 +16,14 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
 	DataFactory.getChampion = function (id) {
         return $http.get(urlBaseChampion + id);
 	}
+
+    DataFactory.getRune = function (id) {
+        return $http.get(urlBaseRune + id);
+    }
+
+    DataFactory.getMastery = function (id) {
+        return $http.get(urlBaseMastery + id);
+    }
 
     DataFactory.getMatch = function (region, id) {
         return $http.get(urlBaseMatch + region + '/' + id);
