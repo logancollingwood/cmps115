@@ -201,7 +201,6 @@ tr:first-child td:nth-child(odd) {
 }
 
 .summonerPic {
-  background: url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg);
   position: relative;
   margin-bottom: 15px;
   height: 150px;

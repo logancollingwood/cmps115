@@ -93,7 +93,8 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                 .then(function(response) {
                     var imgHref = baseUrl + response.data.image.full;
                     var image = "<img src='" + imgHref + "'>";
-                    refThis.html(image);
+                    var descr = "<p class='description'>" + response.data.description + "</p>";
+                    refThis.html(image + descr);
                 }, function (error) {
                     console.log("error");
                     console.log(error);
