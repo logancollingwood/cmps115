@@ -365,7 +365,10 @@ table {
 }
 
 
-/* RUNES AND MASTERIES TABLE */
 
+/* RUNES AND MASTERIES TABLE */
+.runepic .description {
+  font-size: 8px;
+}
 
 

@@ -41,7 +41,7 @@ class Player extends Model
     	// from the gameTypeStats mysql db table on the player object.
     	// even though this variable is unsed. This allows us 
     	$stats = $this->GameTypeStats;
-    	$recentMatches = $this->mostRecentGames(5);
+    	$recentMatches = $this->mostRecentGames(10);
     	$runes = Rune::where('summonerId', $this->summonerId)->get();
     	$masteries = Mastery::where('summonerId', $this->summonerId)->get();
 
@@ -79,6 +79,7 @@ class Player extends Model
 					ORDER BY champ_count DESC
 					LIMIT 1', 
 				[$this->summonerId]);
+    	
     	$favChamp = $favChamp[0]->championId;
     	$favChampKDA = DB::select(
     			'SELECT SUM(kills) as kills, 
