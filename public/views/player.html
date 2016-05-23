@@ -175,7 +175,7 @@
                                     <th class="tr__th--recent-matches">{{ page.name}} Runes</th>
                                     <td ng-repeat="m in page.runes">
                                         <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Rune {{ $index + 1 }}</a></div>
+                                        <div class="tr__td--match-num">Rune {{ $index + 1 }}</div>
                                     </td>
                                 </tr>
                             </tbody> 
@@ -192,7 +192,7 @@
                                     <th class="tr__th--recent-matches">Masteries</th>
                                     <td ng-repeat="m in player.payload.masteries">
                                         <div class="masterypic" data-mastery="{{ m.masteryId }}" ng-cloak></div>
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Mastery {{ $index + 1 }}</a></div>
+                                        <div class="tr__td--match-num">Mastery {{ $index + 1 }}</div>
                                     </td>
                                 </tr>
                                 <!-- Page Name -->
