@@ -84,36 +84,34 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 
         console.log("pulling runes");
         $(".runepic").each(function(index) {
-            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/rune/";
+            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.10.1/img/rune/";
 
+            var runeId = $(this).data("rune");
             var refThis = $(this);
+            
             DataFactory.getRune(runeId)
                 .then(function(response) {
-
-                    var imgHref = response.data.image;
+                    var imgHref = baseUrl + response.data.image.full;
                     var image = "<img src='" + imgHref + "'>";
                     refThis.html(image);
                 }, function (error) {
                     console.log("error");
                     console.log(error);
                 });
+            
         });
 
         console.log("pulling masteries");
         $(".masterypic").each(function(index) {
             var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/mastery/";
 
+            var masteryId = $(this).data("mastery");
             var refThis = $(this);
-            DataFactory.getMastery(masteryId)
-                .then(function(response) {
-
-                    var imgHref = response.data.image;
-                    var image = "<img src='" + imgHref + "'>";
-                    refThis.html(image);
-                }, function (error) {
-                    console.log("error");
-                    console.log(error);
-                });
+            
+            var imgHref = baseUrl + masteryId + ".png";
+            var image = "<img src='" + imgHref + "'>";
+            refThis.html(image);
+                
         });
     }
 

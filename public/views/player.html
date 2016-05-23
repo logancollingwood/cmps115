@@ -70,22 +70,9 @@
                                 <div class="stat__label">Favorite<br>Champ KDA</div>
                             </div>
                         </div>
-                        <div class="col-md-12 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
-                    </div> <!-- career stats -->
-    <!--                 <br>
-                    <p> Career Breakdown: </p>
-                    <div class="heading"> <label> wins </label> {{player.payload.playerData.wins }} </div>
-                    <div class="heading"> <label> champion kills </label> {{player.payload.playerData.totalChampionKills }} </div>
-                    <div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
-                    <div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
-                    <div class="heading"> <label> turret kills </label> {{player.payload.playerData.turretsDestroyed }} </div>
-                    <div class="heading"> <label> Last Updated </label> {{ player.payload.playerData.updated_at }} </div>
-                    
-                    <div class="heading"> <label> force update? </label> 
-                    	<a href="/api/player/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerName}}/force" target="_blank">
-                    		<i class="fa fa-refresh" aria-hidden="true"></i>
-                		</a>
-            		</div> -->
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
+                    </div>
                 </div> <!-- .content-sidebar --> 
             </div> <!-- .col-md-4 --> 
             <div class="col-md-8">
@@ -178,14 +165,15 @@
                         </tbody>
                     </table>
                 </div> -->
-                <div class="stat-table runes-table">
+
+                <div class="stat-table runes-table" ng-repeat="page in player.payload.runePages">
                     <div class="table-wrapper">
                         <table class="table">
                             <tbody>
                                 <!-- Match Num -->
                                 <tr>
-                                    <th class="tr__th--recent-matches">Runes</th>
-                                    <td ng-repeat="m in player.payload.runes">
+                                    <th class="tr__th--recent-matches">{{ page.name}} Runes</th>
+                                    <td ng-repeat="m in page.runes">
                                         <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak></div>
                                         <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">Rune {{ $index + 1 }}</a></div>
                                     </td>
@@ -193,22 +181,22 @@
                                 <!-- Page Name -->
                                 <tr>
                                   <th>Page Name</th>
-                                  <td ng-repeat="m in player.payload.runes"> {{ m.pageName }}</td>                        
+                                  <td ng-repeat="m in page.runes"> {{ m.pageName }}</td>                        
                                 </tr>
                                 <!-- Page Name -->
                                 <tr>
                                   <th>Page</th>
-                                  <td ng-repeat="m in player.payload.runes"> {{ m.page }}</td>                        
+                                  <td ng-repeat="m in page.runes"> {{ m.page }}</td>                        
                                 </tr>
                                 <!-- Slot -->
                                 <tr>
                                   <th>Slot</th>
-                                  <td ng-repeat="m in player.payload.runes"> {{ m.slot }}</td>                        
+                                  <td ng-repeat="m in page.runes"> {{ m.slot }}</td>                        
                                 </tr>
                                 <!-- RuneId -->
                                 <tr>
                                   <th>Rune Id</th>
-                                  <td ng-repeat="m in player.payload.runes"> {{ m.runeId }}</td>                        
+                                  <td ng-repeat="m in page.runes"> {{ m.runeId }}</td>                        
                                 </tr>
                             </tbody> 
                         </table>

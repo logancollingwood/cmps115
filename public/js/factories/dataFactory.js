@@ -2,7 +2,7 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
 
     var urlBase = '/api/player/';
     var urlBaseChampion = '/api/champion/';
-    var urlBaseRune = '/api/rune/';
+    var urlBaseRune = '/api/runeinfo/';
     var urlBaseMastery = '/api/mastery/';
     var urlBaseMatch = '/api/match/';
     var urlCurrentMatch = 'api/currentmatch/'
@@ -38,55 +38,41 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
         var timestamp = filtered.payload.playerData.updated_at;
         timestamp = new Date(timestamp).toLocaleString();
 
-        var recentMatches = filtered.payload.recentMatches;
-        for (var i = 0; i < recentMatches.length; i++) {
+        // this is disgusting im sorry
+        var runes = filtered.payload.runes;
+        var pagesArr = [];
+        for (var i = 0; i < runes.length; i++) {
             
-            switch (recentMatches[i]["lane"]) {
-                case "BOTTOM": 
-                    recentMatches[i]["lane"] = "Bot";
-                    break;
-                case "TOP": 
-                    recentMatches[i]["lane"] = "Top";
-                    break;
-                case "JUNGLE": 
-                    recentMatches[i]["lane"] = "Jungle";
-                    break;
+            var rune = runes[i];
+            if (pagesArr.indexOf(rune.pageName) < 0) {
+                pagesArr.push(rune.pageName);
             }
+        }
 
-            switch (recentMatches[i]["role"]) {
-                case "DUO_SUPPORT": 
-                    recentMatches[i]["role"] = "Support";
-                    break;
-                case "DUO_CARRY": 
-                    recentMatches[i]["role"] = "ADC";
-                    break;
-                case "SOLO": 
-                    recentMatches[i]["role"] = "Solo";
-                    break;
-                case "NONE": 
-                    recentMatches[i]["role"] = "n/a";
-                    break;
-            }
+        var pagesStruct = [];
+        for (var i = 0; i < pagesArr.length; i++) {
+            pagesStruct.push(
+                {
+                    'name': pagesArr[i],
+                    'runes': []
+                }
+            );
+        }
 
-            switch (recentMatches[i]["won"]) {
-                case "0":
-                    recentMatches[i]["won"] = 0;
-                    break;
-                case "1":
-                    recentMatches[i]["won"] = 1;
-                    break;
-            }
-
-            switch (recentMatches[i]["first_blood"]) {
-                case "0":
-                    recentMatches[i]["first_blood"] = 0;
-                    break;
-                case "1":
-                    recentMatches[i]["first_blood"] = 1;
-                    break;
+        for (var i = 0; i < runes.length; i++) {
+            
+            var rune = runes[i];
+            for (var j = 0; j < pagesStruct.length; j++) {
+                if (pagesStruct[j].name == rune.pageName) {
+                    pagesStruct[j].runes.push(rune);
+                }
             }
 
         }
+        filtered.payload.runePages = pagesStruct;
+        //end disgustingness
+
+
         return filtered;
     }
 

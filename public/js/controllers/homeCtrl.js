@@ -16,16 +16,19 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
         }
     });
 
-    function search(username) {
-       
+    function navSearch(username) {
+        
         var region = $('#region-dropdown').attr('name');
         console.log('redirecting to...' + '/player/' + region + '/' + username)
         $location.url('/player/' + region + '/' + username);
         $scope.$apply();
     }
 
-    $('#search').click(function() {
-        search();
+    $('#homesearch').click(function() {
+        var name = $('#navName').val();
+        console.log("found  " + name);
+        console.log(name);
+        navSearch(name);
     });
 
     

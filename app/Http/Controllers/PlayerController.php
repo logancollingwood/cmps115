@@ -12,6 +12,8 @@ use App\GameTypeStats;
 use App\Rune;
 use App\Mastery;
 use App\Jobs\UpdateOrCreatePlayerJob;
+use Carbon\Carbon;
+
 
 
 class PlayerController extends Controller
@@ -21,7 +23,7 @@ class PlayerController extends Controller
     private $apiResponder;
     private $regions =  ['BR', 'EUNE', 'EUW', 'JP', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR'];
 
-    const PLAYER_FULL_REFRESH_TIMER = 6;
+    const PLAYER_FULL_REFRESH_TIMER = 24;
     const PLAYER_MATCHES_REFRESH_TIMER = 6;
 
 	public function __construct() {
@@ -153,12 +155,14 @@ class PlayerController extends Controller
             $runes = $this->runesById($player->summonerId);
             $masteries = $this->masteriesById($player->summonerId);
 		} else {
+
+            
 			// We have this player's record in our database. If it hasn't been updated in
 			// PLAYER_FULL_REFRESH_TIMER, we'll 
-			if (time() - time($player->updated_at) > self::PLAYER_FULL_REFRESH_TIMER) {
+			if ($player->updated_at->diffInHours(Carbon::now()) > self::PLAYER_FULL_REFRESH_TIMER) {
 				$player->updatePlayerFull($this->connection);
                 $runes = $this->runesById($player->summonerId);
-                $masteries = $masteriesById($player->summonerId);
+                $masteries = $this->masteriesById($player->summonerId);
 
 			}
 		}
@@ -172,6 +176,7 @@ class PlayerController extends Controller
     	// no data, need to do lookup
 		$this->connection->setRegion($region);
 		$data = $this->connection->getSummonerByName($name);
+        //dd($data);
         if (!$data) return;
 
 		// create model and initialize with values

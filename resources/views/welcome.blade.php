@@ -46,7 +46,7 @@
                   
                   <div class="col-sm-5 col-md-5 pull-right">
                      <div id="searchInput" class="input-group">
-                        <input type="text" class="form-control username" aria-label="Search by Username..." placeholder="Search by Username..."> 
+                        <input id="navName" type="text" class="form-control username" aria-label="Search by Username..." placeholder="Search by Username..."> 
                         <div class="input-group-btn">
                           <ul class="dropdown-menu dropdown-menu-right">
                              <li><a id="NA" href="#">North America</a></li>

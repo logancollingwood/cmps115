@@ -89,7 +89,14 @@ class Player extends Model
     			and championId = ?',
     			[$this->summonerId, $favChamp]
     		);
+    	$numGames = DB::select('
+    				SELECT COUNT(*) as numGames
+    				from playergame
+    				WHERE summonerId = ?',
+    				[$this->summonerId]);
     	
+    	$numGames = $numGames[0]->numGames;
+
     	$stats = $favChampKDA[0];
     	// kda = (K+A) / Max(1,D)
     	$favChampKDA = ( $stats->kills + $stats->assists ) / ( max(1, $stats->deaths) );
@@ -106,6 +113,7 @@ class Player extends Model
     	$favChampionStruct = Champions::where('championId', $favChamp)->first();
     	$json['playerData']['favChampData'] = $favChampionStruct;
     	$json['playerData']['favChampKDA'] = $favChampKDA;
+    	$json['playerData']['numGames'] = $numGames;
     	return $json;
     }
 
@@ -122,15 +130,15 @@ class Player extends Model
 		$overallStatistics = $this->updateMatchTypeStats($connection);
 
 		// This includes total wins and other stats for ALL game types
-		$player->wins = $overallStatistics['totalWins'];
-		$player->totalChampionKills = $overallStatistics['totalChampionKills'];
-		$player->assists = $overallStatistics['totalAssists'];
-		$player->neutralMinionKills = $overallStatistics['totalNeutralMinionsKilled'];
-		$player->turretsDestroyed = $overallStatistics['totalTurretsKilled'];
+		$this->wins = $overallStatistics['totalWins'];
+		$this->totalChampionKills = $overallStatistics['totalChampionKills'];
+		$this->assists = $overallStatistics['totalAssists'];
+		$this->neutralMinionKills = $overallStatistics['totalNeutralMinionsKilled'];
+		$this->turretsDestroyed = $overallStatistics['totalTurretsKilled'];
 		
-		$player->save();
+		$this->save();
 		
-		return $object;
+		return $this;
     }
 
     public function updateMatchTypeStats($connection) {
