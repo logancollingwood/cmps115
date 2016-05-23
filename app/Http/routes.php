@@ -53,6 +53,8 @@ Route::group(['prefix' => 'api/'], function () {
 	Route::get('free', 'StaticController@freeChamps');
 	Route::get('champion/{id}', 'StaticController@championById');
 	Route::get('championList', 'StaticController@championList');
+	Route::get('masteryinfo/{id}', 'StaticController@masteryInfoById');
+	Route::get('runeinfo/{id}', 'StaticController@runeInfoById');
 
 	// Temporary endpoint, eventually this should exclusively be a job.
 	Route::get('updateChampionList', 'ChampionController@updateList');

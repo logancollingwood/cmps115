@@ -65,7 +65,7 @@ class MatchController extends Controller
 			$matchData = $this->connection->getMatch($matchId, true);
 			//dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
-			
+			dd($participantIdentities);
 			foreach ($participantIdentities as $participant) {
 				$partId = $participant['participantId'];
 				$summonerId = $participant['player']['summonerId'];

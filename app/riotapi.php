@@ -89,6 +89,18 @@ class riotapi extends Model
 
 	}
 
+	public function getMasteryInfo($id){
+		$call = 'mastery/' . $id . '?masteryListData=image';
+		$call = self::API_URL_STATIC_1_2 . $call;
+		return $this->request($call, true);
+	}
+
+	public function getRuneImage($id){
+		$call = 'rune/' . $id . '?runeData=image';
+		$call = self::API_URL_STATIC_1_2 . $call;
+		return $this->request($call, true);
+	}
+
 	// Returns all free champions.
 	public function getFreeChampions()
 	{

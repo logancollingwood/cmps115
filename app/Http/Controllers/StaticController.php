@@ -29,4 +29,12 @@ class StaticController extends Controller
 	public function championList(){
 		return $this->connection->getChampion();
 	}
+
+	public function masteryInfoById($id){
+		return $this->connection->getMasteryInfo($id);
+	}
+
+	public function runeInfoById($id){
+		return $this->connection->getRuneImage($id);
+	}
 }
