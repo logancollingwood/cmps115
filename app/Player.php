@@ -79,7 +79,7 @@ class Player extends Model
 					ORDER BY champ_count DESC
 					LIMIT 1', 
 				[$this->summonerId]);
-    	
+
     	$favChamp = $favChamp[0]->championId;
     	$favChampKDA = DB::select(
     			'SELECT SUM(kills) as kills, 
@@ -114,6 +114,10 @@ class Player extends Model
     	$favChampionStruct = Champions::where('championId', $favChamp)->first();
     	$json['playerData']['favChampData'] = $favChampionStruct;
     	$json['playerData']['favChampKDA'] = $favChampKDA;
+    	$json['playerData']['favChampKills'] = $stats->kills;
+    	$json['playerData']['favChampDeaths'] = $stats->deaths;
+    	$json['playerData']['favChampAssists'] = $stats->assists;
+
     	$json['playerData']['numGames'] = $numGames;
     	return $json;
     }

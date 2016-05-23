@@ -364,6 +364,19 @@ table {
 
 }
 
+.stat-table .header {
+  text-align: center;
+  font-size: 20px;
+  font-family: 'open sans';
+  margin-bottom: 20px;
+}
+
+.stat-table.fav-champ {
+  text-align: center;
+  margin-top: 30px;
+  min-height: 200px;
+}
+
 
 
 /* RUNES AND MASTERIES TABLE */

@@ -54,7 +54,16 @@
                                 <div class="stat__label">Wards Placed</div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-2 col-xs-4">
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
+                    </div>
+                </div> <!-- .content-sidebar --> 
+                <div class="stat-table fav-champ" ng-cloak>
+                    <div class="header">
+                        Favorite Champion Stats
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
                                 <div class="stat__num">
                                     <div class="championpic" data-champion="{{player.payload.playerData.favChamp}}" ng-cloak></div>
@@ -70,10 +79,32 @@
                                 <div class="stat__label">Favorite<br>Champ KDA</div>
                             </div>
                         </div>
-                        <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
-                        <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    {{player.payload.playerData.favChampKills }}
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ Kills</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    {{player.payload.playerData.favChampDeaths}}
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ Deaths</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-2 col-xs-4">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    {{player.payload.playerData.favChampAssists}}
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ Assists</div>
+                            </div>
+                        </div>
                     </div>
-                </div> <!-- .content-sidebar --> 
+                </div>
             </div> <!-- .col-md-4 --> 
             <div class="col-md-8">
             	<!-- Loading Spinner -->
@@ -145,26 +176,7 @@
                         </table>
                     </div> <!-- .table-wrapper -->
                 </div> <!-- .recent-matches-table -->
-                <!-- <div class="table-wrapper">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th>#</th>
-                                <th>Page #</th>
-                                <th>Slot</th>
-                                <th>Rune ID</th>
-                                <th>Page Name</th>
-                            </tr>
-                            <tr ng-repeat="m in player.payload.runes">
-                                <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ m.page }}</td>
-                                <td>{{ m.slot }}</td>
-                                <td>{{ m.runeId }}</td>
-                                <td>{{ m.pageName }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
+
 
                 <div class="stat-table runes-table" ng-repeat="page in player.payload.runePages">
                     <div class="table-wrapper">
