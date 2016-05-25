@@ -9,12 +9,10 @@
                             background-size: cover;
                             background-position: 50% 20%;">
                             <!-- <img src= {{profileicon}} > -->
-                            <span class="heading">Career Breakdown</span>
+                            <span class="heading"><div>{{ player.payload.playerData.summonerName }}</div><div class="heading__region">{{ player.payload.playerData.region }}</div></span>
                         </div>
                         <p class="name">
-                            <span class="name__region">{{ player.payload.playerData.region }}</span>
-                            <span class="name__summoner-name">{{ player.payload.playerData.summonerName }}</span>
-                            <a href="/livematch/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerId}}" class="btn btn-default" role="button">Live Game</a>
+                            <a href="/livematch/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerId}}" class="btn btn-default live-game-btn" role="button">Live Game</a>
                         </p>
                     </div>
                     <div class="row no-gutters career-stats">
@@ -57,7 +55,7 @@
                         <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
                                 <div class="stat__num">
-                                    <div class="championpic" data-champion="{{favChampName}}" ng-cloak></div>
+                                    <div class="championpic" data-champion="{{player.payload.playerData.favChampData.championId}}" ng-cloak></div>
                                 </div>
                                 <div class="stat__label">Favorite<br>Champ</div>
                             </div>
@@ -83,20 +81,16 @@
                     <div class="table-wrapper">
                         <table class="table">
                             <tbody>
-                                <!-- Match Num -->
                                 <tr>
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="championpic" data-champion="{{ m.championId }}" data-html="true" title="{{ m.championId }}" data-toggle="tooltip" data-placement="top" tooltip ng-cloak></div>
+                                        <div class="championpic" data-champion="{{ m.championId }}" data-html="true" title="{{ championNames[$index+1] }}" data-toggle="tooltip" data-placement="top" tooltip ng-cloak></div>
                                         </td>
-                                        </tr>
-                                    <th class= "Match-data">Match data</th>
-                                    <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}"><u> {{m.subType }}</u></a> 
-                                        </div>
-                                    </td>
                                 </tr>
-                                <!-- Result -->    
+                                <tr>
+                                    <th class="Match-data">Match data</th>
+                                    <td class="tr__match-link" ng-repeat="m in player.payload.recentMatches"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">{{m.subType }}</a></td>
+                                </tr>   
                                 <tr>
                                   <th>Result</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>

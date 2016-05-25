@@ -16,7 +16,6 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     	DataFactory.getPlayer($routeParams.region, $routeParams.name)
     		.then(function (response) {
     			console.log('successful http get request');
-                console.log(response.data);
                 if (response.data.status != 200) {
                     // API error'd not-found, etc
                     console.log('Player lookup failed for region: ' + $routeParams.region + ", name:" + $routeParams.name);
@@ -62,25 +61,23 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 
     $scope.init = function() {
         console.log("pulling champions");
-        $(".championpic").each(function(index) {
-            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/";
+        $scope.championNames = [];
 
+        $(".championpic").each(function(index) {
+            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/champion/";
             var championId = $(this).data("champion");
             var refThis = $(this);
-
-            var imgHref = baseUrl + championId + ".png";
-            var image = "<img src='" + imgHref + "'>";
-            refThis.html(image);
-            // DataFactory.getChampion(championId)
-            //     .then(function(response) {
-
-            //         var imgHref = response.data.image;
-            //         var image = "<img src='" + imgHref + "'>";
-            //         refThis.html(image);
-            //     }, function (error) {
-            //         console.log("error");
-            //         console.log(error);
-            //     });
+            
+            DataFactory.getChampion(championId)
+                .then(function(response) {
+                    $scope.championNames.push(response.data.name);
+                    var imgHref = baseUrl + response.data.name + '.png';
+                    var image = "<img src='" + imgHref + "'>";
+                    refThis.html(image);
+                }, function (error) {
+                    console.log("error");
+                    console.log(error);
+                });
         });
 
         console.log("pulling runes");
