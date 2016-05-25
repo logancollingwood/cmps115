@@ -25,7 +25,6 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                     return;
                 }
                 
-                
 				$scope.player = DataFactory.filterPlayer(response.data);
 				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/" + response.data.payload.playerData.id + ".png";
 
@@ -39,9 +38,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 				$('.fa-spinner').hide().removeClass('fa-spin');	
     		});
     } 
-    
 
-    
     $('#username').unbind('keyup').bind('keyup', function(e) {
 
         //console.log('keyup detected')
@@ -70,16 +67,20 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 
             var championId = $(this).data("champion");
             var refThis = $(this);
-            DataFactory.getChampion(championId)
-                .then(function(response) {
 
-                    var imgHref = response.data.image;
-                    var image = "<img src='" + imgHref + "'>";
-                    refThis.html(image);
-                }, function (error) {
-                    console.log("error");
-                    console.log(error);
-                });
+            var imgHref = baseUrl + championId + ".png";
+            var image = "<img src='" + imgHref + "'>";
+            refThis.html(image);
+            // DataFactory.getChampion(championId)
+            //     .then(function(response) {
+
+            //         var imgHref = response.data.image;
+            //         var image = "<img src='" + imgHref + "'>";
+            //         refThis.html(image);
+            //     }, function (error) {
+            //         console.log("error");
+            //         console.log(error);
+            //     });
         });
 
         console.log("pulling runes");
@@ -93,7 +94,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                 .then(function(response) {
                     var imgHref = baseUrl + response.data.image.full;
                     var image = "<img src='" + imgHref + "'>";
-                    var descr = "<p class='description'>" + response.data.description + "</p>";
+                    var descr = "<p class='description'>" + response.data.description.split(" ")[0] + "<br>" + response.data.description.replace(response.data.description.split(" ")[0], '') + "</p>";
                     refThis.html(image + descr);
                 }, function (error) {
                     console.log("error");

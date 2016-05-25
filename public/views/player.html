@@ -57,7 +57,7 @@
                         <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
                                 <div class="stat__num">
-                                    <div class="championpic" data-champion="{{player.payload.playerData.favChamp}}" ng-cloak></div>
+                                    <div class="championpic" data-champion="{{favChampName}}" ng-cloak></div>
                                 </div>
                                 <div class="stat__label">Favorite<br>Champ</div>
                             </div>
@@ -87,7 +87,7 @@
                                 <tr>
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="championpic" data-champion="{{ m.championId }}" ng-cloak></div>
+                                        <div class="championpic" data-champion="{{ m.championId }}" data-html="true" title="{{ m.championId }}" data-toggle="tooltip" data-placement="top" tooltip ng-cloak></div>
                                         </td>
                                         </tr>
                                     <th class= "Match-data">Match data</th>
@@ -145,26 +145,6 @@
                         </table>
                     </div> <!-- .table-wrapper -->
                 </div> <!-- .recent-matches-table -->
-                <!-- <div class="table-wrapper">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th>#</th>
-                                <th>Page #</th>
-                                <th>Slot</th>
-                                <th>Rune ID</th>
-                                <th>Page Name</th>
-                            </tr>
-                            <tr ng-repeat="m in player.payload.runes">
-                                <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ m.page }}</td>
-                                <td>{{ m.slot }}</td>
-                                <td>{{ m.runeId }}</td>
-                                <td>{{ m.pageName }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
 
                 <div class="stat-table runes-table" ng-repeat="page in player.payload.runePages">
                     <div class="table-wrapper">
@@ -173,8 +153,8 @@
                                 <!-- Match Num -->
                                 <tr>
                                     <th class="tr__th--recent-matches">{{ page.name}} Runes</th>
-                                    <td ng-repeat="m in page.runes">
-                                        <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak></div>
+                                    <td ng-repeat="m in page.runes">                             
+                                        <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak data-html="true" title="<div class='tooltip-wrapper'><span class='rune-key'>Page Name: </span><span class='rune-value'>{{ m.pageName }}</span><br /><span class='rune-key'>Page: </span><span class='rune-value'>{{ m.page }}</span><br><span class='rune-key'>Rune ID: </span><span class='rune-value'>{{ m.runeId }}</span><br><span class='rune-key'>Slot: <span class='rune-value'>{{ m.slot }}</span></div>" data-toggle="tooltip" data-placement="top" tooltip></div>
                                         <div class="tr__td--match-num">Rune {{ $index + 1 }}</div>
                                     </td>
                                 </tr>
@@ -221,4 +201,6 @@
                 </div> <!-- .recent-matches-table -->
             </div> <!-- .col-md-10 --> 
         </div> <!-- .row -->
+
+
         

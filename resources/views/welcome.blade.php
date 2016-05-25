@@ -24,6 +24,7 @@
 
       <script src="{{ asset('/js/controllers/chartCtrl.js') }}"></script>
       <script src="{{ asset('/js/directives/chart.js') }}"></script>
+      <script src="{{ asset('/js/directives/tooltip.js') }}"></script>
       <script src="{{ asset('/js/routes.js') }}"></script>
 
       <!-- socket io -->
@@ -114,14 +115,18 @@
          </div>
    </body>
    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-   
-   <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>  
    <script src="{{ asset('/js/jquery.smoothState.min.js') }}"></script>
 
    <script src="{{ asset('/js/app.js') }}"></script>
-
+   <script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+        html : true
+    });
+});
+</script>
 <!--    <script>  
       var socket = io.connect("http://localhost");
       

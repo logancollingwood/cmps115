@@ -154,9 +154,9 @@ tr:first-child td {
 }
 
 tbody tr .tr__th--recent-matches {
-  font-size: 14px;
-  line-height: 16px !important;
-  font-weight: 400;
+  font-weight: 700;
+  line-height: 1em !important;
+  font-size: 16px;
   /*border-bottom: 3px solid #444 !important;*/
   padding-bottom: 4px !important;
   padding-top: 0px !important;
@@ -368,7 +368,38 @@ table {
 
 /* RUNES AND MASTERIES TABLE */
 .runepic .description {
-  font-size: 8px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1em;
+  margin-top: 10px;
 }
 
 
+.tooltip-inner {
+  white-space:pre-wrap;
+  text-align: left;
+}
+
+.rune-key, .rune-value {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.rune-key {
+  font-weight: 400;
+}
+
+.rune-value {
+  font-weight: 700;
+}
+
+.tooltip-wrapper {
+  margin: 16px;
+}
+
+.tr__th--recent-matches {
+  font-weight: 700;
+  line-height: 1em !important;
+  font-size: 16px;
+}
