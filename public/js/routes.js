@@ -39,6 +39,10 @@
             templateUrl: 'views/streams.html',
             controller: 'HomeController',
         })
+        .when('/twitch', {
+            templateUrl: 'views/twitch.html',
+            controller: 'HomeController',
+        })
         .otherwise({
             templateUrl: 'views/404.html',
             controller: 'HomeController'
