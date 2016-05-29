@@ -46,25 +46,11 @@
                         	<span class="last-updated__time">{{ match.payload.updated_at}}</span>
                     	</div>
                     </div> <!-- career stats -->
-    <!--                 <br>
-                    <p> Career Breakdown: </p>
-                    <div class="heading"> <label> wins </label> {{player.payload.playerData.wins }} </div>
-                    <div class="heading"> <label> champion kills </label> {{player.payload.playerData.totalChampionKills }} </div>
-                    <div class="heading"> <label> assists </label> {{player.payload.playerData.assists }} </div>
-                    <div class="heading"> <label> minion kills </label> {{player.payload.playerData.neutralMinionKills }} </div>
-                    <div class="heading"> <label> turret kills </label> {{player.payload.playerData.turretsDestroyed }} </div>
-                    <div class="heading"> <label> Last Updated </label> {{ player.payload.playerData.updated_at }} </div>
-                    
-                    <div class="heading"> <label> force update? </label> 
-                    	<a href="/api/player/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerName}}/force" target="_blank">
-                    		<i class="fa fa-refresh" aria-hidden="true"></i>
-                		</a>
-            		</div> -->
                 </div> <!-- .content-sidebar --> 
             </div> <!-- .col-md-4 --> 
             <div class="col-md-8">
             	<!-- Loading Spinner -->
-                <div class="recent-matches-table">
+                <div class="stat-table recent-matches-table">
                     <i id="loadingIndicator" class="fa fa-cog fa-spin" style="font-size:36px;"></i>
                     <i id="errorIndicator" class="fa fa-times" style="font-size:36px;"></i>
                     <div class="table-wrapper">

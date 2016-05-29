@@ -1,0 +1,8 @@
+.stream { 
+  width: 75%; 
+  float: left; 
+}
+.chat { 
+  width: 25%; 
+  float: right; 
+}

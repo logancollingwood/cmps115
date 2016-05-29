@@ -33,6 +33,14 @@
         })
         .when('/yourstats', {
             templateUrl: 'views/playerstats.html',
+            controller: 'ChartController',
+        })
+        .when('/streams', {
+            templateUrl: 'views/streams.html',
+            controller: 'HomeController',
+        })
+        .when('/twitch', {
+            templateUrl: 'views/twitch.html',
             controller: 'HomeController',
         })
         .otherwise({

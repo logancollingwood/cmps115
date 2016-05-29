@@ -11,12 +11,12 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     $("#loadingIndicator").show();
     $("#errorIndicator").hide();
     getPlayer();
+    $scope.player = { promise: DataFactory.getPlayer($routeParams.region, $routeParams.name)};
 
     function getPlayer() {
     	DataFactory.getPlayer($routeParams.region, $routeParams.name)
     		.then(function (response) {
     			console.log('successful http get request');
-                console.log(response.data);
                 if (response.data.status != 200) {
                     // API error'd not-found, etc
                     console.log('Player lookup failed for region: ' + $routeParams.region + ", name:" + $routeParams.name);
@@ -24,7 +24,6 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                     $("#errorIndicator").show();
                     return;
                 }
-                
                 
 				$scope.player = DataFactory.filterPlayer(response.data);
 				$scope.profileicon = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/" + response.data.payload.playerData.id + ".png";
@@ -39,9 +38,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 				$('.fa-spinner').hide().removeClass('fa-spin');	
     		});
     } 
-    
 
-    
     $('#username').unbind('keyup').bind('keyup', function(e) {
 
         //console.log('keyup detected')
@@ -65,15 +62,17 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
 
     $scope.init = function() {
         console.log("pulling champions");
-        $(".championpic").each(function(index) {
-            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/";
+        $scope.championNames = [];
 
+        $(".championpic").each(function(index) {
+            var baseUrl = "http://ddragon.leagueoflegends.com/cdn/6.8.1/img/champion/";
             var championId = $(this).data("champion");
             var refThis = $(this);
+            
             DataFactory.getChampion(championId)
                 .then(function(response) {
-
-                    var imgHref = response.data.image;
+                    $scope.championNames.push(response.data.name);
+                    var imgHref = baseUrl + response.data.name + '.png';
                     var image = "<img src='" + imgHref + "'>";
                     refThis.html(image);
                 }, function (error) {
@@ -93,7 +92,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
                 .then(function(response) {
                     var imgHref = baseUrl + response.data.image.full;
                     var image = "<img src='" + imgHref + "'>";
-                    var descr = "<p class='description'>" + response.data.description + "</p>";
+                    var descr = "<p class='description'>" + response.data.description.split(" ")[0] + "<br>" + response.data.description.replace(response.data.description.split(" ")[0], '') + "</p>";
                     refThis.html(image + descr);
                 }, function (error) {
                     console.log("error");

@@ -9,12 +9,10 @@
                             background-size: cover;
                             background-position: 50% 20%;">
                             <!-- <img src= {{profileicon}} > -->
-                            <span class="heading">Career Breakdown</span>
+                            <span class="heading"><div>{{ player.payload.playerData.summonerName }}</div><div class="heading__region">{{ player.payload.playerData.region }}</div></span>
                         </div>
                         <p class="name">
-                            <span class="name__region">{{ player.payload.playerData.region }}</span>
-                            <span class="name__summoner-name">{{ player.payload.playerData.summonerName }}</span>
-                            <a href="/livematch/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerId}}" class="btn btn-default" role="button">Live Game</a>
+                            <a href="/livematch/{{player.payload.playerData.region}}/{{player.payload.playerData.summonerId}}" class="btn btn-default live-game-btn" role="button">Live Game</a>
                         </p>
                     </div>
                     <div class="row no-gutters career-stats">
@@ -66,7 +64,7 @@
                     <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
                                 <div class="stat__num">
-                                    <div class="championpic" data-champion="{{player.payload.playerData.favChamp}}" ng-cloak></div>
+                                    <div class="championpic" data-champion="{{player.payload.playerData.favChampData.championId}}" ng-cloak></div>
                                 </div>
                                 <div class="stat__label">Favorite<br>Champ</div>
                             </div>
@@ -103,6 +101,9 @@
                                 <div class="stat__label">Favorite<br>Champ Assists</div>
                             </div>
                         </div>
+                        <div class="col" chart id="pieChart" data="dataset" player-kills="player.promise"></div>
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
+                        <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
                     </div>
                 </div>
             </div> <!-- .col-md-4 --> 
@@ -114,20 +115,16 @@
                     <div class="table-wrapper">
                         <table class="table">
                             <tbody>
-                                <!-- Match Num -->
                                 <tr>
                                     <th class="tr__th--recent-matches">Recent<br>Matches</th>
                                     <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="championpic" data-champion="{{ m.championId }}" ng-cloak></div>
+                                        <div class="championpic" data-champion="{{ m.championId }}" data-html="true" title="{{ championNames[$index+1] }}" data-toggle="tooltip" data-placement="top" tooltip ng-cloak></div>
                                         </td>
-                                        </tr>
-                                    <th class= "Match-data">Match data</th>
-                                    <td ng-repeat="m in player.payload.recentMatches">
-                                        <div class="tr__td--match-num"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}"><u> {{m.subType }}</u></a> 
-                                        </div>
-                                    </td>
                                 </tr>
-                                <!-- Result -->    
+                                <tr>
+                                    <th class="Match-data">Match data</th>
+                                    <td class="tr__match-link" ng-repeat="m in player.payload.recentMatches"><a href="/match/{{player.payload.playerData.region}}/{{ m.gameId}}">{{m.subType }}</a></td>
+                                </tr>   
                                 <tr>
                                   <th>Result</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.won ? 'Victory' : 'Defeat'}}</td>
@@ -176,7 +173,10 @@
                         </table>
                     </div> <!-- .table-wrapper -->
                 </div> <!-- .recent-matches-table -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> e0bbe5cf6b1a245307276a6a68df4ec6d9374a94
 
                 <div class="stat-table runes-table" ng-repeat="page in player.payload.runePages">
                     <div class="table-wrapper">
@@ -185,8 +185,8 @@
                                 <!-- Match Num -->
                                 <tr>
                                     <th class="tr__th--recent-matches">{{ page.name}} Runes</th>
-                                    <td ng-repeat="m in page.runes">
-                                        <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak></div>
+                                    <td ng-repeat="m in page.runes">                             
+                                        <div class="runepic" data-rune="{{ m.runeId }}" ng-cloak data-html="true" title="<div class='tooltip-wrapper'><span class='rune-key'>Page Name: </span><span class='rune-value'>{{ m.pageName }}</span><br /><span class='rune-key'>Page: </span><span class='rune-value'>{{ m.page }}</span><br><span class='rune-key'>Rune ID: </span><span class='rune-value'>{{ m.runeId }}</span><br><span class='rune-key'>Slot: <span class='rune-value'>{{ m.slot }}</span></div>" data-toggle="tooltip" data-placement="top" tooltip></div>
                                         <div class="tr__td--match-num">Rune {{ $index + 1 }}</div>
                                     </td>
                                 </tr>
@@ -233,4 +233,6 @@
                 </div> <!-- .recent-matches-table -->
             </div> <!-- .col-md-10 --> 
         </div> <!-- .row -->
+
+
         
