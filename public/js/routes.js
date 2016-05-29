@@ -33,7 +33,7 @@
         })
         .when('/yourstats', {
             templateUrl: 'views/playerstats.html',
-            controller: 'HomeController',
+            controller: 'ChartController',
         })
         .when('/streams', {
             templateUrl: 'views/streams.html',

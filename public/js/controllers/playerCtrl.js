@@ -11,6 +11,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     $("#loadingIndicator").show();
     $("#errorIndicator").hide();
     getPlayer();
+    $scope.player = { promise: DataFactory.getPlayer($routeParams.region, $routeParams.name)};
 
     function getPlayer() {
     	DataFactory.getPlayer($routeParams.region, $routeParams.name)

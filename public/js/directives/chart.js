@@ -1,44 +1,89 @@
 angular.module('chart', []).directive('chart', function() {
   return {
     restrict: 'EA',
-    template:'<div id="chart" data="dataset"></div>',
+    scope: { promise: '=playerKills' },
+    template:'<div id="pieChart" data="dataset" player-kills="player.promise"></div>',
     link: function(scope, elem, attrs) {
-      var dataset = [
-       { label: 'Abulia', count: 10 }, 
-       { label: 'Betelgeuse', count: 20 },
-       { label: 'Cantaloupe', count: 30 },
-       { label: 'Dijkstra', count: 40 }
-     ];
+               
+      scope.promise.success(function (data) {  
 
-     var width = 180;
-     var height = 180;
-     var radius = Math.min(width, height) / 2;
-
-     var color = d3.scale.category20b();
-
-     var svg = d3.select('#chart')
-       .append('svg')
-       .attr('width', width)
-       .attr('height', height)
-       .append('g')
-       .attr('transform', 'translate(' + (width / 2) + 
-         ',' + (height / 2) + ')');
-
-     var arc = d3.svg.arc()
-       .outerRadius(radius);
-
-     var pie = d3.layout.pie()
-       .value(function(d) { return d.count; })
-       .sort(null);
-
-     var path = svg.selectAll('path')
-       .data(pie(dataset))
-       .enter()
-       .append('path')
-       .attr('d', arc)
-       .attr('fill', function(d, i) { 
-         return color(d.data.label);
-       });
+var pie = new d3pie("pieChart", {
+  "header": {
+    "title": {
+      "text": "Career Kills Breakdown",
+      "fontSize": 16,
+      "font": "open sans"
+    },
+    "subtitle": {
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans"
+    },
+    "titleSubtitlePadding": 12
+  },
+  "footer": {
+    "color": "#999999",
+    "fontSize": 11,
+    "font": "open sans",
+    "location": "bottom-center"
+  },
+  "size": {
+    "canvasHeight": 289,
+    "canvasWidth": 243,
+    "pieOuterRadius": "50%"
+  },
+  "data": {
+    "content": [
+      {
+        "label": "Champ",
+        "value": data.payload.playerData.totalChampionKills,
+        "color": "#7e3838"
+      },
+      {
+        "label": "Turrets",
+        "value": data.payload.playerData.turretsDestroyed,
+        "color": "#387e45"
+      },
+      {
+        "label": "Minions",
+        "value": data.payload.playerData.neutralMinionKills,
+        "color": "#386a7e"
+      }
+    ]
+  },
+  "labels": {
+    "outer": {
+      "pieDistance": 0
+    },
+    "inner": {
+      "hideWhenLessThanPercentage": 1
+    },
+    "mainLabel": {
+      "color": "#000000",
+      "font": "open sans",
+      "fontSize": 14
+    },
+    "percentage": {
+      "color": "#e1e1e1",
+      "font": "open sans",
+      "fontSize": 12,
+      "decimalPlaces": 0
+    },
+    "value": {
+      "color": "#e1e1e1",
+      "font": "open sans",
+      "fontSize": 16
+    }
+  },
+  "effects": {
+    "pullOutSegmentOnClick": {
+      "effect": "linear",
+      "speed": 400,
+      "size": 8
+    }
+  }
+});
+});
     }
   }
 });
