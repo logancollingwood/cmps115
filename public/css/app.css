@@ -67,6 +67,9 @@ td{
 .recent-matches-table tr:nth-child(2) td {
   background-color: transparent;
 }
+.recent-matches-table tr td:nth-child(even){
+  background-color: transparent;
+}
 
 td, th {
   font-size: 11px
