@@ -465,6 +465,11 @@ tr .td__champion {
   text-transform: uppercase !important;
   font-size: 16px;
 }
+#p1_title {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 16px;
+}
 .mapPic {
   background-image: url("http://cdn.cheatcc.com/news_images/Riot%20Games%20discusses%20how%20to%20navigate%20Summoner%20Rift's%20new%20Design.jpg");
 }

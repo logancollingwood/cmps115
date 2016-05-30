@@ -66,7 +66,7 @@
                                 <div class="stat__num">
                                     <div class="championpic" data-champion="{{player.payload.playerData.favChampData.championId}}" ng-cloak></div>
                                 </div>
-                                <div class="stat__label">Favorite<br>Champ</div>
+                                <div class="stat__label">Favorite<br>Champion</div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-2 col-xs-4">
@@ -100,6 +100,16 @@
                                 </div>
                                 <div class="stat__label">Favorite<br>Champ Assists</div>
                             </div>
+                        </div>
+                        <div class="row">                        
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="stat">
+                                <div class="stat__num">
+                                    {{player.payload.playerData.favChampData.name}} {{player.payload.playerData.favChampData.title}}
+                                </div>
+                                <div class="stat__label">Favorite<br>Champ Title</div>
+                            </div>
+                        </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
