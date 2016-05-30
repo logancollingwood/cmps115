@@ -63,8 +63,9 @@ class MatchController extends Controller
     	if (!$match) {
 			$match = new Match;
 			$matchData = $this->connection->getMatch($matchId, true);
+			//dd(strpos($matchData["queueType"], "RANKED"));
 			//dd($matchData);
-			if (strpos($matchData["queueType"], "RANKED") == false) {
+			if (strpos($matchData["queueType"], "RANKED") === false) {
 				$match->ranked = 0;
 
 			} else {
