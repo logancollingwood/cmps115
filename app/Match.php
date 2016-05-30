@@ -33,7 +33,7 @@ class Match extends Model
 		if (!$matchModel) {
 			$matchModel = new Match;
 			$matchData = $connection->getMatch($matchId, true);
-			
+			dd($matchData);
 			$participantIdentities = $matchData['participantIdentities'];
 			
 			foreach ($participantIdentities as $participant) {

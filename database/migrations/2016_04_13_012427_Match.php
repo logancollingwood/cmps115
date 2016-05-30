@@ -28,6 +28,7 @@ class Match extends Migration
             $table->string('serverTime');
             $table->integer('length');
             $table->string('patch');
+            $table->integer('ranked');
             $table->timestamps();
         });
     }

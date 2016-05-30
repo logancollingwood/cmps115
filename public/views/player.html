@@ -2,7 +2,7 @@
     <!-- public/views/nerd.html -->
         <div class="row playerinfo">
             <div class="col-md-4">
-                <div class="content-sidebar">
+                <div class="content-sidebar" ng-cl>
                     <div class="playerInfo">
                         <div class="summonerPic" style="
                             background: url('{{player.payload.playerData.favChampData.splash}}');
@@ -101,10 +101,14 @@
                                 <div class="stat__label">Favorite<br>Champ Assists</div>
                             </div>
                         </div>
-                        <div class="col" chart id="pieChart" data="dataset" player-kills="player.promise"></div>
-                        <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
-                        <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
+                        <div class="row">
+                            <div class="col-md-6 last-updated"><span class="last-updated__label">Last updated:</span><span class="last-updated__time">{{player.payload.playerData.updated_at}}</span></div>
+                            <div class="col-md-6 last-updated"><span class="last-updated__label">Games Fetched:</span><span class="last-updated__time">{{player.payload.playerData.numGames}}</span></div>
+                        </div>
                     </div>
+                </div>
+                <div class="stat-table fav-champ" ng-cloak>
+                    <div class="col" chart id="pieChart" data="dataset" player-kills="player.promise"></div>
                 </div>
             </div> <!-- .col-md-4 --> 
             <div class="col-md-8">

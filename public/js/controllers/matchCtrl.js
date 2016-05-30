@@ -24,10 +24,13 @@ angular.module('MatchCtrl', []).controller('MatchController', function($scope, D
                     $("#errorIndicator").show();
                     return;
                 }
+
                 
                 
 				$scope.match = DataFactory.filterMatch(response.data);
-
+                
+                $scope.ranked = $scope.match.payload.ranked;
+                console.log($scope.ranked);
                 // hacky delay since angular takes a while to bind {{ m.champion }}'s
                 setTimeout($scope.init, 500);
                 

@@ -127,6 +127,8 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
     }
 
     DataFactory.filterMatch = function(object) {
+        console.log("ORIGINAL MATCH");
+        console.debug(object);
         var filtered = jQuery.extend({}, object);
         object = object.payload; 
 
@@ -134,11 +136,22 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
             case "11":
                 filtered.payload.map = 'Summoners Rift';
                 break;
+            case 11: 
+                filtered.payload.map = 'Summoners Rift';
+                break;
         }
 
         switch (object.queueType) {
             case "RANKED_SOLO_5x5":
                 filtered.payload.queueType = "Solo Queue";
+                break;
+        }
+        switch (object.ranked) {
+            case "0":
+                filtered.payload.ranked = false;
+                break;
+            case "1": 
+                filtered.payload.ranked = true;
                 break;
         }
 

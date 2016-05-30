@@ -2,10 +2,14 @@
     <!-- public/views/nerd.html -->
         <div class="row playerinfo">
             <div class="col-md-4">
-                <div class="content-sidebar">
+                <div class="content-sidebar"  ng-show="ranked">
                     <div class="playerInfo">
-                        <div class="summonerPic">
+                        <div class="summonerPic mapPic">
                             <!-- <img src= {{profileicon}} > -->
+                            <span class="heading">
+                                <div>{{ match.payload.map }}</div>
+                                <div class="heading__region">{{ match.payload.season }}</div>
+                            </span>
                         </div>
                         <p class="name">
                             <span class="name__region">{{ match.payload.matchMode }}</span>
@@ -27,12 +31,6 @@
                         </div>
                         <div class="col-md-6 col-sm-2 col-xs-4">
                             <div class="stat">
-                                <div class="stat__num">{{match.payload.map }}</div>
-                                <div class="stat__label">map</div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-2 col-xs-4">
-                            <div class="stat">
                                 <div class="stat__num">{{ match.payload.season }}</div>
                                 <div class="stat__label">season</div>
                             </div>
@@ -48,7 +46,7 @@
                     </div> <!-- career stats -->
                 </div> <!-- .content-sidebar --> 
             </div> <!-- .col-md-4 --> 
-            <div class="col-md-8">
+            <div class="col-md-8"  ng-show="ranked">
             	<!-- Loading Spinner -->
                 <div class="stat-table recent-matches-table">
                     <i id="loadingIndicator" class="fa fa-cog fa-spin" style="font-size:36px;"></i>
@@ -200,5 +198,10 @@
                     </table>
                 </div> -->
             </div> <!-- .col-md-10 --> 
+            <div class="col-md-12" ng-show="!ranked">
+                <div class="well">
+                    <p> This feature only works for ranked games currently. Try again later!</p>
+                </div>
+            </div>
         </div> <!-- .row -->
         

@@ -1,5 +1,5 @@
 // public/js/app.js
-angular.module('myApp', ['ngRoute', 'routes', 'DataFactory', 'PlayerCtrl', 'MatchCtrl', 'HomeCtrl', 'LiveMatchCtrl', 'ChartCtrl', 'chart', 'tooltip']);
+angular.module('myApp', ['ngRoute', 'routes', 'DataFactory', 'PlayerCtrl', 'MatchCtrl', 'HomeCtrl', 'LiveMatchCtrl', 'ChartCtrl', 'StreamCtrl', 'chart', 'tooltip']);
 
     var channels = [
     'riotgames',

@@ -36,17 +36,17 @@ var pie = new d3pie("pieChart", {
     "content": [
       {
         "label": "Champ",
-        "value": data.payload.playerData.totalChampionKills,
+        "value": parseInt(data.payload.playerData.totalChampionKills),
         "color": "#7e3838"
       },
       {
         "label": "Turrets",
-        "value": data.payload.playerData.turretsDestroyed,
+        "value": parseInt(data.payload.playerData.turretsDestroyed),
         "color": "#387e45"
       },
       {
         "label": "Minions",
-        "value": data.payload.playerData.neutralMinionKills,
+        "value": parseInt(data.payload.playerData.neutralMinionKills),
         "color": "#386a7e"
       }
     ]

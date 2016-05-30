@@ -21,6 +21,7 @@
       <script src="{{ asset('/js/controllers/playerCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/matchCtrl.js') }}"></script>
       <script src="{{ asset('/js/controllers/livematchCtrl.js') }}"></script>
+      <script src="{{ asset('/js/controllers/streamCtrl.js') }}"></script>
 
       <script src="{{ asset('/js/controllers/chartCtrl.js') }}"></script>
       <script src="{{ asset('/js/directives/chart.js') }}"></script>

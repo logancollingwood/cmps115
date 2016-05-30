@@ -54,7 +54,6 @@ br {
 
 td{
     padding: 5px;
-    width: 68px;
     white-space: nowrap;
     border-top: 1px solid #cfcfcf !important;
 }
@@ -443,6 +442,9 @@ table {
   padding: 12px 24px;
   letter-spacing: 2px;
 }
+.table>tbody>tr>td{
+  min-width: 150px;
+}
 
 tr .td__champion {
   padding-bottom: 0 !important;
@@ -462,7 +464,9 @@ tr .td__champion {
   text-transform: uppercase !important;
   font-size: 16px;
 }
-
+.mapPic {
+  background-image: url("http://cdn.cheatcc.com/news_images/Riot%20Games%20discusses%20how%20to%20navigate%20Summoner%20Rift's%20new%20Design.jpg");
+}
 svg {
   margin-top: 60px;
 }

@@ -16,6 +16,7 @@ angular.module('PlayerCtrl', []).controller('PlayerController', function($scope,
     function getPlayer() {
     	DataFactory.getPlayer($routeParams.region, $routeParams.name)
     		.then(function (response) {
+                console.log(response);
     			console.log('successful http get request');
                 if (response.data.status != 200) {
                     // API error'd not-found, etc

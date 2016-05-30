@@ -64,57 +64,63 @@ class MatchController extends Controller
 			$match = new Match;
 			$matchData = $this->connection->getMatch($matchId, true);
 			//dd($matchData);
-			$participantIdentities = $matchData['participantIdentities'];
-			//dd($participantIdentities);
-			foreach ($participantIdentities as $participant) {
-				$partId = $participant['participantId'];
-				$summonerId = $participant['player']['summonerId'];
-				$pm = PlayerMatch::where('summonerId', $summonerId)
-    									->where('platformId', $region)
-    									->where('matchId', $matchId)
-    									->first();
-    			if(!$pm) {
-    				$playerMatch = new PlayerMatch;
-		    		// identifiers
-		    		$playerMatch->summonerId = $summonerId;
-		    		$playerMatch->platformId = $region;
-		    		$playerMatch->matchId = $matchId;
-		    		$playerMatch->profileIcon = $participant['player']['profileIcon'];
-		    		$playerMatch->summonerName = $participant['player']['summonerName'];
-		    		// subquery riot match api with matchid
+			if (strpos($matchData["queueType"], "RANKED") == false) {
+				$match->ranked = 0;
 
-		    		foreach ($matchData['participants'] as $participant) {
-			    		if ($participant['participantId'] == $partId) {
-			    			$stats = $participant['stats'];
+			} else {
+				$match->ranked = 1;
+			
+				$participantIdentities = $matchData['participantIdentities'];
+				//dd($participantIdentities);
+				foreach ($participantIdentities as $participant) {
+					$partId = $participant['participantId'];
+					$summonerId = $participant['player']['summonerId'];
+					$pm = PlayerMatch::where('summonerId', $summonerId)
+	    									->where('platformId', $region)
+	    									->where('matchId', $matchId)
+	    									->first();
+	    			if(!$pm) {
+	    				$playerMatch = new PlayerMatch;
+			    		// identifiers
+			    		$playerMatch->summonerId = $summonerId;
+			    		$playerMatch->platformId = $region;
+			    		$playerMatch->matchId = $matchId;
+			    		$playerMatch->profileIcon = $participant['player']['profileIcon'];
+			    		$playerMatch->summonerName = $participant['player']['summonerName'];
+			    		// subquery riot match api with matchid
 
-			    			if ($participant['teamId'] == 100) {
-			    				$playerMatch->team = 0;
-			    			} else {
-			    				$playerMatch->team = 1;
-			    			}
+			    		foreach ($matchData['participants'] as $participant) {
+				    		if ($participant['participantId'] == $partId) {
+				    			$stats = $participant['stats'];
 
-			    			$playerMatch->won = $stats['winner'];
-			    			$playerMatch->kills = $stats['kills'];
-			    			$playerMatch->deaths = $stats['deaths'];
-			    			$playerMatch->assists = $stats['assists'];
-			    			$playerMatch->wards_placed = $stats['wardsPlaced'];
-			    			$playerMatch->wards_killed = $stats['wardsKilled'];
-			    			$playerMatch->first_blood = $stats['firstBloodKill'] || $stats['firstBloodAssist'];
-				    		$playerMatch->lane = $participant['timeline']['lane'];
-			    			$playerMatch->role = $participant['timeline']['role'];
-			    			$playerMatch->champion = $participant['championId'];
-			    		}
-			    	}
+				    			if ($participant['teamId'] == 100) {
+				    				$playerMatch->team = 0;
+				    			} else {
+				    				$playerMatch->team = 1;
+				    			}
 
-		    		
-		    		$playerMatch->queue = $matchData['queueType'];
-		    		$playerMatch->season = $matchData['season'];
-		    		$playerMatch->serverTime = $matchData['matchCreation'];
-		    		$playerMatch->save();
-		    		
-    			}
+				    			$playerMatch->won = $stats['winner'];
+				    			$playerMatch->kills = $stats['kills'];
+				    			$playerMatch->deaths = $stats['deaths'];
+				    			$playerMatch->assists = $stats['assists'];
+				    			$playerMatch->wards_placed = $stats['wardsPlaced'];
+				    			$playerMatch->wards_killed = $stats['wardsKilled'];
+				    			$playerMatch->first_blood = $stats['firstBloodKill'] || $stats['firstBloodAssist'];
+					    		$playerMatch->lane = $participant['timeline']['lane'];
+				    			$playerMatch->role = $participant['timeline']['role'];
+				    			$playerMatch->champion = $participant['championId'];
+				    		}
+				    	}
+
+			    		
+			    		$playerMatch->queue = $matchData['queueType'];
+			    		$playerMatch->season = $matchData['season'];
+			    		$playerMatch->serverTime = $matchData['matchCreation'];
+			    		$playerMatch->save();
+			    		
+	    			}
+				}
 			}
-
 			// parse wards 
 			/*
 			foreach ($matchData['timeline']['frames'] as $frame) {
