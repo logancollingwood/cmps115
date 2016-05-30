@@ -177,10 +177,6 @@
                         </table>
                     </div> <!-- .table-wrapper -->
                 </div> <!-- .recent-matches-table -->
-<<<<<<< HEAD
-
-=======
->>>>>>> e0bbe5cf6b1a245307276a6a68df4ec6d9374a94
 
                 <div class="stat-table runes-table" ng-repeat="page in player.payload.runePages">
                     <div class="table-wrapper">
@@ -199,7 +195,7 @@
                     </div> <!-- .table-wrapper -->
                 </div> <!-- .recent-matches-table -->
 
-                <div class="stat-table masteries-table">
+                <div class="stat-table masteries-table" ng-show="!player.payload.masteries.length == 0">
                     <div class="table-wrapper">
                         <table class="table">
                             <tbody>

@@ -71,31 +71,19 @@
                   
                   <ul class="nav navbar-nav">
                      <!-- DROPDOWN FOR GRAPHS -->
-                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Champion Graphs <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                           <li><a href="/yourstats">Your Stats Graphed</a></li>
-                           <li role="separator" class="divider"></li>
-                           <li><a href="/champhigh-wins">Highest Win Rate</a></li>
-                           <li><a href="/champlow-wins">Lowest Win Rate</a></li>
-                           <li><a href="/items">Popular Items and Builds</a></li>
-                           <li role="separator" class="divider"></li>
-                           <li><a href="/metachamps">Meta Champions</a></li>
-                           <li><a href="/champbans">Champion Bans</a></li>
-                        </ul>
-                     </li>
+                     
                      <!-- Streams and popular streams -->
                      <li class ="dropdown">
                         <a href="/streams" class="dropdown-toggle" data-toggle="dropdown" role="button">Streams<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                            <!-- To Do, we can either link to Twitch for now or /streams-->
                            <li class="dropdown-header">Popular Streamers</a></li>
-                           <li><a href="https://www.twitch.tv/imaqtpie">Imaqtpie</a></li>
-                           <li><a href="https://www.twitch.tv/c9sneaky">C9Sneaky</a></li>
-                           <li><a href="https://www.twitch.tv/tsm_doublelift">Doublelift</a></li>
+                           <li><a href="/stream/imaqtpie">Imaqtpie</a></li>
+                           <li><a href="/stream/c9sneaky">C9Sneaky</a></li>
+                           <li><a href="/stream/tsm_doublelift">Doublelift</a></li>
                            <li role="separator" class="divider"></li>
                            <li class="dropdown-header">Professionl Games</a></li>
-                           <li><a href="https://www.twitch.tv/riotgames">Riot Games</a></li>
+                           <li><a href="/stream/riotgames">Riot Games</a></li>
                         </ul>
                      </li>
                      <li><a id="playerProfile" href="/about">About</a></li>
