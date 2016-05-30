@@ -25,7 +25,8 @@
 }
 
 .img-responsive {
-    margin: 0 auto;
+
+  margin: 0 auto;
 }
 
 label {
@@ -470,3 +471,9 @@ tr .td__champion {
 svg {
   margin-top: 60px;
 }
+
+.img-circle {
+  max-width: 200px;
+  max-height: 200px;
+}
+

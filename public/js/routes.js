@@ -37,7 +37,7 @@
         })
         .when('/streams', {
             templateUrl: 'views/streams.html',
-            controller: 'HomeController',
+            controller: 'StreamController',
         })
         .when('/stream/:streamname', {
             templateUrl: 'views/twitch.html',
