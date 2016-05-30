@@ -469,7 +469,9 @@ tr .td__champion {
   background-image: url("http://cdn.cheatcc.com/news_images/Riot%20Games%20discusses%20how%20to%20navigate%20Summoner%20Rift's%20new%20Design.jpg");
 }
 svg {
-  margin-top: 60px;
+  margin: 0 auto;
+  display: block;
+  padding-top: 24px;
 }
 
 .img-circle {
@@ -477,3 +479,13 @@ svg {
   max-height: 200px;
 }
 
+.career-kills-breakdown {
+  padding: 0 !important;
+}
+
+.fav-champ .header {
+  line-height: 1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+}
