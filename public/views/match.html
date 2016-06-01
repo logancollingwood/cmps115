@@ -106,7 +106,7 @@
                                 <!-- First Blood -->    
                                 <tr>
                                   <th>First Blood</th>
-                                  <td ng-repeat="m in match.payload.teamInfo.one.players">{{ m.first_blood ? 'Yes' : 'No'}}</td>
+                                  <td ng-repeat="m in match.payload.teamInfo.one.players">{{ (m.first_blood==true) ? 'Yes' : 'No'}}</td>
                                 </tr> 
                                 
                             </tbody> 
@@ -168,7 +168,7 @@
                                 <!-- First Blood -->    
                                 <tr>
                                   <th>First Blood</th>
-                                  <td ng-repeat="m in match.payload.teamInfo.two.players">{{ m.first_blood ? 'Yes' : 'No'}}</td>
+                                  <td ng-repeat="m in match.payload.teamInfo.two.players">{{ (m.first_blood==true) ? 'Yes' : 'No'}}</td>
                                 </tr> 
                             </tbody>
                         </table>
