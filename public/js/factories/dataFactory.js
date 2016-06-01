@@ -113,14 +113,6 @@ angular.module('DataFactory', []).factory('DataFactory', ['$http', function($htt
                     break;
             }
 
-            switch (recentMatches[i]["first_blood"]) {
-                case "0":
-                    recentMatches[i]["first_blood"] = 0;
-                    break;
-                case "1":
-                    recentMatches[i]["first_blood"] = 1;
-                    break;
-            }
 
         }
         return filtered;
