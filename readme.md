@@ -5,7 +5,7 @@ Course assignments can be found in docs/
 ##Installation
 1. Install Composer (https://getcomposer.org/)
 
-2. Run `composer install` to install php libraries. These external dependencies can be found in composer.json.
+2. Run `composer install` to install php libraries. These external dependencies can be found in composer.json. This also includes the laravel framework, which will be fetched and installed in vendor/.
 
 3. Update .env.example and fill in with local mysql credentials. Once this is done, save as .env.
 
