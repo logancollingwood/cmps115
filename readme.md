@@ -17,3 +17,11 @@ Course assignments can be found in docs/
 8. Run `php artisan key:generate` to create a crypto key
 8. Serve the database using mysql, and configure apache2 virtualhosts to point to where you want to store the application (with virtualbox this will be where you mount the shared folder).
 9. Run `sudo service apache2 restart` to restart apache (on Ubuntu)
+
+
+##Members
+-- Logan Collingwood (Product Owner, Backend)
+-- Griffin Meyer (Backend)
+-- Brandon Chai (Frontend)
+-- Michael Le (Frontend)
+-- Johannes Pitz (Frontend)
