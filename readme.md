@@ -20,8 +20,8 @@ Course assignments can be found in docs/
 
 
 ##Members
--- Logan Collingwood (Product Owner, Backend)
--- Griffin Meyer (Backend)
--- Brandon Chai (Frontend)
--- Michael Le (Frontend)
--- Johannes Pitz (Frontend)
+-Logan Collingwood (Product Owner, Backend)
+-Griffin Meyer (Backend)
+-Brandon Chai (Frontend)
+-Michael Le (Frontend)
+-Johannes Pitz (Frontend)
