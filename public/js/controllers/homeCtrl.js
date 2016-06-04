@@ -12,7 +12,7 @@ angular.module('HomeCtrl', []).controller('HomeController', function($scope, $lo
         var code = e.keyCode || e.which;
         if(code == 13) { 
             e.preventDefault();
-            search(username);
+            navSearch(username);
         }
     });
 

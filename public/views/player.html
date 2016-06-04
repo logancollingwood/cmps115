@@ -178,11 +178,6 @@
                                   <th>Wards Killed</th>
                                   <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches"> {{ m.wardsKilled }}</td>
                                 </tr> 
-                                <!-- First Blood -->    
-                                <tr>
-                                  <th>First Blood</th>
-                                  <td ng-class="{success: m.won, danger: !m.won}" ng-repeat="m in player.payload.recentMatches">{{ m.first_blood ? 'Yes' : 'No'}}</td>
-                                </tr> 
                             </tbody> 
                         </table>
                     </div> <!-- .table-wrapper -->
